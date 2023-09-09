@@ -4,7 +4,7 @@
     <meta charset = "utf-8">
     <title> Project 1 Report - Team 12 </title>
     <div class="myHeader">
-        <h4>Project 1 Report - Team 12</h4>
+        <h2>Project 1 Report - Team 12</h2>
     </div>
     <style>
         .myHeader{
@@ -200,7 +200,58 @@
     <img src="UMLDiagrams_PNG/Team12UML.png" alt="Team 12 UML" width="100%">
 
     <h3>Use Case Descriptions</h3>
-    <p>For each Use Case, write the description of the Use Case in the Report.html. Make sure
-        your use case labels in your diagram and use case description names match. (The correct format is on blackboard)</p>
+    <p>
+        <b>Use case:</b> Provider Directory<br>
+        <b>Context:</b> A use case of the provider terminal, that the provider can use to perform specific functions such as looking up the service code for a service.<br>
+        <b>Actors:</b> Provider Terminal<br>
+        <b>Main Success Scenario:</b>
+        <OL>
+            <LI>Provider enters their provider number to authenticate.
+                The provider accesses other commands from the terminal, represented as other use cases.
+        </OL>
+    <br>
+    <p>
+        <b>Use case:</b> Authenticate provider<br>
+        <b>Context:</b> Authenticate the provider using the provider number<br>
+        <b>Actors:</b> Provider Terminal<br>
+        <b>Main Success Scenario:</b>
+        <OL>
+            <LI>Provider enters their provider number to authenticate.
+        </OL>
+    <br>
+    <p>
+        <b>Use case:</b> List directory<br>
+        <b>Context:</b> At any time a provider can list the provider directory, which will create a list of all the services, the corresponding codes, and the fees for each service.<br>
+        <b>Actors:</b> Provider Terminal<br>
+        <b>Main Success Scenario:</b>
+        <OL>
+            <LI>Provider requests the list of the directory
+            <LI>An alphabetically ordered list of service names and corresponding service codes and fees is generated
+            <LI>The list is emailed to the provider as an attachment
+        </OL>
+    <br>
+    <p>
+        <b>Use case:</b> Check service code<br>
+        <b>Context:</b> Checks whether the inputted service code is valid.<br>
+        <b>Actors:</b> Provider Terminal<br>
+        <b>Main Success Scenario:</b>
+        <OL>
+            <LI>The provider enters a service code.
+            <LI>The corresponding service to the code is displayed.
+                <OL TYPE="a">
+                    <LI>Provider is asked to verify if this is the correct service
+                </OL>
+        <LI>The provider can enter comments about the service.
+        <LI>The computer saves the current date and time, date service was provided, provider number,  member number, service code, and any comments to the disk.
+        </OL>
+        Extensions:
+        <OL start="2">
+            <LI>An error is displayed if an incorrect error code was inputted.
+        </OL>
+
+
+
+
+
 </body>
 </html>
