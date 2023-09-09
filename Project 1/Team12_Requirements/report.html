@@ -17,8 +17,6 @@
             color: #acacec;
             letter-spacing: 6px;
             text-shadow: 5px 5px 5px #949697
-            /*text-decoration-line: underline;
-            text-decoration-thickness: 2px;*/
         }
         body{
             font-family: 'Courier New', Courier, monospace;
@@ -33,10 +31,10 @@
             padding: 5px;
             text-align: center;
             border: 1px solid black;
-            background-color: rgb(255, 255, 255);
+            background-color: white;
         }
         th {
-            background-color: rgb(0, 0, 0);
+            background-color: black;
             color: #acacec;
             padding: 7px;
         }
@@ -142,7 +140,7 @@
         total grade. Identify who the submitter is for the Report.html as well. There is no specified
         number of words for this paragraph. </p>
 
-    <h3>Glossary</h3>
+    <h1>Glossary</h1>
     <!--<p>After you get familiar with the domain of ChocAn, produce a glossary consisting of key
         terms and their brief explanation.</p>-->
         <table>
@@ -168,11 +166,11 @@
         </tr>
         <tr>
             <td>Member</td>
-            <td>Person who recives health care services from ChocAn</td>
+            <td>Person who receives health care services from ChocAn</td>
         </tr>
         <tr>
             <td>Operator</td>
-            <td>Soemone at ChocAn Data Center who can edit member and provider records</td>
+            <td> Someone at ChocAn Data Center who can edit member and provider records</td>
         </tr>
         <tr>
             <td>Provider</td>
@@ -196,10 +194,10 @@
         </tr>
         </table>
 
-    <h3>Use Case Diagram</h3>
+    <h1>Use Case Diagram</h1>
     <img src="UMLDiagrams_PNG/Team12UML.png" alt="Team 12 UML" width="100%">
 
-    <h3>Use Case Descriptions</h3>
+    <h1>Use Case Descriptions</h1>
     <p>
         <b>Use case:</b> Provider Directory<br>
         <b>Context:</b> A use case of the provider terminal, that the provider can use to perform specific functions such as looking up the service code for a service.<br>
@@ -245,7 +243,7 @@
         <LI>The computer saves the current date and time, date service was provided, provider number,  member number, service code, and any comments to the disk.
         </OL>
         Extensions:
-        <OL start="2">
+        <OL START="2">
             <LI>An error is displayed if an incorrect error code was inputted.
         </OL>
     
@@ -255,25 +253,25 @@
         <b>Context:</b> Operator Intends to add a new member to the database.<br>
         <b>Actors:</b> Operator, Acme Accounting Service<br>
         <b>Main Success Scenario:</b>
-        <ol>
-            <li>The operator selects “add member”</li>
-            <li>Operator is prompted to fill up the member details</li>
-            <li>The system communicates with the Acme Accounting Service to record the member details.
-                <ol type="a">
-                    <li>The system receives the confirmation from Acme Accounting Service.</li>
-                </ol>
-            </li>
-            <li>After completion, the operator is informed about the status of the member and taken to the Interactive terminal.</li>
-        </ol>
+        <OL>
+            <LI>The operator selects “add member”
+            <LI>Operator is prompted to fill up the member details
+            <LI>The system communicates with the Acme Accounting Service to record the member details.
+                <ol TYPE="a">
+                    <LI>The system receives the confirmation from Acme Accounting Service.
+                </OL>
+            
+            <LI>After completion, the operator is informed about the status of the member and taken to the Interactive terminal.
+        </OL>
         <b>Extensions:</b>
-        <ol start="3">
-            <li>
-                <ol type="a">
-                    <li>If the customer already exists, the membership feed is checked, and the operator is informed about the member status.</li>
-                    <li>If the customer doesn’t exist, a new member is added to the database, and the membership fees are collected.</li>
-                </ol>
-            </li>
-        </ol>
+        <ol START="3">
+            <LI>
+                <ol TYPE="a">
+                    <LI>If the customer already exists, the membership feed is checked, and the operator is informed about the member status.
+                    <LI>If the customer does not exist, a new member is added to the database, and the membership fees are collected.
+                </OL>
+            
+        </OL>
 
     <br>
     <p>
@@ -281,26 +279,26 @@
         <b>Context:</b> Operator Intends to delete an existing member from the database.<br>
         <b>Actors:</b> Operator, Acme Accounting Service<br>
         <b>Main Success Scenario:</b>
-        <ol>
-            <li>The operator selects “delete member”</li>
-            <li>The operator is prompted for member details like member ID</li>
-            <li>The system communicates with the Acme Accounting Service to change the member status.
-                <ol type="a">
-                    <li>The system receives the confirmation from Acme Accounting Service.</li>
-                </ol>
-            </li>
-            <li>The system deletes the member records from the database.</li>
-            <li>After completion, the operator is informed about the status of the member and taken to the Interactive terminal.</li>
-        </ol>
+        <OL>
+            <LI>The operator selects “delete member”
+            <LI>The operator is prompted for member details like member ID
+            <LI>The system communicates with the Acme Accounting Service to change the member status.
+                <ol TYPE="a">
+                    <LI>The system receives the confirmation from Acme Accounting Service.
+                </OL>
+            
+            <LI>The system deletes the member records from the database.
+            <LI>After completion, the operator is informed about the status of the member and taken to the Interactive terminal.
+        </OL>
         <b>Extensions:</b>
-        <ol start="3">
-            <li>
-                <ol type="a">
-                    <li> If the member doesn’t exist, an error is raised, and the operator is informed.</li>
-                    <li>If the member exists, Acme Accounting Service is informed to disable membership fees collection, and delete member personal info.</li>
-                </ol>
-            </li>
-        </ol>
+        <ol START="3">
+            <LI>
+                <ol TYPE="a">
+                    <LI> If the member does not exist, an error is raised, and the operator is informed.
+                    <LI>If the member exists, Acme Accounting Service is informed to disable membership fees collection, and delete member personal info.
+                </OL>
+            
+        </OL>
     
     <br>
     <p>
@@ -308,27 +306,97 @@
         <b>Context:</b> Operator or Acme Accounting Service intends to edit a member's record from the database.<br>
         <b>Actors:</b> Operator, Acme Accounting Service<br>
         <b>Main Success Scenario:</b>
-        <ol>
-            <li>Operator intends to change the member records.</li>
-            <li>The operator is displayed current member info and prompted for changes to the records.</li>
-            <li>The changes are verified and reconfirmed by the operator.</li>
-            <li>The changes are saved to the database.</li>
-            <li>The operator is informed of the changes and taken to interactive operations for further commands.</li>
-        </ol>
+        <OL>
+            <LI>Operator intends to change the member records.
+            <LI>The operator is displayed current member info and prompted for changes to the records.
+            <LI>The changes are verified and reconfirmed by the operator.
+            <LI>The changes are saved to the database.
+            <LI>The operator is informed of the changes and taken to interactive operations for further commands.
+        </OL>
         <b>Additional Success Scenario:</b>
-        <ol start="6">
-            <li>Acme Accounting Service runs the updates at 9 pm every day and updates member status.</li>
-            <li>The membership status is reevaluated and crosschecked.</li>
-            <li>Some members are suspended, and some are reinstated.</li>
-            <li>The updates are pushed to the database.</li>
-        </ol>
+        <ol START="6">
+            <LI>Acme Accounting Service runs the updates at 9 pm every day and updates member status.
+            <LI>The membership status is reevaluated and crosschecked.
+            <LI>Some members are suspended, and some are reinstated.
+            <LI>The updates are pushed to the database.
+        </OL>
         <b>Extensions:</b>
-        <ol>
-            <li>Error is raised if a member does not exist.</li>
-            <li value="7">The suspended members are informed of their overdue fees, and reinstated members are informed of their status.</li>
-        </ol>
+        <OL>
+            <LI>Error is raised if a member does not exist.
+            <li value="7">The suspended members are informed of their overdue fees, and reinstated members are informed of their status.
+        </OL>
     
     <br>
-    
-    </body>
+    <p>
+        <b>Use Case:</b> Interactive Operations<br>
+        <b>Context:</b> The ChocAn Data Center software can be run in interactive mode, to give the operator options to update member and provider records.<br>
+        <b>Actors:</b> Operators, ChocAn Data Center, Acme Accounting Services<br>
+        <b>Main Success Scenario:</b>
+        <OL>
+            <LI> The ChocAn Data Center must be in interactive mode.
+            <LI> The operator may update provider details
+                <OL TYPE="a">
+                    <LI> Change records
+                    <LI> Add provider
+                    <LI> Delete provider
+                </OL>
+        </OL>
+        <OL START="3">
+            <LI> The operator may update member details
+                <OL TYPE="a">
+                    <LI> Change records.
+                    <LI> Add member.
+                    <LI> Delete Member.
+                    <LI>The Acme Accounting Services may suspend members due to unsatisfied payments.
+                </OL>
+        </OL>
+
+    <br>
+    <p>
+        <b>Use Case:</b> Authenticate Members<br>
+        <b>Context:</b> Upon entering a member card into the system, the terminal verifies the member to receive health care service.<br>
+        <b>Actors:</b> ChocAn Data Center, Provider Terminal<br>
+        <b>Main Success Scenario:</b>
+        <OL>
+            <LI>Member card is provided into terminal card reader
+            <LI>Terminal dials ChocAn Data Center
+            <LI>ChocAn Data Center computer verifies the member number
+                <OL TYPE="a">
+                    <LI>If the number is valid, the word Validated appears on the one-line display.
+                </OL>
+        </OL>
+        <b>Extensions:</b>
+        <OL START="3">
+            <LI> If the number is invalid, the reason is displayed, such as Invalid number or Member suspended; the latter message indicates that fees are owed (that is, the member has not paid membership fees for at least a month) and member status has been set to suspended.
+        </OL>
+
+    <br>
+    <p>
+        <b>Use Case:</b> Edit Provider Records extends Interactive Operations<br>
+        <b>Context:</b> During the day, the computer is set into interactive mode for the operator to edit provider records.<br>
+        <b>Actors:</b> Operator<br>
+        <b>Main Success Scenario:</b>
+        <OL>
+            <LI> Operator intends to change the provider records.
+            <LI> The operator is displayed current provider info and prompted for change of records.
+            <LI> The changes are verified and reconfirmed by the operator.
+            <LI> The changes are saved to the database.
+            <LI> The operator is informed of changes and taken to interactive operations for further commands.
+        </OL>
+
+    <br>
+    <p>
+        <b>Use Case:</b> Delete Provider Records extends Interactive Operations<br>
+        <b>Context:</b> During the day, the computer is set into interactive mode for the operator to delete provider<br>
+        <b>Actors:</b> Operator<br>
+        <b>Main Success Scenario:</b>
+        <OL>
+            <LI> Operator intends to delete provider via the Interactive Operations.
+            <LI> Operator is displayed info about the provider and prompted to delete said provider.
+            <LI> The deletion of the provider must be verified and reconfirmed by the operator.
+            <LI> Provider is deleted from database and operator is informed of it.
+            <LI>Operator is taken back to interactive operations.
+        </OL>
+
+</body>
 </html>
