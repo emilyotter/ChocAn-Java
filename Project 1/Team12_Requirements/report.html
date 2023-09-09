@@ -248,10 +248,93 @@
         <OL start="2">
             <LI>An error is displayed if an incorrect error code was inputted.
         </OL>
+    
+    <br>
+    
+    <p>
+        <b>Use Case:</b> Add Member extends Interactive Operations<br>
+        <b>Context:</b> Operator Intends to add a new member to the database.<br>
+        <b>Actors:</b> Operator, Acme Accounting Service<br>
+        <b>Main Success Scenario:</b>
+        <ol>
+            <li>The operator selects “add member”</li>
+            <li>Operator is prompted to fill up the member details</li>
+            <li>The system communicates with the Acme Accounting Service to record the member details.
+                <ol type="a">
+                    <li>The system receives the confirmation from Acme Accounting Service.</li>
+                </ol>
+            </li>
+            <li>After completion, the operator is informed about the status of the member and taken to the Interactive terminal.</li>
+        </ol>
+        <b>Extensions:</b>
+        <ol start="3">
+            <li>
+                <ol type="a">
+                    <li>If the customer already exists, the membership feed is checked, and the operator is informed about the member status.</li>
+                    <li>If the customer doesn’t exist, a new member is added to the database, and the membership fees are collected.</li>
+                </ol>
+            </li>
+        </ol>        
+    </p>
 
+    <br>
+    
+    <p>
+        <b>Use Case:</b> Delete Member extends Interactive Operations<br>
+        <b>Context:</b> Operator Intends to delete an existing member from the database.<br>
+        <b>Actors:</b> Operator, Acme Accounting Service<br>
+        <b>Main Success Scenario:</b>
+        <ol>
+            <li>The operator selects “delete member”</li>
+            <li>The operator is prompted for member details like member ID</li>
+            <li>The system communicates with the Acme Accounting Service to change the member status.
+                <ol type="a">
+                    <li>The system receives the confirmation from Acme Accounting Service.</li>
+                </ol>
+            </li>
+            <li>The system deletes the member records from the database.</li>
+            <li>After completion, the operator is informed about the status of the member and taken to the Interactive terminal.</li>
+        </ol>
+        <b>Extensions:</b>
+        <ol start="3">
+            <li>
+                <ol type="a">
+                    <li> If the member doesn’t exist, an error is raised, and the operator is informed.</li>
+                    <li>If the member exists, Acme Accounting Service is informed to disable membership fees collection, and delete member personal info.</li>
+                </ol>
+            </li>
+        </ol>
+    </p>
+    
+    <br>
 
-
-
-
-</body>
+    <p>
+        <b>Use Case:</b> Edit Member Record extends Interactive Operations<br>
+        <b>Context:</b> Operator or Acme Accounting Service intends to edit a member's record from the database.<br>
+        <b>Actors:</b> Operator, Acme Accounting Service<br>
+        <b>Main Success Scenario:</b>
+        <ol>
+            <li>Operator intends to change the member records.</li>
+            <li>The operator is displayed current member info and prompted for changes to the records.</li>
+            <li>The changes are verified and reconfirmed by the operator.</li>
+            <li>The changes are saved to the database.</li>
+            <li>The operator is informed of the changes and taken to interactive operations for further commands.</li>
+        </ol>
+        <b>Additional Success Scenario:</b>
+        <ol start="6">
+            <li>Acme Accounting Service runs the updates at 9 pm every day and updates member status.</li>
+            <li>The membership status is reevaluated and crosschecked.</li>
+            <li>Some members are suspended, and some are reinstated.</li>
+            <li>The updates are pushed to the database.</li>
+        </ol>
+        <b>Extensions:</b>
+        <ol>
+            <li>Error is raised if a member does not exist.</li>
+            <li value="7">The suspended members are informed of their overdue fees, and reinstated members are informed of their status.</li>
+        </ol>
+    </p>
+    
+    <br>
+    
+    </body>
 </html>
