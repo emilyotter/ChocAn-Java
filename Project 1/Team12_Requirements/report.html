@@ -104,27 +104,27 @@
         <tr>
             <td>Dylan Mather</td>
             <td>Created initial format for report.html, created use case diagram, and made the header table</td>
-            <td>20%</td>
+            <td>15%</td>
         <tr>
         <tr>
             <td>Maddox Guthrie</td>
             <td>Added information to the header table, created use case diagram, and cleaned up the formatting for report</td>
-            <td>20%</td>
+            <td>40%</td>
         <tr>
         <tr>
             <td>Nischal Bhattarai</td>
             <td>Helped with creation of use case diagram, wrote use cases description</td>
-            <td>20%</td>
+            <td>15%</td>
         <tr>
         <tr>
             <td>Emily Otter</td>
             <td>Internal CSS additions, created use case diagram, and helped format report</td>
-            <td>20%</td>
+            <td>15%</td>
         <tr>
         <tr>
             <td>Egan Trahant</td>
             <td>Added info to header table, created use case diagram, and made table for task distribution</td>
-            <td>20%</td>
+            <td>15%</td>
         <tr>
     </table>
 
@@ -239,17 +239,15 @@
                 <OL TYPE="a">
                     <LI>Provider is asked to verify if this is the correct service
                 </OL>
-        <LI>The provider can enter comments about the service.
-        <LI>The computer saves the current date and time, date service was provided, provider number,  member number, service code, and any comments to the disk.
         </OL>
         Extensions:
         <OL START="2">
             <LI>An error is displayed if an incorrect error code was inputted.
         </OL>
-    
+
     <br>
     <p>
-        <b>Use Case:</b> Add Member extends Interactive Operations<br>
+        <b>Use Case:</b> Add member extends Interactive Operations<br>
         <b>Context:</b> Operator Intends to add a new member to the database.<br>
         <b>Actors:</b> Operator, Acme Accounting Service<br>
         <b>Main Success Scenario:</b>
@@ -260,7 +258,7 @@
                 <ol TYPE="a">
                     <LI>The system receives the confirmation from Acme Accounting Service.
                 </OL>
-            
+
             <LI>After completion, the operator is informed about the status of the member and taken to the Interactive terminal.
         </OL>
         <b>Extensions:</b>
@@ -270,12 +268,12 @@
                     <LI>If the customer already exists, the membership feed is checked, and the operator is informed about the member status.
                     <LI>If the customer does not exist, a new member is added to the database, and the membership fees are collected.
                 </OL>
-            
+
         </OL>
 
     <br>
     <p>
-        <b>Use Case:</b> Delete Member extends Interactive Operations<br>
+        <b>Use Case:</b> Delete member extends Interactive Operations<br>
         <b>Context:</b> Operator Intends to delete an existing member from the database.<br>
         <b>Actors:</b> Operator, Acme Accounting Service<br>
         <b>Main Success Scenario:</b>
@@ -286,7 +284,7 @@
                 <ol TYPE="a">
                     <LI>The system receives the confirmation from Acme Accounting Service.
                 </OL>
-            
+
             <LI>The system deletes the member records from the database.
             <LI>After completion, the operator is informed about the status of the member and taken to the Interactive terminal.
         </OL>
@@ -297,12 +295,12 @@
                     <LI> If the member does not exist, an error is raised, and the operator is informed.
                     <LI>If the member exists, Acme Accounting Service is informed to disable membership fees collection, and delete member personal info.
                 </OL>
-            
+
         </OL>
-    
+
     <br>
     <p>
-        <b>Use Case:</b> Edit Member Record extends Interactive Operations<br>
+        <b>Use Case:</b> Edit member records extends Interactive Operations<br>
         <b>Context:</b> Operator or Acme Accounting Service intends to edit a member's record from the database.<br>
         <b>Actors:</b> Operator, Acme Accounting Service<br>
         <b>Main Success Scenario:</b>
@@ -325,7 +323,7 @@
             <LI>Error is raised if a member does not exist.
             <li value="7">The suspended members are informed of their overdue fees, and reinstated members are informed of their status.
         </OL>
-    
+
     <br>
     <p>
         <b>Use Case:</b> Interactive Operations<br>
@@ -353,7 +351,7 @@
 
     <br>
     <p>
-        <b>Use Case:</b> Authenticate Members<br>
+        <b>Use Case:</b> Authenticate member<br>
         <b>Context:</b> Upon entering a member card into the system, the terminal verifies the member to receive health care service.<br>
         <b>Actors:</b> ChocAn Data Center, Provider Terminal<br>
         <b>Main Success Scenario:</b>
@@ -372,7 +370,7 @@
 
     <br>
     <p>
-        <b>Use Case:</b> Edit Provider Records extends Interactive Operations<br>
+        <b>Use Case:</b> Edit provider records extends Interactive Operations<br>
         <b>Context:</b> During the day, the computer is set into interactive mode for the operator to edit provider records.<br>
         <b>Actors:</b> Operator<br>
         <b>Main Success Scenario:</b>
@@ -386,7 +384,7 @@
 
     <br>
     <p>
-        <b>Use Case:</b> Delete Provider Records extends Interactive Operations<br>
+        <b>Use Case:</b> Delete provider extends Interactive Operations<br>
         <b>Context:</b> During the day, the computer is set into interactive mode for the operator to delete provider<br>
         <b>Actors:</b> Operator<br>
         <b>Main Success Scenario:</b>
@@ -398,5 +396,32 @@
             <LI>Operator is taken back to interactive operations.
         </OL>
 
+    <br>
+    <p>
+        <b>Use Case:</b> Manage Billing<br>
+        <b>Context:</b> The provider can enter information relevant to billing the customer and paying the provider.<br>
+        <b>Actors:</b> Provider Terminal<br>
+        <b>Main Success Scenario:</b>
+        <OL>
+            <LI>The provider keys in the service code
+            <LI>The provider can enter comments about the service.
+            <LI>The computer saves the current date and time, date service was provided, provider number,  member number, service code, and any comments to the disk.
+            <LI>The software will look up required fees and display them to the provider.
+            <LI>If it is the end of the week the provider will total the fees to be paid by ChocAn to the provider.
+        </OL>
+
+    <br>
+    <p>
+        <b>Use Case:</b> Add provider<br>
+        <b>Context:</b> During the day, the computer is set into interactive mode for the operator to add providers<br>
+        <b>Actors:</b> Operator<br>
+        <b>Main Success Scenario:</b>
+        <OL>
+            <LI> Operator intends to add provider via the Interactive Operations
+            <LI> Operator is asked to add information about the provider
+            <LI> The addition of the provider is verified by the operator
+            <LI> The provider is added to the database, and the operator is informed of it
+            <LI> Operator is taken back to interactive operations
+        </OL>
 </body>
 </html>
