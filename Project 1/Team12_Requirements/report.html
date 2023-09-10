@@ -247,7 +247,7 @@
 
     <br>
     <p>
-        <b>Use Case:</b> Add member extends Interactive Operations<br>
+        <b>Use Case:</b> Add member<br>
         <b>Context:</b> Operator Intends to add a new member to the database.<br>
         <b>Actors:</b> Operator, Acme Accounting Service<br>
         <b>Main Success Scenario:</b>
@@ -273,7 +273,7 @@
 
     <br>
     <p>
-        <b>Use Case:</b> Delete member extends Interactive Operations<br>
+        <b>Use Case:</b> Delete member<br>
         <b>Context:</b> Operator Intends to delete an existing member from the database.<br>
         <b>Actors:</b> Operator, Acme Accounting Service<br>
         <b>Main Success Scenario:</b>
@@ -300,7 +300,7 @@
 
     <br>
     <p>
-        <b>Use Case:</b> Edit member records extends Interactive Operations<br>
+        <b>Use Case:</b> Edit member records<br>
         <b>Context:</b> Operator or Acme Accounting Service intends to edit a member's record from the database.<br>
         <b>Actors:</b> Operator, Acme Accounting Service<br>
         <b>Main Success Scenario:</b>
@@ -370,7 +370,7 @@
 
     <br>
     <p>
-        <b>Use Case:</b> Edit provider records extends Interactive Operations<br>
+        <b>Use Case:</b> Edit provider records<br>
         <b>Context:</b> During the day, the computer is set into interactive mode for the operator to edit provider records.<br>
         <b>Actors:</b> Operator<br>
         <b>Main Success Scenario:</b>
@@ -384,137 +384,111 @@
 
     <br>
     <p>
-        <b>Use Case:</b> Delete provider extends Interactive Operations<br>
+        <b>Use Case:</b> Delete provider<br>
         <b>Context:</b> During the day, the computer is set into interactive mode for the operator to delete provider<br>
         <b>Actors:</b> Operator<br>
         <b>Main Success Scenario:</b>
         <OL>
-            <LI> Operator intends to delete provider via the Interactive Operations.</LI>
-            <LI> Operator is displayed info about the provider and prompted to delete said provider.</LI>
-            <LI> The deletion of the provider must be verified and reconfirmed by the operator.</LI>
-            <LI> Provider is deleted from database and operator is informed of it.</LI>
-            <LI>Operator is taken back to interactive operations.</LI>
+            <LI> Operator intends to delete provider via the Interactive Operations.
+            <LI> Operator is displayed info about the provider and prompted to delete said provider.
+            <LI> The deletion of the provider must be verified and reconfirmed by the operator.
+            <LI> Provider is deleted from database and operator is informed of it.
+            <LI>Operator is taken back to interactive operations.
         </OL>
-    </p>
-        <p>
-            <b>Use Case:</b> Accounting Procedure <br>
-            <b>Context:</b> The main accounting procedure run at ChocAn Data Center at midnight on Fridays.<br>
-            <b>Actors:</b> ChocAn Data Center<br>
-            <b>Main Success Scenario:</b>
+
+    <br>
+    <p>
+        <b>Use Case:</b> Accounting Procedure <br>
+        <b>Context:</b> The main accounting procedure run at ChocAn Data Center at midnight on Fridays.<br>
+        <b>Actors:</b> ChocAn Data Center<br>
+        <b>Main Success Scenario:</b>
             <OL>
-                <LI> Accounting procedure is run at ChocAn Data Center at midnight on Friday.</LI>
-                <LI> The week’s file of services is read. </LI>
-                <LI> Reports are generated.</LI>
-                <LI> Reports are sent out.</LI>
-                <LI> Reports are sent out.</LI>
+                <LI> Accounting procedure is run at ChocAn Data Center at midnight on Friday.
+                <LI> The week’s file of services is read.
+                <LI> Reports are generated.
+                <LI> Reports are sent out.
+                <LI> Reports are sent out.
                 <LI> A record of electronic funds transfer (EFT) data is written to a disk.
                     <OL TYPE="a">
-                        <LI>Banking computers ensure provider's account is credited.</LI>
+                        <LI>Banking computers ensure provider's account is credited.
                     </OL>
-                </LI>
                 <LI> A summary report is given to the manager for accounts payable.
                     <OL TYPE="a">
-                        <LI>The report lists every provder to be paid, the number of consultations, and total fees.
-                        </LI>
+                        <LI>The report lists every provider to be paid, the number of consultations, and total fees.
                     </OL>
-                </LI>
-                <LI> A totals sheet of number of providers who gave services, number of consultations, and overall fees is printed.</LI>
+                <LI> A totals sheet of number of providers who gave services, number of consultations, and overall fees is printed.
             </OL>
             <b>Extensions:</b>
-            <OL>
                 <OL START = "3">
-                    <LI> Report is requested individually by the request of ChocAn manager at any time during the week.</LI>
-                    <LI> Use case continues at step 4.
-                    </LI>
+                    <LI> Report is requested individually by the request of ChocAn manager at any time during the week.
                 </OL>
-            </OL>
-            </OL>
-        </p>
-
-        <p>
-            <b>Use Case:</b> Generate Reports <br>
-            <b>Context:</b> A part of the main accounting procedure where reports are created. <br>
-            <b>Actors:</b> ChocAn Data Center <br>
-            <b>Main Success Scenario:</b>
+    <br>
+    <p>
+        <b>Use Case:</b> Generate Reports <br>
+        <b>Context:</b> A part of the main accounting procedure where reports are created. <br>
+        <b>Actors:</b> ChocAn Data Center <br>
+        <b>Main Success Scenario:</b>
             <OL>
-                <LI> Files are read containing information on the week's services.</LI>
-                <LI> Reports sent to members are sorted in order of service date.</LI>
+                <LI> Files are read containing information on the week's services.
+                <LI> Reports sent to members are sorted in order of service date.
                     <OL TYPE="a">
-                        <LI> Reports includes member name, number, street address, city, state, ZIP code and service data, provider name, and service name for each service provided.</LI>
+                        <LI> Reports includes member name, number, street address, city, state, ZIP code and service data, provider name, and service name for each service provided.
                     </OL>
-                <LI> Reports are sent to providers are sorted in order of when the data was recieved by the computer.</LI>
+                <LI> Reports are sent to providers are sorted in order of when the data was recieved by the computer.
                     <OL TYPE="a">
-                        <LI> Report contains same information entered on provider's form. </LI>
+                        <LI> Report contains same information entered on provider's form. 
                     </OL>
-                <LI> Summary including number of consultations with members and the total fees for the week are written at the bottom of the report.</LI>
+                <LI> Summary including number of consultations with members and the total fees for the week are written at the bottom of the report.
             </OL>
-        </p>
 
-        <p>
-            <b>Use Case:</b> Send Reports<br>
-            <b>Context:</b> A part of the main accounting procedure where reports are sent to members, providers, and managers.<br>
-            <b>Actors:</b> ChocAn Data Center<br>
-            <b>Main Success Scenario:</b>
+    <br>
+    <p>
+        <b>Use Case:</b> Send Reports<br>
+        <b>Context:</b> A part of the main accounting procedure where reports are sent to members, providers, and managers.<br>
+        <b>Actors:</b> ChocAn Data Center<br>
+        <b>Main Success Scenario:</b>
             <OL>
-                <LI> Reports are generated.</LI>
-                <LI> Reports are sent to members.</LI>
+                <LI> Reports are generated.
+                <LI> Reports are sent to members.
                     <OL TYPE="a">
-                        <LI> Reports are both printed and emailed as an attachment.</LI>
+                        <LI> Reports are both printed and emailed as an attachment.
                     </OL>
-                <LI> Reports are sent to providers.</LI>
+                <LI> Reports are sent to providers.
                     <OL TYPE="a">
-                        <LI> Reports are both printed and emailed as an attachment.</LI>
+                        <LI> Reports are both printed and emailed as an attachment.
                     </OL>
             </OL>
-        </p>
-        
-        <p> 
-            <b>Use Case:</b> Manage Billing<br>
-            <b>Context:</b> The provider intends to bill ChocAN for services provided.<br>
-            <b>Actors:</b> Provider Terminal<br>
-            <b>Main Success Scenario:</b>
-            <OL>
-                <LI> Provider slides card though card reader on terminal.</LI>
-                <LI> The system validates the member.</LI>
-                    <OL TYPE="a">
-                        <LI> Terminal dials ChocAn Data Center.</LI>
-                        <LI> ChocAn Data Center verfies member number.</LI>
-                    </OL>
-                <LI> Provider keys in the date of service in the format MM-DD-YYYY.</LI>
-                <LI> Provider looks up six-digit service code in Provider Directory.</LI>
-                <LI> Provider keys in service code.</LI>
-                    <OL TYPE="a">
-                        <LI> Software product displays name of service corresponding to code.</LI>
-                        <LI> Provider verifies correct service.</LI>
-                    </OL>
-                <LI> Software product looks up fee to be paid for service.</LI>
-                    <OL TYPE="a">
-                        <LI> Software displays fee on provider terminal.</LI>
-                    </OL>
-                <LI> Provider enters information.</LI>
-                    <OL TYPE="a">
-                        <LI> Provider enters current date and time on form, member name and number, service code, and fee to be paid.</LI>
-                    </OL>
-                <LI> At the end of the week, provider totals fees to verify amount paid by ChocAn.</LI>
-                </OL>
-
-
-             
-    
 
     <br>
     <p>
         <b>Use Case:</b> Manage Billing<br>
-        <b>Context:</b> The provider can enter information relevant to billing the customer and paying the provider.<br>
+        <b>Context:</b> The provider intends to bill ChocAN for services provided.<br>
         <b>Actors:</b> Provider Terminal<br>
         <b>Main Success Scenario:</b>
-        <OL>
-            <LI>The provider keys in the service code
-            <LI>The provider can enter comments about the service.
-            <LI>The computer saves the current date and time, date service was provided, provider number,  member number, service code, and any comments to the disk.
-            <LI>The software will look up required fees and display them to the provider.
-            <LI>If it is the end of the week the provider will total the fees to be paid by ChocAn to the provider.
-        </OL>
+            <OL>
+                <LI> Provider slides card though card reader on terminal.
+                <LI> The system validates the member.
+                    <OL TYPE="a">
+                        <LI> Terminal dials ChocAn Data Center.
+                        <LI> ChocAn Data Center verifies member number.
+                    </OL>
+                <LI> Provider keys in the date of service in the format MM-DD-YYYY.
+                <LI> Provider looks up six-digit service code in Provider Directory.
+                <LI> Provider keys in service code.
+                    <OL TYPE="a">
+                        <LI> Software product displays name of service corresponding to code.
+                        <LI> Provider verifies correct service.
+                    </OL>
+                <LI> Software product looks up fee to be paid for service.
+                    <OL TYPE="a">
+                        <LI> Software displays fee on provider terminal.
+                    </OL>
+                <LI> Provider enters information.
+                    <OL TYPE="a">
+                        <LI> Provider enters current date and time on form, member name and number, service code, and fee to be paid.
+                    </OL>
+                <LI> At the end of the week, provider totals fees to verify amount paid by ChocAn.
+                </OL>
 
     <br>
     <p>
@@ -522,12 +496,12 @@
         <b>Context:</b> During the day, the computer is set into interactive mode for the operator to add providers<br>
         <b>Actors:</b> Operator<br>
         <b>Main Success Scenario:</b>
-        <OL>
-            <LI> Operator intends to add provider via the Interactive Operations
-            <LI> Operator is asked to add information about the provider
-            <LI> The addition of the provider is verified by the operator
-            <LI> The provider is added to the database, and the operator is informed of it
-            <LI> Operator is taken back to interactive operations
-        </OL>
+            <OL>
+                <LI> Operator intends to add provider via the Interactive Operations
+                <LI> Operator is asked to add information about the provider
+                <LI> The addition of the provider is verified by the operator
+                <LI> The provider is added to the database, and the operator is informed of it
+                <LI> Operator is taken back to interactive operations
+            </OL>
 </body>
 </html>
