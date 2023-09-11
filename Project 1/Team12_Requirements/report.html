@@ -72,7 +72,7 @@
                 <td>Nischal Bhattarai</td>
                 <td>nbhattarai@crimson.ua.edu</td>
                 <td>12088410</td>
-                <td>N/A</td>
+                <td>4</td>
             <tr>
             <tr>
                 <td>Maddox Guthrie</td>
@@ -84,7 +84,7 @@
                 <td>Dylan Mather</td>
                 <td>dmmather@crimson.ua.edu</td>
                 <td>12267750</td>
-                <td>N/A</td>
+                <td>5</td>
             <tr>
             <tr>
                 <td>Emily Otter</td>
@@ -96,7 +96,7 @@
                 <td>Egan Trahant</td>
                 <td>emtrahant@crimson.ua.edu</td>
                 <td>12184826</td>
-                <td>N/A</td>
+                <td>5</td>
             <tr>
         </table>
 
@@ -163,349 +163,397 @@
 
     <h1>Glossary</h1>
         <table>
-            <tr>
-                <th>Term:</th>
-                <th>Description:</th>
-            </tr>
-            <tr>
-                <td>Acme Accounting Services</td>
-                <td>Third-party organization responsible for financial procedures</td>
-            </tr>
-            <tr>
-                <td>Chocoholics Anonymous (ChocAn)</td>
-                <td>An organization dedicated to helping people addicted to chocolate in all its glorious forms.</td>
-            <tr>
-            <tr>
-                <td>ChocAn Data Center</td>
-                <td>Centralized database for system records and verification</td>
-            </tr>
-            <tr>
-                <td>Interactive Operations</td>
-                <td>Running software in interactive mode that allows operators to edit members and providers</td>
-            </tr>
-            <tr>
-                <td>Member</td>
-                <td>Person who receives health care services from ChocAn</td>
-            </tr>
-            <tr>
-                <td>Operator</td>
-                <td> Someone at ChocAn Data Center who can edit member and provider records</td>
-            </tr>
-            <tr>
-                <td>Provider</td>
-                <td>Health care professional who provides services under ChocAn</td>
-            </tr>
-            <tr>
-                <td>Provider Directory</td>
-                <td>Ordered list of service names and corresponding service codes and fees</td>
-            </tr>
-            <tr>
-                <td>Provider Terminal</td>
-                <td>Specially designed ChocAn computer terminal where providers can interact with ChocAn system</td>
-            </tr>
-            <tr>
-                <td>Report</td>
-                <td>Report detailing services provided and member information</td>
-            </tr>
-            <tr>
-                <td>Service Code</td>
-                <td>Six-digit code corresponding to service provided</td>
-            </tr>
+        <tr>
+          <th>Term:</th>
+          <th>Description:</th>
+        </tr>
+        <tr>
+            <td>Acme Accounting Services</td>
+            <td>Third-party organization responsible for financial procedures</td>
+        </tr>
+        <tr>
+            <td>Chocoholics Anonymous (ChocAn)</td>
+            <td>An organization dedicated to helping people addicted to chocolate in all its glorious forms.</td>
+        <tr>
+        <tr>
+            <td>ChocAn Data Center</td>
+            <td>Centralized database for system records and verification</td>
+        </tr>
+        <tr>
+            <td>Electronic Funds Transfer(EFT)</td>
+            <td>File containing provider name, provider number, and amount to be transferred.</td>
+        </tr>
+        <tr>
+            <td>Interactive Mode</td>
+            <td>Running software so that it that allows operators to edit members and providers</td>
+        </tr>
+        <tr>
+            <td>Manager</td>
+            <td>ChocAn manager who can request and recieve reports.</td>
+        </tr>
+        <tr>
+            <td>Member</td>
+            <td>Person who receives health care services from ChocAn</td>
+        </tr>
+        <tr>
+            <td>Member Number</td>
+            <td>Identification number for members.</td>
+        </tr>
+        <tr>
+            <td>Member Record</td>
+            <td>Record consisting information on member including fees owed.</td>
+        </tr>
+        <tr>
+            <td>Operator</td>
+            <td> Someone at ChocAn Data Center who can edit member and provider records</td>
+        </tr>
+        <tr>
+            <td>Plastic Card</td>
+            <td>Card embossed with member name and nine-digit member number, incorporating a magnetic strip where information is encoded.</td>
+        </tr>
+        <tr>
+            <td>Provider</td>
+            <td>Health care professional who provides services under ChocAn</td>
+        </tr>
+        <tr>
+            <td>Provider Number</td>
+            <td>Indentification number for providers.</td>
+        </tr>
+        <tr>
+            <td>Provider Record</td>
+            <td>Record consisting of information on provider including services provided.</td>
+        </tr>
+        <tr>
+            <td>Provider Directory</td>
+            <td>Ordered list of service names and corresponding service codes and fees</td>
+        </tr>
+        <tr>
+            <td>Provider Terminal</td>
+            <td>Specially designed ChocAn computer terminal where providers can interact with ChocAn system</td>
+        </tr>
+        <tr>
+            <td>Report</td>
+            <td>Report detailing services provided and member information</td>
+        </tr>
+        <tr>
+            <td>Service Code</td>
+            <td>Six-digit code corresponding to service provided</td>
+        </tr>
+        <tr>
+            <td>Summary Report</td>
+            <td>Report given to the manager for accounts payable, including every provider to be paid, number of consultations, and total fees.</td>
+        </tr>
         </table>
 
     <h1>Use Case Diagram</h1>
         <img src="UMLDiagrams_PNG/Team12UML.png" alt="Team 12 UML" style="width:100%">
 
     <h1>Use Case Descriptions</h1>
-            <b>Use Case:</b> Authenticate member<br>
-            <b>Context:</b> Upon entering a member card into the system, the terminal verifies the member to receive health care service.<br>
-            <b>Actors:</b> ChocAn Data Center, Provider Terminal<br>
-            <b>Main Success Scenario:</b>
-                <OL>
-                    <LI>Member card is provided into terminal card reader
-                    <LI>Terminal dials ChocAn Data Center
-                    <LI>ChocAn Data Center computer verifies the member number
-                        <OL TYPE="a">
-                            <LI>If the number is valid, the word Validated appears on the one-line display.
-                        </OL>
+    <p>
+        <b>Use case:</b> Provider Directory<br>
+        <b>Context:</b> A use case of the provider terminal, that the provider can use to perform specific functions such as looking up the service code for a service.<br>
+        <b>Actors:</b> Provider Terminal<br>
+        <b>Main Success Scenario:</b>
+        <OL>
+            <LI>Provider enters their provider number to authenticate.
+                The provider accesses other commands from the terminal, represented as other use cases.
+        </OL>
+    <br>
+    <p>
+        <b>Use case:</b> Authenticate provider<br>
+        <b>Context:</b> Authenticate the provider using the provider number<br>
+        <b>Actors:</b> Provider Terminal<br>
+        <b>Main Success Scenario:</b>
+        <OL>
+            <LI>Provider enters their provider number to authenticate.
+        </OL>
+    <br>
+    <p>
+        <b>Use case:</b> List directory<br>
+        <b>Context:</b> At any time a provider can list the provider directory, which will create a list of all the services, the corresponding codes, and the fees for each service.<br>
+        <b>Actors:</b> Provider Terminal<br>
+        <b>Main Success Scenario:</b>
+        <OL>
+            <LI>Provider requests the list of the directory
+            <LI>An alphabetically ordered list of service names and corresponding service codes and fees is generated
+            <LI>The list is emailed to the provider as an attachment
+        </OL>
+    <br>
+    <p>
+        <b>Use case:</b> Check service code<br>
+        <b>Context:</b> Checks whether the inputted service code is valid.<br>
+        <b>Actors:</b> Provider Terminal<br>
+        <b>Main Success Scenario:</b>
+        <OL>
+            <LI>The provider enters a service code.
+            <LI>The corresponding service to the code is displayed.
+                <OL TYPE="a">
+                    <LI>Provider is asked to verify if this is the correct service
                 </OL>
-                <b>Extensions:</b>
-                <OL START="3">
-                    <LI> If the number is invalid, the reason is displayed, such as Invalid number or Member suspended; the latter message indicates that fees are owed (that is, the member has not paid membership fees for at least a month) and member status has been set to suspended.
+        </OL>
+        Extensions:
+        <OL START="2">
+            <LI>An error is displayed if an incorrect error code was inputted.
+        </OL>
+
+    <br>
+    <p>
+        <b>Use Case:</b> Add member<br>
+        <b>Context:</b> Operator Intends to add a new member to the database.<br>
+        <b>Actors:</b> Operator, Acme Accounting Service<br>
+        <b>Main Success Scenario:</b>
+        <OL>
+            <LI>The operator selects “add member”
+            <LI>Operator is prompted to fill up the member details
+            <LI>The system communicates with the Acme Accounting Service to record the member details.
+                <ol TYPE="a">
+                    <LI>The system receives the confirmation from Acme Accounting Service.
                 </OL>
 
-        <hr>
-            <b>Use case:</b> Provider Directory<br>
-            <b>Context:</b> A use case of the provider terminal, that the provider can use to perform specific functions such as looking up the service code for a service.<br>
-            <b>Actors:</b> Provider Terminal<br>
-            <b>Main Success Scenario:</b>
-                <OL>
-                    <LI>Provider enters their provider number to authenticate. The provider accesses other commands from the terminal, represented as other use cases.
+            <LI>After completion, the operator is informed about the status of the member and taken to the Interactive terminal.
+        </OL>
+        <b>Extensions:</b>
+        <ol START="3">
+            <LI>
+                <ol TYPE="a">
+                    <LI>If the customer already exists, the membership feed is checked, and the operator is informed about the member status.
+                    <LI>If the customer does not exist, a new member is added to the database, and the membership fees are collected.
                 </OL>
 
-        <hr>
-            <b>Use case:</b> Authenticate provider<br>
-            <b>Context:</b> Authenticate the provider using the provider number<br>
-            <b>Actors:</b> Provider Terminal<br>
-            <b>Main Success Scenario:</b>
+        </OL>
+
+    <br>
+    <p>
+        <b>Use Case:</b> Delete member<br>
+        <b>Context:</b> Operator Intends to delete an existing member from the database.<br>
+        <b>Actors:</b> Operator, Acme Accounting Service<br>
+        <b>Main Success Scenario:</b>
+        <OL>
+            <LI>The operator selects “delete member”
+            <LI>The operator is prompted for member details like member ID
+            <LI>The system communicates with the Acme Accounting Service to change the member status.
+                <ol TYPE="a">
+                    <LI>The system receives the confirmation from Acme Accounting Service.
+                </OL>
+
+            <LI>The system deletes the member records from the database.
+            <LI>After completion, the operator is informed about the status of the member and taken to the Interactive terminal.
+        </OL>
+        <b>Extensions:</b>
+        <ol START="3">
+            <LI>
+                <ol TYPE="a">
+                    <LI> If the member does not exist, an error is raised, and the operator is informed.
+                    <LI>If the member exists, Acme Accounting Service is informed to disable membership fees collection, and delete member personal info.
+                </OL>
+
+        </OL>
+
+    <br>
+    <p>
+        <b>Use Case:</b> Edit member records<br>
+        <b>Context:</b> Operator or Acme Accounting Service intends to edit a member's record from the database.<br>
+        <b>Actors:</b> Operator, Acme Accounting Service<br>
+        <b>Main Success Scenario:</b>
+        <OL>
+            <LI>Operator intends to change the member records.
+            <LI>The operator is displayed current member info and prompted for changes to the records.
+            <LI>The changes are verified and reconfirmed by the operator.
+            <LI>The changes are saved to the database.
+            <LI>The operator is informed of the changes and taken to interactive operations for further commands.
+        </OL>
+        <b>Additional Success Scenario:</b>
+        <ol START="6">
+            <LI>Acme Accounting Service runs the updates at 9 pm every day and updates member status.
+            <LI>The membership status is reevaluated and crosschecked.
+            <LI>Some members are suspended, and some are reinstated.
+            <LI>The updates are pushed to the database.
+        </OL>
+        <b>Extensions:</b>
+        <OL>
+            <LI>Error is raised if a member does not exist.
+            <li value="7">The suspended members are informed of their overdue fees, and reinstated members are informed of their status.
+        </OL>
+
+    <br>
+    <p>
+        <b>Use Case:</b> Interactive Operations<br>
+        <b>Context:</b> The ChocAn Data Center software can be run in interactive mode, to give the operator options to update member and provider records.<br>
+        <b>Actors:</b> Operators, ChocAn Data Center, Acme Accounting Services<br>
+        <b>Main Success Scenario:</b>
+        <OL>
+            <LI> The ChocAn Data Center must be in interactive mode.
+            <LI> The operator may update provider details
+                <OL TYPE="a">
+                    <LI> Change records
+                    <LI> Add provider
+                    <LI> Delete provider
+                </OL>
+        </OL>
+        <OL START="3">
+            <LI> The operator may update member details
+                <OL TYPE="a">
+                    <LI> Change records.
+                    <LI> Add member.
+                    <LI> Delete Member.
+                    <LI>The Acme Accounting Services may suspend members due to unsatisfied payments.
+                </OL>
+        </OL>
+
+    <br>
+    <p>
+        <b>Use Case:</b> Authenticate member<br>
+        <b>Context:</b> Upon entering a member card into the system, the terminal verifies the member to receive health care service.<br>
+        <b>Actors:</b> ChocAn Data Center, Provider Terminal<br>
+        <b>Main Success Scenario:</b>
+        <OL>
+            <LI>Member card is provided into terminal card reader
+            <LI>Terminal dials ChocAn Data Center
+            <LI>ChocAn Data Center computer verifies the member number
+                <OL TYPE="a">
+                    <LI>If the number is valid, the word Validated appears on the one-line display.
+                </OL>
+        </OL>
+        <b>Extensions:</b>
+        <OL START="3">
+            <LI> If the number is invalid, the reason is displayed, such as Invalid number or Member suspended; the latter message indicates that fees are owed (that is, the member has not paid membership fees for at least a month) and member status has been set to suspended.
+        </OL>
+
+    <br>
+    <p>
+        <b>Use Case:</b> Edit provider records<br>
+        <b>Context:</b> During the day, the computer is set into interactive mode for the operator to edit provider records.<br>
+        <b>Actors:</b> Operator<br>
+        <b>Main Success Scenario:</b>
+        <OL>
+            <LI> Operator intends to change the provider records.
+            <LI> The operator is displayed current provider info and prompted for change of records.
+            <LI> The changes are verified and reconfirmed by the operator.
+            <LI> The changes are saved to the database.
+            <LI> The operator is informed of changes and taken to interactive operations for further commands.
+        </OL>
+
+    <br>
+    <p>
+        <b>Use Case:</b> Delete provider<br>
+        <b>Context:</b> During the day, the computer is set into interactive mode for the operator to delete provider<br>
+        <b>Actors:</b> Operator<br>
+        <b>Main Success Scenario:</b>
+        <OL>
+            <LI> Operator intends to delete provider via the Interactive Operations.
+            <LI> Operator is displayed info about the provider and prompted to delete said provider.
+            <LI> The deletion of the provider must be verified and reconfirmed by the operator.
+            <LI> Provider is deleted from database and operator is informed of it.
+            <LI>Operator is taken back to interactive operations.
+        </OL>
+
+    <br>
+    <p>
+        <b>Use Case:</b> Add provider<br>
+        <b>Context:</b> During the day, the computer is set into interactive mode for the operator to add providers<br>
+        <b>Actors:</b> Operator<br>
+        <b>Main Success Scenario:</b>
             <OL>
-                <LI>Provider enters their provider number to authenticate.
+                <LI> Operator intends to add provider via the Interactive Operations
+                <LI> Operator is asked to add information about the provider
+                <LI> The addition of the provider is verified by the operator
+                <LI> The provider is added to the database, and the operator is informed of it
+                <LI> Operator is taken back to interactive operations
             </OL>
-
-        <hr>
-            <b>Use case:</b> List directory<br>
-            <b>Context:</b> At any time a provider can list the provider directory, which will create a list of all the services, the corresponding codes, and the fees for each service.<br>
-            <b>Actors:</b> Provider Terminal<br>
-            <b>Main Success Scenario:</b>
-                <OL>
-                    <LI>Provider requests the list of the directory
-                    <LI>An alphabetically ordered list of service names and corresponding service codes and fees is generated
-                    <LI>The list is emailed to the provider as an attachment
-                </OL>
-
-        <hr>
-            <b>Use case:</b> Check service code<br>
-            <b>Context:</b> Checks whether the inputted service code is valid.<br>
-            <b>Actors:</b> Provider Terminal<br>
-            <b>Main Success Scenario:</b>
-                <OL>
-                    <LI>The provider enters a service code.
-                    <LI>The corresponding service to the code is displayed.
-                        <OL TYPE="a">
-                            <LI>Provider is asked to verify if this is the correct service
-                        </OL>
-                </OL>
-            <b>Extensions:</b>
-                <OL START="2">
-                    <LI>An error is displayed if an incorrect error code was inputted.
-                </OL>
-
-        <hr>
-            <b>Use Case:</b> Manage Billing<br>
-            <b>Context:</b> The provider intends to bill ChocAN for services provided.<br>
-            <b>Actors:</b> Provider Terminal<br>
-            <b>Main Success Scenario:</b>
-                <OL>
-                    <LI> Provider slides card though card reader on terminal.
-                    <LI> The system validates the member.
-                        <OL TYPE="a">
-                            <LI> Terminal dials ChocAn Data Center.
-                            <LI> ChocAn Data Center verifies member number.
-                        </OL>
-                    <LI> Provider keys in the date of service in the format MM-DD-YYYY.
-                    <LI> Provider looks up six-digit service code in Provider Directory.
-                    <LI> Provider keys in service code.
-                        <OL TYPE="a">
-                            <LI> Software product displays name of service corresponding to code.
-                            <LI> Provider verifies correct service.
-                        </OL>
-                    <LI> Software product looks up fee to be paid for service.
-                        <OL TYPE="a">
-                            <LI> Software displays fee on provider terminal.
-                        </OL>
-                    <LI> Provider enters information.
-                        <OL TYPE="a">
-                            <LI> Provider enters current date and time on form, member name and number, service code, and fee to be paid.
-                        </OL>
-                    <LI> At the end of the week, provider totals fees to verify amount paid by ChocAn.
-                </OL>
-
-        <hr>
-            <b>Use Case:</b> Accounting Procedure <br>
-            <b>Context:</b> The main accounting procedure run at ChocAn Data Center at midnight on Fridays.<br>
-            <b>Actors:</b> ChocAn Data Center<br>
-            <b>Main Success Scenario:</b>
-                <OL>
-                    <LI> Accounting procedure is run at ChocAn Data Center at midnight on Friday.
-                    <LI> The week’s file of services is read.
-                    <LI> Reports are generated.
-                    <LI> Reports are sent out.
-                    <LI> Reports are sent out.
-                    <LI> A record of electronic funds transfer (EFT) data is written to a disk.
-                        <OL TYPE="a">
-                            <LI>Banking computers ensure provider's account is credited.
-                        </OL>
-                    <LI> A summary report is given to the manager for accounts payable.
-                        <OL TYPE="a">
-                            <LI>The report lists every provider to be paid, the number of consultations, and total fees.
-                        </OL>
-                    <LI> A totals sheet of number of providers who gave services, number of consultations, and overall fees is printed.
-                </OL>
+    <br>
+    <p>
+        <b>Use Case:</b> Accounting Procedure <br>
+        <b>Context:</b> The main accounting procedure run at ChocAn Data Center at midnight on Fridays.<br>
+        <b>Actors:</b> ChocAn Data Center<br>
+        <b>Main Success Scenario:</b>
+            <OL>
+                <LI> Accounting procedure is run at ChocAn Data Center at midnight on Friday.
+                <LI> The week’s file of services is read.
+                <LI> Reports are generated.
+                <LI> Reports are sent out.
+                <LI> Reports are sent out.
+                <LI> A record of electronic funds transfer (EFT) data is written to a disk.
+                    <OL TYPE="a">
+                        <LI>Banking computers ensure provider's account is credited.
+                    </OL>
+                <LI> A summary report is given to the manager for accounts payable.
+                    <OL TYPE="a">
+                        <LI>The report lists every provider to be paid, the number of consultations, and total fees.
+                    </OL>
+                <LI> A totals sheet of number of providers who gave services, number of consultations, and overall fees is printed.
+            </OL>
             <b>Extensions:</b>
                 <OL START = "3">
                     <LI> Report is requested individually by the request of ChocAn manager at any time during the week.
                 </OL>
+    <br>
+    <p>
+        <b>Use Case:</b> Generate Reports <br>
+        <b>Context:</b> A part of the main accounting procedure where reports are created. <br>
+        <b>Actors:</b> ChocAn Data Center <br>
+        <b>Main Success Scenario:</b>
+            <OL>
+                <LI> Files are read containing information on the week's services.
+                <LI> Reports sent to members are sorted in order of service date.
+                    <OL TYPE="a">
+                        <LI> Reports includes member name, number, street address, city, state, ZIP code and service data, provider name, and service name for each service provided.
+                    </OL>
+                <LI> Reports are sent to providers are sorted in order of when the data was recieved by the computer.
+                    <OL TYPE="a">
+                        <LI> Report contains same information entered on provider's form. 
+                    </OL>
+                <LI> Summary including number of consultations with members and the total fees for the week are written at the bottom of the report.
+            </OL>
 
-        <hr>
-            <b>Use Case:</b> Send Reports<br>
-            <b>Context:</b> A part of the main accounting procedure where reports are sent to members, providers, and managers.<br>
-            <b>Actors:</b> ChocAn Data Center<br>
-            <b>Main Success Scenario:</b>
-                <OL>
-                    <LI> Reports are generated.
-                    <LI> Reports are sent to members.
-                        <OL TYPE="a">
-                            <LI> Reports are both printed and emailed as an attachment.
-                        </OL>
-                    <LI> Reports are sent to providers.
-                        <OL TYPE="a">
-                            <LI> Reports are both printed and emailed as an attachment.
-                        </OL>
+    <br>
+    <p>
+        <b>Use Case:</b> Send Reports<br>
+        <b>Context:</b> A part of the main accounting procedure where reports are sent to members, providers, and managers.<br>
+        <b>Actors:</b> ChocAn Data Center<br>
+        <b>Main Success Scenario:</b>
+            <OL>
+                <LI> Reports are generated.
+                <LI> Reports are sent to members.
+                    <OL TYPE="a">
+                        <LI> Reports are both printed and emailed as an attachment.
+                    </OL>
+                <LI> Reports are sent to providers.
+                    <OL TYPE="a">
+                        <LI> Reports are both printed and emailed as an attachment.
+                    </OL>
+            </OL>
+
+    <br>
+    <p>
+        <b>Use Case:</b> Manage Billing<br>
+        <b>Context:</b> The provider intends to bill ChocAn for services provided.<br>
+        <b>Actors:</b> Provider Terminal<br>
+        <b>Main Success Scenario:</b>
+            <OL>
+                <LI> Provider slides card though card reader on terminal.
+                <LI> The system validates the member.
+                    <OL TYPE="a">
+                        <LI> Terminal dials ChocAn Data Center.
+                        <LI> ChocAn Data Center verifies member number.
+                    </OL>
+                <LI> Provider keys in the date of service in the format MM-DD-YYYY.
+                <LI> Provider looks up six-digit service code in Provider Directory.
+                <LI> Provider keys in service code.
+                    <OL TYPE="a">
+                        <LI> Software product displays name of service corresponding to code.
+                        <LI> Provider verifies correct service.
+                    </OL>
+                <LI> Software product looks up fee to be paid for service.
+                    <OL TYPE="a">
+                        <LI> Software displays fee on provider terminal.
+                    </OL>
+                <LI> Provider enters information.
+                    <OL TYPE="a">
+                        <LI> Provider enters current date and time on form, member name and number, service code, and fee to be paid.
+                    </OL>
+                <LI> At the end of the week, provider totals fees to verify amount paid by ChocAn.
                 </OL>
 
-        <hr>
-            <b>Use Case:</b> Generate Reports <br>
-            <b>Context:</b> A part of the main accounting procedure where reports are created. <br>
-            <b>Actors:</b> ChocAn Data Center <br>
-            <b>Main Success Scenario:</b>
-                <OL>
-                    <LI> Files are read containing information on the week's services.
-                    <LI> Reports sent to members are sorted in order of service date.
-                        <OL TYPE="a">
-                            <LI> Reports includes member name, number, street address, city, state, ZIP code and service data, provider name, and service name for each service provided.
-                        </OL>
-                    <LI> Reports are sent to providers are sorted in order of when the data was recieved by the computer.
-                        <OL TYPE="a">
-                            <LI> Report contains same information entered on provider's form.
-                        </OL>
-                    <LI> Summary including number of consultations with members and the total fees for the week are written at the bottom of the report.
-                </OL>
-
-        <hr>
-            <b>Use Case:</b> Interactive Operations<br>
-            <b>Context:</b> The ChocAn Data Center software can be run in interactive mode, to give the operator options to update member and provider records.<br>
-            <b>Actors:</b> Operators, ChocAn Data Center, Acme Accounting Services<br>
-            <b>Main Success Scenario:</b>
-                <OL>
-                    <LI> The ChocAn Data Center must be in interactive mode.
-                    <LI> The operator may update provider details
-                        <OL TYPE="a">
-                            <LI> Change records
-                            <LI> Add provider
-                            <LI> Delete provider
-                        </OL>
-                    <LI> The operator may update member details
-                        <OL TYPE="a">
-                            <LI> Change records.
-                            <LI> Add member.
-                            <LI> Delete Member.
-                            <LI>The Acme Accounting Services may suspend members due to unsatisfied payments.
-                        </OL>
-                </OL>
-
-        <hr>
-            <b>Use Case:</b> Add member<br>
-            <b>Context:</b> Operator Intends to add a new member to the database.<br>
-            <b>Actors:</b> Operator, Acme Accounting Service<br>
-            <b>Main Success Scenario:</b>
-                <OL>
-                    <LI>The operator selects “add member”
-                    <LI>Operator is prompted to fill up the member details
-                    <LI>The system communicates with the Acme Accounting Service to record the member details.
-                        <ol TYPE="a">
-                            <LI>The system receives the confirmation from Acme Accounting Service.
-                        </OL>
-
-                    <LI>After completion, the operator is informed about the status of the member and taken to the Interactive terminal.
-                </OL>
-            <b>Extensions:</b>
-                <OL START="3">
-                    <LI>
-                        <OL TYPE="a">
-                            <LI>If the customer already exists, the membership feed is checked, and the operator is informed about the member status.
-                            <LI>If the customer does not exist, a new member is added to the database, and the membership fees are collected.
-                        </OL>
-                </OL>
-
-        <hr>
-            <b>Use Case:</b> Delete member<br>
-            <b>Context:</b> Operator Intends to delete an existing member from the database.<br>
-            <b>Actors:</b> Operator, Acme Accounting Service<br>
-            <b>Main Success Scenario:</b>
-                <OL>
-                    <LI>The operator selects “delete member”
-                    <LI>The operator is prompted for member details like member ID
-                    <LI>The system communicates with the Acme Accounting Service to change the member status.
-                        <OL TYPE="a">
-                            <LI>The system receives the confirmation from Acme Accounting Service.
-                        </OL>
-
-                    <LI>The system deletes the member records from the database.
-                    <LI>After completion, the operator is informed about the status of the member and taken to the Interactive terminal.
-                </OL>
-            <b>Extensions:</b>
-                <OL START="3">
-                    <LI>
-                        <OL TYPE="a">
-                            <LI> If the member does not exist, an error is raised, and the operator is informed.
-                            <LI>If the member exists, Acme Accounting Service is informed to disable membership fees collection, and delete member personal info.
-                        </OL>
-
-                </OL>
-
-        <hr>
-            <b>Use Case:</b> Edit member records<br>
-            <b>Context:</b> Operator or Acme Accounting Service intends to edit a member's record from the database.<br>
-            <b>Actors:</b> Operator, Acme Accounting Service<br>
-            <b>Main Success Scenario:</b>
-                <OL>
-                    <LI>Operator intends to change the member records.
-                    <LI>The operator is displayed current member info and prompted for changes to the records.
-                    <LI>The changes are verified and reconfirmed by the operator.
-                    <LI>The changes are saved to the database.
-                    <LI>The operator is informed of the changes and taken to interactive operations for further commands.
-                </OL>
-            <b>Additional Success Scenario:</b>
-                <OL START="6">
-                    <LI>Acme Accounting Service runs the updates at 9 pm every day and updates member status.
-                    <LI>The membership status is reevaluated and crosschecked.
-                    <LI>Some members are suspended, and some are reinstated.
-                    <LI>The updates are pushed to the database.
-                </OL>
-            <b>Extensions:</b>
-                <OL>
-                    <LI>Error is raised if a member does not exist.
-                    <li value="7">The suspended members are informed of their overdue fees, and reinstated members are informed of their status.
-                </OL>
-
-        <hr>
-            <b>Use Case:</b> Edit provider records<br>
-            <b>Context:</b> During the day, the computer is set into interactive mode for the operator to edit provider records.<br>
-            <b>Actors:</b> Operator<br>
-            <b>Main Success Scenario:</b>
-                <OL>
-                    <LI> Operator intends to change the provider records.
-                    <LI> The operator is displayed current provider info and prompted for change of records.
-                    <LI> The changes are verified and reconfirmed by the operator.
-                    <LI> The changes are saved to the database.
-                    <LI> The operator is informed of changes and taken to interactive operations for further commands.
-                </OL>
-
-        <hr>
-            <b>Use Case:</b> Delete provider<br>
-            <b>Context:</b> During the day, the computer is set into interactive mode for the operator to delete provider<br>
-            <b>Actors:</b> Operator<br>
-            <b>Main Success Scenario:</b>
-                <OL>
-                    <LI> Operator intends to delete provider via the Interactive Operations.
-                    <LI> Operator is displayed info about the provider and prompted to delete said provider.
-                    <LI> The deletion of the provider must be verified and reconfirmed by the operator.
-                    <LI> Provider is deleted from database and operator is informed of it.
-                    <LI>Operator is taken back to interactive operations.
-                </OL>
-
-        <hr>
-            <b>Use Case:</b> Add provider<br>
-            <b>Context:</b> During the day, the computer is set into interactive mode for the operator to add providers<br>
-            <b>Actors:</b> Operator<br>
-            <b>Main Success Scenario:</b>
-                <OL>
-                    <LI> Operator intends to add provider via the Interactive Operations
-                    <LI> Operator is asked to add information about the provider
-                    <LI> The addition of the provider is verified by the operator
-                    <LI> The provider is added to the database, and the operator is informed of it
-                    <LI> Operator is taken back to interactive operations
-                </OL>
-
+    <br>
 </body>
 </html>
