@@ -305,19 +305,16 @@
 
     <br>
     <p>
-        <b>Use Case:</b> Add member<br>
+        <b>Use Case:</b> Add member extends Edit Member Files<br>
         <b>Context:</b> Operator Intends to add a new member to the database.<br>
-        <b>Actors:</b> Operator, Acme Accounting Service<br>
+        <b>Actors:</b> Operator<br>
         <b>Main Success Scenario:</b>
         <OL>
             <LI>The operator selects “add member”
             <LI>Operator is prompted to fill up the member details
-            <LI>The system communicates with the Acme Accounting Service to record the member details.
-                <ol TYPE="a">
-                    <LI>The system receives the confirmation from Acme Accounting Service.
-                </OL>
-
-            <LI>After completion, the operator is informed about the status of the member and taken to the Interactive terminal.
+            <LI>After completion, the operator is informed about the status of the member.
+            <LI> The changes are saved to the database.
+            <LI> The operator is taken to the Interactive terminal.
         </OL>
         <b>Extensions:</b>
         <ol START="3">
@@ -331,19 +328,15 @@
 
     <br>
     <p>
-        <b>Use Case:</b> Delete member<br>
+        <b>Use Case:</b> Delete member extends Edit Member List<br>
         <b>Context:</b> Operator Intends to delete an existing member from the database.<br>
-        <b>Actors:</b> Operator, Acme Accounting Service<br>
+        <b>Actors:</b> Operator<br>
         <b>Main Success Scenario:</b>
         <OL>
             <LI>The operator selects “delete member”
-            <LI>The operator is prompted for member details like member ID
-            <LI>The system communicates with the Acme Accounting Service to change the member status.
-                <ol TYPE="a">
-                    <LI>The system receives the confirmation from Acme Accounting Service.
-                </OL>
-
+            <LI>The operator is prompted for member details such as member ID
             <LI>The system deletes the member records from the database.
+            <LI> The changes are saved to the database.
             <LI>After completion, the operator is informed about the status of the member and taken to the Interactive terminal.
         </OL>
         <b>Extensions:</b>
@@ -351,16 +344,14 @@
             <LI>
                 <ol TYPE="a">
                     <LI> If the member does not exist, an error is raised, and the operator is informed.
-                    <LI>If the member exists, Acme Accounting Service is informed to disable membership fees collection, and delete member personal info.
                 </OL>
-
         </OL>
 
     <br>
     <p>
-        <b>Use Case:</b> Edit member records<br>
-        <b>Context:</b> Operator or Acme Accounting Service intends to edit a member's record from the database.<br>
-        <b>Actors:</b> Operator, Acme Accounting Service<br>
+        <b>Use Case:</b> Update member records extends Edit Member List<br>
+        <b>Context:</b> Operator intends to edit a member's record from the database.<br>
+        <b>Actors:</b> Operator<br>
         <b>Main Success Scenario:</b>
         <OL>
             <LI>Operator intends to change the member records.
@@ -369,45 +360,13 @@
             <LI>The changes are saved to the database.
             <LI>The operator is informed of the changes and taken to interactive operations for further commands.
         </OL>
-        <b>Additional Success Scenario:</b>
-        <ol START="6">
-            <LI>Acme Accounting Service runs the updates at 9 pm every day and updates member status.
-            <LI>The membership status is reevaluated and crosschecked.
-            <LI>Some members are suspended, and some are reinstated.
-            <LI>The updates are pushed to the database.
-        </OL>
         <b>Extensions:</b>
         <OL>
             <LI>Error is raised if a member does not exist.
-            <li value="7">The suspended members are informed of their overdue fees, and reinstated members are informed of their status.
         </OL>
 
     <br>
-    <p>
-        <b>Use Case:</b> Interactive Operations<br>
-        <b>Context:</b> The ChocAn Data Center software can be run in interactive mode, to give the operator options to update member and provider records.<br>
-        <b>Actors:</b> Operators, ChocAn Data Center, Acme Accounting Services<br>
-        <b>Main Success Scenario:</b>
-        <OL>
-            <LI> The ChocAn Data Center must be in interactive mode.
-            <LI> The operator may update provider details
-                <OL TYPE="a">
-                    <LI> Change records
-                    <LI> Add provider
-                    <LI> Delete provider
-                </OL>
-        </OL>
-        <OL START="3">
-            <LI> The operator may update member details
-                <OL TYPE="a">
-                    <LI> Change records.
-                    <LI> Add member.
-                    <LI> Delete Member.
-                    <LI>The Acme Accounting Services may suspend members due to unsatisfied payments.
-                </OL>
-        </OL>
-
-    <br>
+    
     <p>
         <b>Use Case:</b> Authenticate member<br>
         <b>Context:</b> Upon entering a member card into the system, the terminal verifies the member to receive health care service.<br>
@@ -428,7 +387,7 @@
 
     <br>
     <p>
-        <b>Use Case:</b> Edit provider records<br>
+        <b>Use Case:</b> Update provider records extends Edit Provider Files<br>
         <b>Context:</b> During the day, the computer is set into interactive mode for the operator to edit provider records.<br>
         <b>Actors:</b> Operator<br>
         <b>Main Success Scenario:</b>
@@ -442,7 +401,7 @@
 
     <br>
     <p>
-        <b>Use Case:</b> Delete provider<br>
+        <b>Use Case:</b> Delete provider  extends Edit Provider Files <br>
         <b>Context:</b> During the day, the computer is set into interactive mode for the operator to delete provider<br>
         <b>Actors:</b> Operator<br>
         <b>Main Success Scenario:</b>
@@ -456,7 +415,7 @@
 
     <br>
     <p>
-        <b>Use Case:</b> Add provider<br>
+        <b>Use Case:</b> Add provider extends Edit Provider Files <br>
         <b>Context:</b> During the day, the computer is set into interactive mode for the operator to add providers<br>
         <b>Actors:</b> Operator<br>
         <b>Main Success Scenario:</b>
