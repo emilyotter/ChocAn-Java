@@ -145,8 +145,9 @@
         <p>
             Chocoholics Anonymous “ChocAn” is a rehabilitation program for people who are addicted to chocolate.
             Members pay a fee to ChocAn and are then able to use in-network providers for free.
-            These providers use a custom software stack written by our team to authenticate members and track their service,
-            the software will then pay the providers what they are owed when it is time.
+            These providers use a custom software stack written by our team to authenticate members and track their service. Our software system will 
+            aid the organization with records 
+            and communication among members, providers, operators, and third-party systems.
             Five programmers were assigned to work on this project.
             Our team collectively spent time analyzing the Chocoholics Anonymous project document.
             We independently identified use cases, and then decided as a group which ones to include.
@@ -256,273 +257,317 @@
         </table>
 
     <h1>Use Case Diagram</h1>
-        <img src="UMLDiagrams_PNG/Team12UML.png" alt="Team 12 UML" style="width:100%">
+        <img src="UMLDiagrams_PNG/updatedTeam12UML.png" alt="Team 12 UML" style="width:100%">
 
     <h1>Use Case Descriptions</h1>
     <p>
-        <b>Use case:</b> Provider Directory<br>
-        <b>Context:</b> A use case of the provider terminal, that the provider can use to perform specific functions such as looking up the service code for a service.<br>
-        <b>Actors:</b> Provider Terminal<br>
+        <b>Use case:</b> Authenticate Provider<br>
+        <b>Context:</b> Provider wishes to access the provider menu.<br>
+        <b>Actors:</b> Provider <br>
         <b>Main Success Scenario:</b>
         <OL>
-            <LI>Provider enters their provider number to authenticate.
-                The provider accesses other commands from the terminal, represented as other use cases.
-        </OL>
-    <br>
-    <p>
-        <b>Use case:</b> Authenticate provider<br>
-        <b>Context:</b> Authenticate the provider using the provider number<br>
-        <b>Actors:</b> Provider Terminal<br>
-        <b>Main Success Scenario:</b>
-        <OL>
-            <LI>Provider enters their provider number to authenticate.
-        </OL>
-    <br>
-    <p>
-        <b>Use case:</b> List directory<br>
-        <b>Context:</b> At any time a provider can list the provider directory, which will create a list of all the services, the corresponding codes, and the fees for each service.<br>
-        <b>Actors:</b> Provider Terminal<br>
-        <b>Main Success Scenario:</b>
-        <OL>
-            <LI>Provider requests the list of the directory
-            <LI>An alphabetically ordered list of service names and corresponding service codes and fees is generated
-            <LI>The list is emailed to the provider as an attachment
-        </OL>
-    <br>
-    <p>
-        <b>Use case:</b> Check service code<br>
-        <b>Context:</b> Checks whether the inputted service code is valid.<br>
-        <b>Actors:</b> Provider Terminal<br>
-        <b>Main Success Scenario:</b>
-        <OL>
-            <LI>The provider enters a service code.
-            <LI>The corresponding service to the code is displayed.
-                <OL TYPE="a">
-                    <LI>Provider is asked to verify if this is the correct service
-                </OL>
-        </OL>
-        Extensions:
-        <OL START="2">
-            <LI>An error is displayed if an incorrect error code was inputted.
-        </OL>
-
-    <br>
-    <p>
-        <b>Use Case:</b> Add member extends Edit Member Files<br>
-        <b>Context:</b> Operator Intends to add a new member to the database.<br>
-        <b>Actors:</b> Operator<br>
-        <b>Main Success Scenario:</b>
-        <OL>
-            <LI>The operator selects “add member”
-            <LI>Operator is prompted to fill up the member details
-            <LI>After completion, the operator is informed about the status of the member.
-            <LI> The changes are saved to the database.
-            <LI> The operator is taken to the Interactive terminal.
-        </OL>
-        <b>Extensions:</b>
-        <ol START="3">
-            <LI>
-                <ol TYPE="a">
-                    <LI>If the customer already exists, the membership feed is checked, and the operator is informed about the member status.
-                    <LI>If the customer does not exist, a new member is added to the database, and the membership fees are collected.
-                </OL>
-
-        </OL>
-
-    <br>
-    <p>
-        <b>Use Case:</b> Delete member extends Edit Member List<br>
-        <b>Context:</b> Operator Intends to delete an existing member from the database.<br>
-        <b>Actors:</b> Operator<br>
-        <b>Main Success Scenario:</b>
-        <OL>
-            <LI>The operator selects “delete member”
-            <LI>The operator is prompted for member details such as member ID
-            <LI>The system deletes the member records from the database.
-            <LI> The changes are saved to the database.
-            <LI>After completion, the operator is informed about the status of the member and taken to the Interactive terminal.
-        </OL>
-        <b>Extensions:</b>
-        <ol START="3">
-            <LI>
-                <ol TYPE="a">
-                    <LI> If the member does not exist, an error is raised, and the operator is informed.
-                </OL>
-        </OL>
-
-    <br>
-    <p>
-        <b>Use Case:</b> Update member records extends Edit Member List<br>
-        <b>Context:</b> Operator intends to edit a member's record from the database.<br>
-        <b>Actors:</b> Operator<br>
-        <b>Main Success Scenario:</b>
-        <OL>
-            <LI>Operator intends to change the member records.
-            <LI>The operator is displayed current member info and prompted for changes to the records.
-            <LI>The changes are verified and reconfirmed by the operator.
-            <LI>The changes are saved to the database.
-            <LI>The operator is informed of the changes and taken to interactive operations for further commands.
+            <LI>Provider turns on the terminal.</LI>
+            <LI>System prompts provider for provider number.</LI>
+            <LI>Provider enters his or her number.</LI>
+            <LI>Provider menu is displayed.</LI>
         </OL>
         <b>Extensions:</b>
         <OL>
-            <LI>Error is raised if a member does not exist.
+            <td>   3a. Provider number is invalid.</td> <br>
+            <td>&nbsp &nbsp3a.1. Provider turns on terminal.</td><br>
+            <td>&nbsp&nbsp 3a.2. Use case continues at step 2.</td>
         </OL>
+    <br>
+    <p>
+        <b>Use case:</b> Authenticate Member<br>
+        <b>Context:</b> Provider wishes to verify a member's status in order to complete services.<br>
+        <b>Actors:</b> Provider <br>
+        <b>Main Success Scenario:</b>
+        <OL>
+            <LI>Provider slides member's card through the card reader.</LI>
+            <LI>Terminal dials the Chocoholics Anonymous Data Center.</LI>
+            <td>&nbsp2.1 The Data Center computer verifies the number.</td>
+            <LI>Validated appears on the display.</LI>
+            <LI>Display returns to provider's menu.</LI>
+        </OL>
+        <b>Extensions:</b>
+        <OL>
+            <td>   3a. Member number is invalid.</td> <br>
+            <td>&nbsp &nbsp3a.1. System prompts provider to slide card again.</td><br>
+            <td>&nbsp&nbsp 3a.2. Use case continues at step 1.</td>
+        </OL>
+        <OL>
+            <td>   3b. Member status does not allow authentication.</td> <br>
+            <td> &nbsp &nbsp3b.1. Terminal displays reason for error.</td> <br>
+            <td> &nbsp &nbsp3b.2. Use continues at step 5.</td>
+        </OL>
+    <br>
+    <p>
+        <b>Use case:</b> Manage Billing<br>
+        <b>Context:</b> Provider wants to bill Chocoholics Anonymous for services he or she provided.<br>
+        <b>Actors:</b> Provider <br>
+        <b>Main Success Scenario:</b>
+        <OL>
+            <LI>Provider authenticates member.</LI>
+            <LI>Provider keys in the date that the service was provided.</LI>
+            <LI>Provider uses the provider directory to look up service code.</LI>
+            <td> 3.1. Provider keys in service code.</td>
+            <LI>Software product displays the name of the service for provider to verify.</LI>
+            <LI>Software product writes a record of information to disk</LI>
+            <LI>Software product looks up fee to be paid for the service.</LI>
+            <td> 6.1. Fee is displayed on provider's terminal.</td>
+            <LI>Terminal returns to provider menu.</LI>
+        </OL>
+        <b>Extensions:</b>
+        <OL>
+            <td>   1a. System displays error and returns to main menu.</td> <br>
+            <td>   4a. Provider enters nonexistent code.</td><br>
+            <td>&nbsp&nbsp 4a.1. Error message is printed.</td><br>
+            <td>&nbsp&nbsp 4a.2. Use case continues at step 3.</td><br>
+            <td>   4b. Service displayed is not the one the provider intended.
+            </td><br>
+            <td>&nbsp&nbsp 4b.1 Provider selects that the service is incorrect.</td><br>
+            <td>&nbsp&nbsp 4b.2. Use case continues at step 3.</td>
+        </OL>
+    <br>
 
+    <p>
+        <b>Use case:</b> Request Provider Directory <br>
+        <b>Context:</b> Provider wants to request software for Provider Directory.<br>
+        <b>Actors:</b> Provider <br>
+        <b>Main Success Scenario:</b>
+        <OL>
+            <LI>Provider requests software product for the Provider Directory.</LI>
+            <LI>Provider Directory is sent to the provider as an e-mail attachment.</LI>
+            <LI>Terminal returns to menu. </LI>
+        </OL>
+        <b>Extensions:</b>
+        <td><br>N/A</td>
+        <OL></OL>
+    <br>
+
+    <p>
+        <b>Use case:</b> Edit Member Files<br>
+        <b>Context:</b> Actor wants to edit member records in the database.<br>
+        <b>Actors:</b> Operator <br>
+        <b>Main Success Scenario:</b>
+        <OL>
+            <LI>Operator accesses terminal during the day when software is interactive.</LI>
+            <LI>Operator selects to edit member records.</LI>
+            <LI>Terminal displays options for editing member records.</LI>
+            <LI>Operator performs action.</LI>
+            <LI>Operator logs off.</LI>
+        </OL>
+        <b>Extensions:</b>
+        <br><td>N/A</td>
+        </OL></p>
+    <br>
+
+    <p>
+        <b>Use Case:</b> Add Member extends Edit Member Files<br>
+        <b>Context:</b> Operator intends to add a new member to the database.<br>
+        <b>Actors:</b> Operator <br>
+        <b>Main Success Scenario:</b><br>
+        <OL>
+            <LI>The operator selects to add a member from the edit member menu.
+            <LI>Operator enters information about the new member.
+            <LI>The system assigns the member with a number.
+            <LI>The member and corresponding information is filed into the database.
+            <LI>Terminal returns to menu.
+        </OL>
+        <b>Extensions:</b>
+                <OL>
+                    <td>4a. Customer already exists.<td><br>
+                    <td>&nbsp&nbsp 4a.1. Terminal notifies operator and returns to menu.</td>
+                </OL>
+        </OL>
     <br>
     
     <p>
-        <b>Use Case:</b> Authenticate member<br>
-        <b>Context:</b> Upon entering a member card into the system, the terminal verifies the member to receive health care service.<br>
-        <b>Actors:</b> ChocAn Data Center, Provider Terminal<br>
+        <b>Use Case:</b> Delete Member extends Edit Member Files <br>
+        <b>Context:</b> Operator intends to delete an existing member from the database.<br>
+        <b>Actors:</b> Operator <br>
         <b>Main Success Scenario:</b>
         <OL>
-            <LI>Member card is provided into terminal card reader
-            <LI>Terminal dials ChocAn Data Center
-            <LI>ChocAn Data Center computer verifies the member number
-                <OL TYPE="a">
-                    <LI>If the number is valid, the word Validated appears on the one-line display.
-                </OL>
+            <LI>The operator selects to delete member.
+            <LI>The operator searches for member detail using name or number.
+            <LI>The system deletes the member records from the database.
+            <LI>Terminal returns to the main menu.
+        </OL>
+        <b>Extensions:</b><br>
+        <OL>
+            <td>2a. Member does not exist.<br>
+            <td>&nbsp&nbsp&nbsp2a.1. Terminal notifies operator and returns to menu.</td>
+            </OL>
+            <br>
+
+    <p>
+        <b>Use Case:</b> Update Member Records extends Edit Member Files<br>
+        <b>Context:</b> Operator intends to update a member's record in the database.<br>
+        <b>Actors:</b> Operator <br>
+        <b>Main Success Scenario:</b>
+        <OL>
+            <LI>Operator selects to change the member records.
+            <LI>The operator is displayed current member info and prompted for changes to the records.
+            <LI>The changes are verified and reconfirmed by the operator.
+            <LI>The changes are saved to the database.
+            <LI>The operator is informed of the changes and taken back to menu for further commands.
         </OL>
         <b>Extensions:</b>
-        <OL START="3">
-            <LI> If the number is invalid, the reason is displayed, such as Invalid number or Member suspended; the latter message indicates that fees are owed (that is, the member has not paid membership fees for at least a month) and member status has been set to suspended.
+        <OL>
+            <td>1a. Error is raised if a member does not exist.<br>
+            <td>&nbsp&nbsp&nbsp1a.1.Operator is informed and returned to menu.
         </OL>
 
+
     <br>
+
     <p>
-        <b>Use Case:</b> Update provider records extends Edit Provider Files<br>
+        <b>Use Case:</b> Edit Provider Files<br>
         <b>Context:</b> During the day, the computer is set into interactive mode for the operator to edit provider records.<br>
-        <b>Actors:</b> Operator<br>
+        <b>Actors:</b> Operator <br>
         <b>Main Success Scenario:</b>
         <OL>
             <LI> Operator intends to change the provider records.
             <LI> The operator is displayed current provider info and prompted for change of records.
             <LI> The changes are verified and reconfirmed by the operator.
             <LI> The changes are saved to the database.
-            <LI> The operator is informed of changes and taken to interactive operations for further commands.
+            <LI> The operator is informed of changes and taken to menu for further commands.
         </OL>
+        <b>Extensions:</b><br>
+            <td>N/A</td>
+            <OL></OL>
 
     <br>
     <p>
-        <b>Use Case:</b> Delete provider  extends Edit Provider Files <br>
+        <b>Use Case:</b> Delete Provider extends Edit Provider Files<br>
         <b>Context:</b> During the day, the computer is set into interactive mode for the operator to delete provider<br>
         <b>Actors:</b> Operator<br>
         <b>Main Success Scenario:</b>
         <OL>
-            <LI> Operator intends to delete provider via the Interactive Operations.
+            <LI> Operator intends to delete provider.
             <LI> Operator is displayed info about the provider and prompted to delete said provider.
             <LI> The deletion of the provider must be verified and reconfirmed by the operator.
             <LI> Provider is deleted from database and operator is informed of it.
-            <LI>Operator is taken back to interactive operations.
+            <LI>Operator is taken back to menu.
         </OL>
+        <b>Extensions:</b><br>
+            <td>N/A</td>
+            <OL></OL>
 
     <br>
     <p>
-        <b>Use Case:</b> Add provider extends Edit Provider Files <br>
+        <b>Use Case:</b> Add Provider extends Edit Provider Files<br>
         <b>Context:</b> During the day, the computer is set into interactive mode for the operator to add providers<br>
         <b>Actors:</b> Operator<br>
         <b>Main Success Scenario:</b>
             <OL>
-                <LI> Operator intends to add provider via the Interactive Operations
+                <LI> Operator intends to add provider.
                 <LI> Operator is asked to add information about the provider
                 <LI> The addition of the provider is verified by the operator
                 <LI> The provider is added to the database, and the operator is informed of it
-                <LI> Operator is taken back to interactive operations
+                <LI> Operator is taken back to menu. 
             </OL>
+            <b>Extensions:</b><br>
+            <td>N/A</td>
+            <OL></OL>
     <br>
+
+    
+    
     <p>
-        <b>Use Case:</b> Accounting Procedure <br>
+        <b>Use Case:</b> Update Member Records extends Edit Member Files<br>
+        <b>Context:</b> Operator wants to change provider's status or update information.<br>
+        <b>Actors:</b> Operator<br>
+        <b>Main Success Scenario:</b>
+            <OL>
+                <LI> Operator selects to update provider records.
+                <LI>Operator searches for and selects provider.</LI>
+                <LI>Terminal displays current provider record information.</LI>
+                <LI> Operator updates information.</LI>
+                <LI>System writes the information to the database.</LI>
+                <LI> Terminal returns to menu.</LI>
+            </OL>
+            <b>Extensions:</b><br>
+            <td>N/A</td>
+            <OL></OL>
+    <br>
+
+    <p>
+        <b>Use Case:</b> Run Accounting Procedure <br>
         <b>Context:</b> The main accounting procedure run at ChocAn Data Center at midnight on Fridays.<br>
-        <b>Actors:</b> ChocAn Data Center<br>
+        <b>Actors:</b> Timer <br>
         <b>Main Success Scenario:</b>
             <OL>
                 <LI> Accounting procedure is run at ChocAn Data Center at midnight on Friday.
-                <LI> The week’s file of services is read.
+                <LI> The week’s file of services are read.
                 <LI> Reports are generated.
                 <LI> Reports are sent out.
-                <LI> Reports are sent out.
-                <LI> A record of electronic funds transfer (EFT) data is written to a disk.
-                    <OL TYPE="a">
-                        <LI>Banking computers ensure provider's account is credited.
-                    </OL>
-                <LI> A summary report is given to the manager for accounts payable.
-                    <OL TYPE="a">
-                        <LI>The report lists every provider to be paid, the number of consultations, and total fees.
-                    </OL>
+                <LI> A record of electronic funds transfer (EFT) data is written to a disk.<br>
+                        <td>5a. Banking computers ensure provider's account is credited.
                 <LI> A totals sheet of number of providers who gave services, number of consultations, and overall fees is printed.
+                <LI> The accounting procedure is terminated.</LI>
             </OL>
-            <b>Extensions:</b>
-                <OL START = "3">
-                    <LI> Report is requested individually by the request of ChocAn manager at any time during the week.
-                </OL>
+        <b>Extensions:</b><br>
+            <td>N/A</td>
+            <OL></OL>
     <br>
+
     <p>
         <b>Use Case:</b> Generate Reports <br>
-        <b>Context:</b> A part of the main accounting procedure where reports are created. <br>
-        <b>Actors:</b> ChocAn Data Center <br>
+        <b>Context:</b> An actor requests for reports to be created. <br>
+        <b>Actors:</b> Timer, Manager <br>
         <b>Main Success Scenario:</b>
             <OL>
-                <LI> Files are read containing information on the week's services.
-                <LI> Reports sent to members are sorted in order of service date.
-                    <OL TYPE="a">
-                        <LI> Reports includes member name, number, street address, city, state, ZIP code and service data, provider name, and service name for each service provided.
-                    </OL>
-                <LI> Reports are sent to providers are sorted in order of when the data was received by the computer.
-                    <OL TYPE="a">
-                        <LI> Report contains same information entered on provider's form. 
-                    </OL>
-                <LI> Summary including number of consultations with members and the total fees for the week are written at the bottom of the report.
+                <LI> An actor requests that reports are run.
+                <LI> The member reports are generated.
+                <LI> The provider reports are generated.
+                <LI> A summary report is generated.
+                <LI>The reports are printed.</LI>
+                <LI>The process ends.</LI>
             </OL>
-
+        <b>Extensions:</b><br>
+        <OL>
+        <td>1a. Specified reports are requested. </td><br>
+        <td>&nbsp&nbsp 1a.1. Use continues at corresponding report.</td>
+        </OL>
     <br>
     <p>
         <b>Use Case:</b> Send Reports<br>
         <b>Context:</b> A part of the main accounting procedure where reports are sent to members, providers, and managers.<br>
-        <b>Actors:</b> ChocAn Data Center<br>
+        <b>Actors:</b> Timer <br>
         <b>Main Success Scenario:</b>
             <OL>
                 <LI> Reports are generated.
-                <LI> Reports are sent to members.
-                    <OL TYPE="a">
-                        <LI> Reports are both printed and emailed as an attachment.
-                    </OL>
-                <LI> Reports are sent to providers.
-                    <OL TYPE="a">
-                        <LI> Reports are both printed and emailed as an attachment.
-                    </OL>
+                <LI> Members are sent a printed report and e-mail attachment.
+                <LI> Providers are sent an e-mail attachment of the provider report.
+                <LI>The summary report is given to the manager for accounts payable.</LI>
+                <LI>The process terminates.</LI>
             </OL>
+             <p>
+                <b>Extensions:</b><br>
+                <td>N/A</td>
+                <OL></OL>
 
     <br>
     <p>
-        <b>Use Case:</b> Manage Billing<br>
-        <b>Context:</b> The provider intends to bill ChocAn for services provided.<br>
-        <b>Actors:</b> Provider Terminal<br>
+        <b>Use Case:</b> Request Reports<br>
+        <b>Context:</b> Manager wants to request an individual reports be ran at any time during the week. <br>
+        <b>Actors:</b> Manager<br>
         <b>Main Success Scenario:</b>
             <OL>
-                <LI> Provider slides card though card reader on terminal.
-                <LI> The system validates the member.
-                    <OL TYPE="a">
-                        <LI> Terminal dials ChocAn Data Center.
-                        <LI> ChocAn Data Center verifies member number.
-                    </OL>
-                <LI> Provider keys in the date of service in the format MM-DD-YYYY.
-                <LI> Provider looks up six-digit service code in Provider Directory.
-                <LI> Provider keys in service code.
-                    <OL TYPE="a">
-                        <LI> Software product displays name of service corresponding to code.
-                        <LI> Provider verifies correct service.
-                    </OL>
-                <LI> Software product looks up fee to be paid for service.
-                    <OL TYPE="a">
-                        <LI> Software displays fee on provider terminal.
-                    </OL>
-                <LI> Provider enters information.
-                    <OL TYPE="a">
-                        <LI> Provider enters current date and time on form, member name and number, service code, and fee to be paid.
-                    </OL>
-                <LI> At the end of the week, provider totals fees to verify amount paid by ChocAn.
-                </OL>
+                <LI> The manager selects to request reports.
+                <LI> Members chooses which reports he or she wants generated
+                <LI> The specified reports are generated.
+                <LI>The reports are sent to the manager.</LI>
+                <LI>Operation finishes and terminal returns to menu.</LI>
+            </OL>
+             <p>
+                <b>Extensions:</b><br>
+                <td>N/A</td>
+                <OL></OL>
 
     <br>
+    </p>
 </body>
 </html>
