@@ -1,0 +1,66 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>610</x><y>170</y><w>210</w><h>90</h></coordinates><panel_attributes>Library Collection
+--
+-books : book
+--
++addBook(book : Book) : void
++deleteBook(book : Book) : void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>290</x><y>170</y><w>240</w><h>110</h></coordinates><panel_attributes>Terminal
+--
++searchByTitle(Title : string) : Book
++searchBySubject(Subject : string) : Book
++searchByAuthor(Author : string) : Book
++turnOn() : void
++turnOff(): void
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>710</x><y>400</y><w>140</w><h>170</h></coordinates><panel_attributes>Book
+--
+-Barcode : int
+-Title : string
+-Author : string
+-Subject : string
+-Availability : bool
+--
++checkout() : void
++getBarcode() : int
++placeHold() : void
++setAvailability(): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>360</x><y>580</y><w>140</w><h>90</h></coordinates><panel_attributes>Card
+--
+-Name : string
+-Barcode : int
+--
++getNumber() : int
++getBarcode() : int
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>750</x><y>250</y><w>40</w><h>170</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=*</panel_attributes><additional_attributes>10;10;10;150</additional_attributes></element><element><id>UMLClass</id><coordinates><x>150</x><y>370</y><w>230</w><h>100</h></coordinates><panel_attributes>Librarian
+--
++scanBarcode(barcode : int) : void
++confirmCheckout(option : char) : void
++confirmReturn(option : char) : void
++placeBookOnHold(book : Book) : void
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>520</x><y>190</y><w>110</w><h>40</h></coordinates><panel_attributes></panel_attributes><additional_attributes>10;20;90;20</additional_attributes></element><element><id>Relation</id><coordinates><x>350</x><y>270</y><w>50</w><h>120</h></coordinates><panel_attributes>lt=&lt;-
+m1=1
+uses
+m2=1..</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>460</y><w>60</w><h>140</h></coordinates><panel_attributes>lt=&lt;-
+m1=*
+reads
+m2=1</panel_attributes><additional_attributes>10;120;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>480</x><y>480</y><w>50</w><h>120</h></coordinates><panel_attributes>lt=&lt;-
+m1=1
+card
+m2=1</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>480</x><y>270</y><w>50</w><h>150</h></coordinates><panel_attributes>lt=&lt;-
+m1=1
+uses
+m2=1..</panel_attributes><additional_attributes>10;10;10;130</additional_attributes></element><element><id>UMLClass</id><coordinates><x>480</x><y>400</y><w>140</w><h>90</h></coordinates><panel_attributes>Borrower
+--
+-Card : card
+-books : book
+--
++returnBook() : void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>610</x><y>420</y><w>120</w><h>50</h></coordinates><panel_attributes>lt=&lt;-
+book
+m1=*
+m2=1</panel_attributes><additional_attributes>100;20;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>290</x><y>80</y><w>110</w><h>30</h></coordinates><panel_attributes>CheckoutAction</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>340</x><y>100</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;70;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>420</x><y>80</y><w>110</w><h>30</h></coordinates><panel_attributes>ReturnAction</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>460</x><y>100</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;70;10;10</additional_attributes></element></diagram>
