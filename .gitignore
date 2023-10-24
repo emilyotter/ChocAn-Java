@@ -10,6 +10,7 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+.classpath
 .project
 
 # External tool builders
@@ -117,6 +118,7 @@ cmake-build-*/
 
 # File-based project format
 *.iws
+*.iml
 
 # IntelliJ
 out/
@@ -227,6 +229,25 @@ Temporary Items
 # iCloud generated files
 *.icloud
 
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
@@ -252,3 +273,5 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# End of https://www.toptal.com/developers/gitignore/api/windows,macos,linux,eclipse,visualstudiocode,intellij
