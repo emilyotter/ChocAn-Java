@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Team 12 Design Report</title>
+
+    <meta charset = "utf-8">
+    <div class="myHeader">
+        <h2>Design Report - Team 12</h2>
+    </div>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+        .myHeader {
+            text-align: center;
+            padding: 2% 0;
+            color: #ffffff;
+            letter-spacing: 4px;
+            text-shadow: 2px 2px 2px rgba(36, 162, 152, 0.8);
+            font-size: 36px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            color: #f0f0f0; /* Light gray text on a slightly darker background */
+            background-color: #252525; /* A darker gray for the background */
+            font-family: 'Roboto', sans-serif;
+        }
+
+        h1 {
+            font-size: 25px;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(36, 162, 152, 0.8);
+        }
+
+        h2 {
+            font-size: 30px;
+        }
+
+        table {
+            text-align: center;
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        th {
+            background-color: #693ea5; /* A teal color for the table headers */
+            color: #ffffff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        td {
+            color: #f0f0f0;
+            text-align: center;
+            border: 1px solid #eee;
+            padding: 10px;
+            background-color: rgba(51, 51, 51, 0.2); /* Slightly transparent dark gray */
+        }
+
+        .myImage {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 2px solid #333;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            transition: opacity 0.3s ease, transform 0.35s ease;
+            margin: 0 auto;
+        }
+
+        .myImage:hover {
+        opacity: 0.85;
+        transform: scale(0.95);
+        }
+    </style>
+
+
+</head>
+
+<body>
+    
+    <h1>Header Table:</h1>
+    <table>
+        <tr>
+          <th>Student Name:</th>
+          <th>Student Email:</th>
+          <th>CWID:</th>
+          <th>Hours Worked:</th>
+        </tr>
+        <tr>
+            <td>Emily Otter</td>
+            <td>eaotter@crimson.ua.edu</td>
+            <td>12100724</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>Maddox Guthrie</td>
+            <td>mbguthrie1@crimson.ua.edu</td>
+            <td>12184185</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>Nischal Bhattarai</td>
+            <td>nbhattarai@crimson.ua.edu</td>
+            <td>12088410</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>Egan Trahant</td>
+            <td>emtrahant@crimson.ua.edu</td>
+            <td>12184826</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>Dylan Mather (Submitter)</td>
+            <td>dmmather@crimson.ua.edu</td>
+            <td>12267750</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>Kaela Camarar</td>
+            <td>kcamara@crimson.ua.edu</td>
+            <td>12247972</td>
+            <td>4</td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <th>Student Name:</th>
+            <th>Tasks Performed:</th>
+            <th>Percentage Contributed:</th>
+        </tr>
+        <tr>
+            <td>Emily Otter</td>
+            <td>Contributed to sequence diagrams and class diagram, wrote paragraph</td>
+            <td>16.6%</td>
+        </tr>
+        <tr>
+            <td>Maddox Guthrie</td>
+            <td>Fixed Errors in the HTML and CSS for the report, added Sequence diagrams</td>
+            <td>16.6%</td>
+        </tr>
+        <tr>
+            <td>Nischal Bhattarai</td>
+            <td>Added Project Structure, CSS for main report, Sequence diagrams</td>
+            <td>16.6%</td>
+        </tr>
+        <tr>
+            <td>Egan Trahant</td>
+            <td>Sequence diagram, contribution in design paragraph, error-check diagrams</td>
+            <td>16.6%</td>
+        </tr>
+        <tr>
+            <td>Dylan Mather</td>
+            <td>Sequence diagrams, consolidation of methods, error-check diagrams</td>
+            <td>16.6%</td>
+        </tr>
+        <tr>
+            <td>Kaela Camara</td>
+            <td>Sequence diagram</td>
+            <td>16.6%</td>
+        </tr>
+    </table>
+
+    
+    <h1>UML Class Diagram:</h1>
+    <img src="ClassDiagram_PNG/report_ClassDiagram.png" alt="UML Class Diagram" class="myImage">
+
+
+    <h1>Sequence Diagrams:</h1>
+    
+    <h3>Add Member</h3>
+    <img src = "SequenceDiagram_PNG/addMember.png" alt="Add Member" class="myImage">
+
+    <h3>Delete Member</h3>
+    <img src = "SequenceDiagram_PNG/deleteMember.png" alt="Delete Member" class="myImage">
+
+    <h3>Edit Member Records</h3>
+    <img src = "SequenceDiagram_PNG/editMember.png" alt="Edit Member Records" class="myImage">
+    
+    <h3>Add Provider</h3>
+    <img src = "SequenceDiagram_PNG/addProvider.png" alt="Add Provider" class="myImage">
+
+    <h3>Delete Provider</h3>
+    <img src = "SequenceDiagram_PNG/deleteProvider.png" alt="Delete Provider" class="myImage">
+
+    <h3>Edit Provider Records</h3>
+    <img src = "SequenceDiagram_PNG/editProvider.png" alt="Edit Provider Records" class="myImage">
+    
+    <h3>Accounting Procedure</h3>
+    <img src = "SequenceDiagram_PNG/accountingProcedure.png" alt="Accounting Procedure" class="myImage">
+
+    <h3>Request Reports</h3>
+    <img src = "SequenceDiagram_PNG/requestReport.png" alt="Request Reports" class="myImage">
+    
+    <h3>Request Provider Directory</h3>
+    <img src = "SequenceDiagram_PNG/requestProviderDirectory.png" alt="Request Provider Directory" class="myImage">
+
+    <h3>Verify Member</h3>
+    <img src = "SequenceDiagram_PNG/verifyMember.png" alt="Verify Member" class="myImage">
+
+    <h3>Verify Provider</h3>
+    <img src = "SequenceDiagram_PNG/verifyProvider.png" alt="Verify Provider" class="myImage">
+    
+    <h3>Verify Operator</h3>
+    <img src = "SequenceDiagram_PNG/verifyOperator.png" alt="Verify Operator" class="myImage">
+
+    <h3>Verify Manager</h3>
+    <img src = "SequenceDiagram_PNG/verifyManager.png" alt="Verify Manager" class="myImage">
+    
+    <h3>Bill ChocAn</h3>
+    <img src = "SequenceDiagram_PNG/billChocAn.png" alt="Bill ChocAn" class="myImage">
+    
+    
+
+    <h1>Discussion of Design:</h1>
+    <p>In building our program's classes, we aimed for each class to work well on its own and with others, 
+        enhancing the program's efficiency. We ensured all parts of a class worked towards a common goal, 
+        with clear start and end points for each module. With informational cohesion, each module focused on a 
+        specific task using the same input, leading to related outcomes and a more straightforward class structure. 
+        We monitored module interactions to keep our system modular and easy to maintain, employing getter methods to 
+        avoid content coupling and keep our methods details safe. By practicing data coupling, we shared only 
+        essential simple variables between modules, reducing complexity and enhancing clarity. These strategies, 
+        together with reducing dependencies, resulted in a system that's strong, flexible, and easy to understand, 
+        where every class and module plays its part in the project's success.
+        </p>
+
+
+    <h1>Bitbucket Statistics:</h1>
+    <img src="../Bitbucket_Statistics/BitBucket_1.png" alt="Bitbucket Commits 1" style="height:50%">
+    <img src="../Bitbucket_Statistics/BitBucket_2.png" alt="Bitbucket Commits 2" style="height:50%">
+    <img src="../Bitbucket_Statistics/BitBucket_3.png" alt="Bitbucket Commits 3" style="height:50%">
+    <img src="../Bitbucket_Statistics/BitBucket_4.png" alt="Bitbucket Commits 4" style="height:50%">
+
+</body>
+
+</html>
