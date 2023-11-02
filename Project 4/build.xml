@@ -3,6 +3,7 @@
 
     <target name="cleanall">
         <delete dir="build"/>
+        <delete dir="dist"/>
         <delete file="release/Project4.jar"/>
     </target>
 
@@ -26,6 +27,7 @@
 
     <target name="clean">
         <delete dir="build"/>
+        <delete dir="dist"/>
     </target>
 
 </project>
