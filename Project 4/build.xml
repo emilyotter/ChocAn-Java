@@ -16,7 +16,7 @@
         <mkdir dir="release/"/>
         <jar destfile="release/Project4.jar" basedir="build/classes">
             <manifest>
-                <attribute name="Main-Class" value="team12.project4.Terminal"/>
+                <attribute name="Main-Class" value="team12.project4.MAIN_CLASS_HERE"/>
             </manifest>
         </jar>
     </target>
