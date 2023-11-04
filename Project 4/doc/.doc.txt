@@ -1,1 +1,0 @@
-This directory will contain the docs for the project. This file is to keep git directory-aware.

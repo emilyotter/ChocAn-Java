@@ -1,6 +1,8 @@
 // Maddox Guthrie 11/3/2023
+// Entry point for the Chocoholics Anonymous system terminal.
+// This is the main class for the terminal, it will be used to run the terminal.
 
-package Project4;
+
 public class Terminal {
     public static void main(String[] args) {
         System.out.println("Welcome to the Chocoholics Anonymous system terminal.");
