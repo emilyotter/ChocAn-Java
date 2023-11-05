@@ -101,7 +101,7 @@ public class DailyTimer extends Thread{
      */
     private void executeService() {
         System.out.println("Executing service at " + hours + " hours, " + minutes + " minutes, and " + seconds + " seconds.");
-        // Add your service execution logic here.
+        timedController.abstractTimedMethod();
     }
 
     public void run() {
