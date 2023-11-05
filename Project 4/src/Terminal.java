@@ -10,7 +10,7 @@ public class Terminal {
 	private static final Logger logger = LoggerFactory.getLogger(Terminal.class);
 	
     public static void main(String[] args) {
-    	logger.debug("[MAIN] Start");
+    	logger.debug("[MAIN] Start"); // test
         System.out.println("Welcome to the Chocoholics Anonymous system terminal.");
         turnOff();
     }
