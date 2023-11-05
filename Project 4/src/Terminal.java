@@ -8,12 +8,30 @@ public class Terminal {
         System.out.println("Welcome to the Chocoholics Anonymous system terminal.");
         CredentialsDatabase db = new CredentialsDatabase();
         db.printAll();
+
+        if(!turnOn()) {
+            System.out.println("An error occurred, shutting off the system.");
+            turnOff(-1);
+        }
+
         turnOff();
     }
 
+    private static boolean turnOn() {
+        System.out.println("Welcome to the Chocoholics Anonymous system terminal.");
+        return true;
+    }
+
+    // turnOff default call (status = 0)
     private static void turnOff() {
         System.out.println("Exiting the system, Thank you for choosing Chocoholics Anonymous.");
         System.exit(0);
+    }
+
+    // turnOff with a provided status number
+    private static void turnOff(int status) {
+        System.out.println("Exiting the system, Thank you for choosing Chocoholics Anonymous.");
+        System.exit(status);
     }
 
 }
