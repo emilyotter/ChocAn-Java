@@ -2,18 +2,11 @@
 // Entry point for the Chocoholics Anonymous system terminal.
 // This is the main class for the terminal, it will be used to run the terminal.
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import chocan.database.CredentialsDatabase;
 import chocan.timer.DailyTimer;
 
 public class Terminal {
-	
-	private static final Logger logger = LoggerFactory.getLogger(Terminal.class);
-	
     public static void main(String[] args) {
-    	logger.debug("[MAIN] Start"); // test
-
         if(!turnOn()) {
             System.out.println("An error occurred, shutting off the system.");
             turnOff(-1);
