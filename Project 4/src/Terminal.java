@@ -1,16 +1,13 @@
 // Maddox Guthrie 11/3/2023
 // Entry point for the Chocoholics Anonymous system terminal.
 // This is the main class for the terminal, it will be used to run the terminal.
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import chocan.database.CredentialsDatabase;
 
 public class Terminal {
-	
-	private static final Logger logger = LoggerFactory.getLogger(Terminal.class);
-	
     public static void main(String[] args) {
         System.out.println("Welcome to the Chocoholics Anonymous system terminal.");
+        CredentialsDatabase db = new CredentialsDatabase();
+        db.printAll();
         turnOff();
     }
 
