@@ -3,7 +3,6 @@
 // This is the main class for the terminal, it will be used to run the terminal.
 
 import chocan.database.CredentialsDatabase;
-import chocan.timer.DailyTimer;
 
 public class Terminal {
     public static void main(String[] args) {

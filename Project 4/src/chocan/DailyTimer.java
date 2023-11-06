@@ -4,7 +4,7 @@
  * The execution time is calculated based on the current time and the specified hours, minutes, and seconds.
  * The service execution logic should be added in the executeService() method.
  */
-package chocan.timer;
+package chocan;
 
 import chocan.controller.AbstractController;
 

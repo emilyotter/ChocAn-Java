@@ -40,8 +40,6 @@ public abstract class AbstractController {
         return this.permission;
     }
 
-    public void abstractTimedMethod() {
-        System.out.println("Running timed method");
-    }
+    public abstract void abstractTimedMethod();
 
 }
