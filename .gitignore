@@ -273,3 +273,94 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+
+# Java gitignore
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.log
+
+# Compiled source
+/target/
+/bin/
+/build/
+/.gradle/
+/.idea/
+/.eclipse/
+/.settings/
+/.project
+/.metadata/
+/.vscode/
+/.DS_Store
+
+# Dependency directories
+/lib/
+/libs/
+/jars/
+*.iml
+
+# IDE files
+.idea/
+*.ipr
+*.iws
+*.iml
+.idea_modules/
+/out/
+gen/
+/.vscode/
+.vscode/
+.project
+.classpath
+.settings/
+.settings
+
+# Maven
+target/
+
+# Gradle
+build/
+.gradle/
+ 
+# Eclipse
+.settings/
+.classpath
+.project
+.metadata/
+bin/
+tmp/
+ 
+# NetBeans
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/nbactions.xml
+.nb-gradle/
+
+# BlueJ
+*.ctxt
+*.octxt
+
+# JDeveloper
+.jdeveloper/
+ 
+# MyEclipse
+.deployables/
+db/
+.metadata/
+bin/
+tmp/
+ 
+# Intellij
+/out/
+ 
+# Visual Studio Code
+.vscode/
+
+# Exclude Temp Folder
+*/temp/*
+

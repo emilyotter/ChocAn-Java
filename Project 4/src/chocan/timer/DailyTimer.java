@@ -6,17 +6,21 @@
  */
 package chocan.timer;
 
+import chocan.controller.AbstractController;
+
+import java.util.AbstractCollection;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 
-public class DailyTimer {
-    
-    
-    private int hours;
-    private int minutes;
-    private int seconds;
+public class DailyTimer extends Thread{
+
+    private final int hours;
+    private final int minutes;
+    private final int seconds;
+
+    AbstractController timedController;
 
 
     /*
@@ -26,10 +30,11 @@ public class DailyTimer {
      * @param minutes The minute of the hour to execute the service.
      * @param seconds The second of the minute to execute the service.
      */
-    public DailyTimer(int hours, int minutes, int seconds) {
+    public DailyTimer(int hours, int minutes, int seconds, AbstractController controller) {
         this.hours = hours;
         this.minutes = minutes;
         this.seconds = seconds;
+        this.timedController = controller;
     }
 
 
@@ -96,12 +101,10 @@ public class DailyTimer {
      */
     private void executeService() {
         System.out.println("Executing service at " + hours + " hours, " + minutes + " minutes, and " + seconds + " seconds.");
-        // Add your service execution logic here.
+        timedController.abstractTimedMethod();
     }
 
-
-    public static void main(String[] args) {
-        DailyTimer timer = new DailyTimer(21, 43, 0); // Example: Service should execute daily at 9:30:00 AM.
-        timer.execute();
+    public void run() {
+        this.execute();
     }
 }
