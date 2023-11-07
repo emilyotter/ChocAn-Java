@@ -86,7 +86,8 @@
     <!--Add a clean target-->
 	<target name="clean" description="clean up">
 		<delete dir="${build.dir}" />
-		<delete dir="${dist.dir}" />
+		<delete dir="${dist.dir}/lib" />
+		<delete file="${dist.dir}/ChocAn.jar" />
 	</target>
 
 
