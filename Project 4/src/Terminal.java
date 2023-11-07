@@ -2,7 +2,11 @@
 // Entry point for the Chocoholics Anonymous system terminal.
 // This is the main class for the terminal, it will be used to run the terminal.
 
+import chocan.controller.MemberReportController;
+import chocan.controller.ProviderReportController;
+import chocan.controller.SummaryReportController;
 import chocan.database.CredentialsDatabase;
+import chocan.DailyTimer;
 
 public class Terminal {
     public static void main(String[] args) {
@@ -11,8 +15,17 @@ public class Terminal {
             turnOff(-1);
         }
 
-        //DailyTimer midnightTimer = new DailyTimer(24, 0, 0, REPORT_CONTROLLER_FROM_ABSTRACT_CONTROLLER);
-        //midnightTimer.start();
+        MemberReportController mrc = new MemberReportController();
+        ProviderReportController prc = new ProviderReportController();
+        SummaryReportController src = new SummaryReportController();
+
+        DailyTimer mrcTimer = new DailyTimer(7, 24, 0, 0, mrc);
+        DailyTimer prcTimer = new DailyTimer(7, 24, 0, 0, prc);
+        DailyTimer srcTimer = new DailyTimer(7, 24, 0, 0, src);
+
+        mrcTimer.start();
+        prcTimer.start();
+        srcTimer.start();
 
         CredentialsDatabase db = new CredentialsDatabase();
         db.printAll();
