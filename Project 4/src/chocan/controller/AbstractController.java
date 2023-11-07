@@ -40,6 +40,4 @@ public abstract class AbstractController {
         return this.permission;
     }
 
-    public abstract void abstractTimedMethod();
-
 }

@@ -6,7 +6,7 @@
  */
 package chocan;
 
-import chocan.controller.AbstractController;
+import chocan.controller.AbstractReportController;
 
 import java.util.AbstractCollection;
 import java.util.Timer;
@@ -20,7 +20,7 @@ public class DailyTimer extends Thread{
     private final int minutes;
     private final int seconds;
 
-    AbstractController timedController;
+    AbstractReportController timedController;
 
 
     /*
@@ -30,7 +30,7 @@ public class DailyTimer extends Thread{
      * @param minutes The minute of the hour to execute the service.
      * @param seconds The second of the minute to execute the service.
      */
-    public DailyTimer(int hours, int minutes, int seconds, AbstractController controller) {
+    public DailyTimer(int hours, int minutes, int seconds, AbstractReportController controller) {
         this.hours = hours;
         this.minutes = minutes;
         this.seconds = seconds;
@@ -101,7 +101,7 @@ public class DailyTimer extends Thread{
      */
     private void executeService() {
         System.out.println("Executing service at " + hours + " hours, " + minutes + " minutes, and " + seconds + " seconds.");
-        timedController.abstractTimedMethod();
+        timedController.timedMethod();
     }
 
     public void run() {
