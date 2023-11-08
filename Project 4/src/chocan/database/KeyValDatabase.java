@@ -1,6 +1,8 @@
 package chocan.database;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 
 public abstract class KeyValDatabase extends AbstractDatabase {
@@ -83,9 +85,11 @@ public abstract class KeyValDatabase extends AbstractDatabase {
             throw new IllegalArgumentException("Key not found: " + key);
         }
         
-        // Check that the format is valid
-        if (!checkFormat(data)) {
-            throw new IllegalArgumentException("Invalid format");
+        // Check that the every key is one of the mandatory fields
+        for (String field : data.keySet()) {
+            if (!Arrays.asList(mandatoryFields).contains(field)) {
+                throw new IllegalArgumentException("Invalid field: " + field);
+            }
         }
         
         // Update the record
@@ -131,28 +135,30 @@ public abstract class KeyValDatabase extends AbstractDatabase {
      * Prints all entries in the database with their mandatory fields.
      */
     public void printAllEntries() {
+        // Print header row
         System.out.println("All entries in " + this.filePath.getFileName() + ":");
         System.out.println("-------------------------------------------------------------");
-        System.out.printf("%-15s  %-15s%n", "Key", "Mandatory Fields");
-    
-        for (Object key : getAllRecords().keySet()) {
-            HashMap<String, String> record = (HashMap<String, String>) getAllRecords().get(key);
-    
-            // Create a formatted string to display mandatory fields
-            StringBuilder mandatoryFieldsString = new StringBuilder();
-            for (String field : mandatoryFields) {
-                mandatoryFieldsString.append(field).append(": ").append(record.get(field)).append(", ");
-            }
-    
-            // Remove trailing comma and space
-            if (mandatoryFieldsString.length() > 0) {
-                mandatoryFieldsString.delete(mandatoryFieldsString.length() - 2, mandatoryFieldsString.length());
-            }
-    
-            System.out.printf("%-15s  %-15s%n", key, mandatoryFieldsString.toString());
+        System.out.printf("%-15s  ", "Key");
+        for (String field : mandatoryFields) {
+            System.out.printf("%-15s  ", field);
         }
+        System.out.println();
+    
+        // Print data rows
+        for (Object key : getAllRecords().keySet()) {
+            System.out.printf("%-15s  ", key);
+            Map<String, String> record = getAllRecords().get(key);
+    
+            for (String field : mandatoryFields) {
+                System.out.printf("%-15s  ", record.get(field));
+            }
+    
+            System.out.println();
+        }
+    
         System.out.println("-------------------------------------------------------------");
     }
+    
 
     /**
      * Deletes all records in the database

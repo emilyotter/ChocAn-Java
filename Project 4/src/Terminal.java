@@ -16,7 +16,7 @@ public class Terminal {
         //midnightTimer.start();
 
         CredentialsDatabase db = new CredentialsDatabase();
-        db.printAll();
+        db.printAllEntries();
 
         turnOff();
     }
