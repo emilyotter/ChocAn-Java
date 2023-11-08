@@ -4,6 +4,13 @@ import java.util.HashMap;
 
 public class CredentialsDatabase extends AbstractDatabase{
 
+
+    // Mandatory fields:
+    protected String[] mandatoryFields = {"name", "password", "role", "address", "zipcode", "state"};
+    
+    // Role options:
+    protected String[] roleOptions = {"member", "provider", "operator", "manager"};
+
     // Constructor
     public CredentialsDatabase() {
         super("credentials");
@@ -12,23 +19,47 @@ public class CredentialsDatabase extends AbstractDatabase{
 
    
     /**
-     * Checks the format of the data to ensure that all required fields are present and that the role is valid.
-     * @param data a HashMap containing the data to be checked
-     * @throws IllegalArgumentException if any required field is missing or if the role is invalid
+     * Checks that the format of a record is valid.
+     * @param data the record to be checked
+     * @throws IllegalArgumentException if the format is invalid
      */
     private void checkFormat(HashMap<String, String> data) throws IllegalArgumentException {
-        // Check that all required fields are present
-        if (!data.containsKey("name") || !data.containsKey("password") || !data.containsKey("role")) {
-            throw new IllegalArgumentException("Missing required field(s).");
+        
+        // Check that all mandatory fields are present
+        for (String field : mandatoryFields) {
+            if (!data.containsKey(field)) {
+                throw new IllegalArgumentException("Missing mandatory field: " + field);
+            }
         }
 
-        // Check that role is valid (member or provider or operator or manager)
-        String role = data.get("role");
-        if (!role.equals("member") && !role.equals("provider") && !role.equals("operator") && !role.equals("manager")) {
-            throw new IllegalArgumentException("Invalid role.");
+    
+        // Check that the role is valid
+        boolean validRole = false;
+        for (String role : roleOptions) {
+            if (data.get("role").equals(role)) {
+                validRole = true;
+                break;
+            }
         }
+        if (!validRole) {
+            throw new IllegalArgumentException("Invalid role: " + data.get("role"));
+        }
+
+
+        // Additional checks can be added here
+        // FILL ME
+
+        return;
     }
     
+    /**
+     * Checks if a user id is already in use.
+     * @param id the id to be checked
+     * @return true if the id is already in use, false otherwise
+     */
+    private boolean checkIdClash(String id){
+        return recordExists(id);
+    }
 
     /**
      * Add a new record to the database.
@@ -37,6 +68,9 @@ public class CredentialsDatabase extends AbstractDatabase{
      * @param record The record to be added.
      */
     public boolean addCredentials(String id, HashMap<String, String> record) {
+        if (checkIdClash(id)) {
+            return false;
+        }
         try {
             checkFormat(record);
             addRecord(id, record);
@@ -130,6 +164,14 @@ public class CredentialsDatabase extends AbstractDatabase{
             HashMap<String, String> record = (HashMap<String, String>) getAllRecords().get(key);
             System.out.println("  " + key + ": " + record);
         }
+    }
+
+    /**
+     * Deletes all records in the database
+     */
+    @Override
+    public void delete(){
+        super.delete();
     }
 
 
