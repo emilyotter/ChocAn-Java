@@ -15,8 +15,7 @@ public class CredentialsDatabase extends KeyValDatabase{
     // Override setMandatoryFields() method
     @Override
     public String[] setMandatoryFields() {
-        String[] mandatoryFields = {"name", "password", "role", "address", "zipcode", "state"};
-        return mandatoryFields;
+        return new String[]{"name", "password", "role", "address", "zipcode", "state"};
     }
 
 

@@ -1,5 +1,8 @@
 package chocan.menu;
 
+import chocan.controller.ManagerController;
+import chocan.controller.OperatorController;
+import chocan.controller.ProviderController;
 import chocan.database.CredentialsDatabase;
 
 //import java.util.HashMap;
@@ -16,7 +19,7 @@ public class LoginMenu {
     // Method to show the login menu and handle user authentication
     public void showLoginMenu() {
         Scanner scanner = new Scanner(System.in);
-        //System.out.println("Welcome to the ChocAn Login System");
+        System.out.println("Please enter your ChocAn provided ID and Password.");
         
         boolean loggedIn = false;
         while (!loggedIn) {
@@ -25,17 +28,32 @@ public class LoginMenu {
             System.out.print("Enter Password: ");
             String password = scanner.nextLine();
 
-            loggedIn = credentialsDatabase.authenticate(id, password);
+            loggedIn = credentialsDatabase.authenticateCredentials(id, password);
 
             if (loggedIn) {
                 // If the user is authenticated, get the role and proceed accordingly
                 String role = credentialsDatabase.getRole(id);
                 System.out.println("Login successful. You are logged in as a " + role + ".");
-                // Here you can redirect the user to different menus based on their role
-                // For example:
-                // if ("provider".equals(role)) { /* Show provider menu */ }
-                // else if ("member".equals(role)) { /* Show member menu */ }
-                // ...
+                switch (role) {
+                    case "member":
+                        // member
+                        break;
+                    case "provider":
+                        ProviderController providerController = new ProviderController();
+                        ProviderMenu providerMenu = new ProviderMenu(providerController);
+                        break;
+                    case "operator":
+                        OperatorController operatorController = new OperatorController();
+                        OperatorMenu operatorMenu = new OperatorMenu(operatorController);
+                        break;
+                    case "manager":
+                        ManagerController managerController = new ManagerController();
+                        ManagerMenu managerMenu = new ManagerMenu(managerController);
+                        break;
+                    default:
+                        break;
+                }
+
             } else {
                 // Authentication failed
                 System.out.println("Invalid ID or Password. Please try again.");

@@ -3,6 +3,7 @@
 // This is the main class for the terminal, it will be used to run the terminal.
 
 import chocan.database.CredentialsDatabase;
+import chocan.menu.LoginMenu;
 import chocan.timer.DailyTimer;
 
 public class Terminal {
@@ -15,8 +16,12 @@ public class Terminal {
         //DailyTimer midnightTimer = new DailyTimer(24, 0, 0, REPORT_CONTROLLER_FROM_ABSTRACT_CONTROLLER);
         //midnightTimer.start();
 
-        CredentialsDatabase db = new CredentialsDatabase();
-        db.printAllEntries();
+        CredentialsDatabase termCredentialsDatabase = new CredentialsDatabase();
+        LoginMenu termLoginMenu = new LoginMenu(termCredentialsDatabase);
+
+        termLoginMenu.showLoginMenu();
+
+        termCredentialsDatabase.printAllEntries();
 
         turnOff();
     }
