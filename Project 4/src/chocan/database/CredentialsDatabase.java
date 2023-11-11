@@ -2,83 +2,58 @@ package chocan.database;
 
 import java.util.HashMap;
 
-public class CredentialsDatabase extends AbstractDatabase{
+public class CredentialsDatabase extends KeyValDatabase{
+
+    // Role options:
+    protected String[] roleOptions = {"member", "provider", "operator", "manager"};
 
     // Constructor
     public CredentialsDatabase() {
         super("credentials");
     }
 
-
-   
-    /**
-     * Checks the format of the data to ensure that all required fields are present and that the role is valid.
-     * @param data a HashMap containing the data to be checked
-     * @throws IllegalArgumentException if any required field is missing or if the role is invalid
-     */
-    private void checkFormat(HashMap<String, String> data) throws IllegalArgumentException {
-        // Check that all required fields are present
-        if (!data.containsKey("name") || !data.containsKey("password") || !data.containsKey("role")) {
-            throw new IllegalArgumentException("Missing required field(s).");
-        }
-
-        // Check that role is valid (member or provider or operator or manager)
-        String role = data.get("role");
-        if (!role.equals("member") && !role.equals("provider") && !role.equals("operator") && !role.equals("manager")) {
-            throw new IllegalArgumentException("Invalid role.");
-        }
-    }
-    
-
-    /**
-     * Add a new record to the database.
-     *
-     * @param id    The key for the new record.
-     * @param record The record to be added.
-     */
-    public boolean addCredentials(String id, HashMap<String, String> record) {
-        try {
-            checkFormat(record);
-            addRecord(id, record);
-            return true;
-        } catch (IllegalArgumentException e) {
-            return false;
-        }
-    }
-   
-    /**
-     * Remove a record from the database.
-     *
-     * @param id The key of the record to be removed.
-     */
-    public boolean removeCredentials(String id) {
-        if (recordExists(id)) {
-            removeRecord(id);
-            return true;
-        } else {
-            return false;
-        }
+    // Override setMandatoryFields() method
+    @Override
+    public String[] setMandatoryFields() {
+        String[] mandatoryFields = {"name", "password", "role", "address", "zipcode", "state"};
+        return mandatoryFields;
     }
 
-    /**
-     * Get a record from the database by id.
-     *
-     * @param id The key of the record to retrieve.
-     * @return The record associated with the given key.
-     */
-    public HashMap<String, String> getCredentials(String id) {
-        if (recordExists(id)) {
-            return getRecord(id);
-        } else {
-            return null;
-        }
-    }
 
-    /*
-     * Check if a user id exists in the database.
+
+    /**
+     * Overrides the checkFormat method from the KeyValDatabase class to check the format of data being added to the credentials database.
+     * @param data The data to be checked.
+     * @return true if the data is in the correct format, false otherwise.
+     * @throws IllegalArgumentException if the data is missing a mandatory field, if a mandatory field is empty, or if the role is invalid.
      */
-    public boolean credentialsExist(String id) {
-        return recordExists(id);
+    @Override
+    public boolean checkFormat(HashMap<String, String> data) throws IllegalArgumentException{
+        
+        // Check that all mandatory fields are present and non-empty
+        for (String field : mandatoryFields) {
+            if (!data.containsKey(field)) {
+                throw new IllegalArgumentException("Missing mandatory field: " + field);
+            }
+
+            if (data.get(field).isEmpty()) {
+                throw new IllegalArgumentException("Empty mandatory field: " + field);
+            }
+        }
+
+        // Check that role is valid
+        boolean validRole = false;
+        for (String role : roleOptions) {
+            if (data.get("role").equals(role)) {
+                validRole = true;
+            }
+        }
+        if (!validRole) {
+            throw new IllegalArgumentException("Invalid role: " + data.get("role"));
+        }
+
+        return true;
+
     }
 
     /**
@@ -88,7 +63,7 @@ public class CredentialsDatabase extends AbstractDatabase{
      * @param password The password of the user to authenticate.
      * @return True if the user is authenticated, false otherwise.
      */
-    public boolean authenticate(String id, String password) {
+    public boolean authenticateCredentials(String id, String password) {
         if (recordExists(id)) {
             HashMap<String, String> record = getRecord(id);
             return record.get("password").equals(password);
@@ -111,27 +86,6 @@ public class CredentialsDatabase extends AbstractDatabase{
             return null;
         }
     }
-
-    /**
-     * Get the number of records in the database.
-     *
-     * @return The number of records in the database.
-     */
-    public int getLength() {
-        return getRecordCount();
-    }
-
-    /*
-     * Print all records in the database.
-     */
-    public void printAll() {
-        System.out.println("Credentials Database:");
-        for (Object key : getAllRecords().keySet()) {
-            HashMap<String, String> record = (HashMap<String, String>) getAllRecords().get(key);
-            System.out.println("  " + key + ": " + record);
-        }
-    }
-
 
 
 }

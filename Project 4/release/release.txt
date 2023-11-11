@@ -1,0 +1,1 @@
+This directory will contain the .jar for the project. This file is to keep git directory-aware.

@@ -28,7 +28,7 @@ public class Terminal {
         srcTimer.start();
 
         CredentialsDatabase db = new CredentialsDatabase();
-        db.printAll();
+        db.printAllEntries();
 
         turnOff();
     }
