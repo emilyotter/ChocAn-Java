@@ -24,20 +24,20 @@ public class Terminal {
         // Print all entries in the database for testing
         termCredentialsDatabase.printAllEntries();
 
-        // // Add Admin Credentials for testing
-        // HashMap<String, String> adminCredentials = new HashMap<String, String>();
-        // adminCredentials.put("name", "admin");
-        // adminCredentials.put("password", "admin");
-        // adminCredentials.put("role", "operator");
-        // adminCredentials.put("address", "1234");
-        // adminCredentials.put("zipcode", "100");
-        // adminCredentials.put("state", "AL");
+         // Add Admin Credentials for testing
+         HashMap<String, String> adminCredentials = new HashMap<String, String>();
+         adminCredentials.put("name", "admin");
+         adminCredentials.put("password", "admin");
+         adminCredentials.put("role", "operator");
+         adminCredentials.put("address", "1234");
+         adminCredentials.put("zipcode", "100");
+         adminCredentials.put("state", "AL");
         
-        // try {
-        //     termCredentialsDatabase.addEntry("1", adminCredentials);
-        // } catch (Exception IllegalArgumentException) {
-        //     System.out.println("Entry already exists.");            
-        // }
+         try {
+             termCredentialsDatabase.addEntry("1", adminCredentials);
+         } catch (Exception IllegalArgumentException) {
+             System.out.println("Entry already exists.");
+         }
 
         
         termLoginMenu.showLoginMenu();
