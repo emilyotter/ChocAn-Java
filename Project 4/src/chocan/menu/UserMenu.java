@@ -10,10 +10,15 @@ import chocan.controller.AbstractController;
  */
 public abstract class UserMenu extends AbstractMenu {
 
+    /*
+     * Exit value for the menu.
+     */
+    protected int EXIT_VALUE ;
+
     /**
      * Flag to exit the menu.
      */
-    protected boolean exitFlag;
+    public boolean exitFlag;
 
     /*
      * Option HashMaps for the menus.
@@ -32,10 +37,14 @@ public abstract class UserMenu extends AbstractMenu {
         this.options = getOptions();
 
         // Union Exit option to the greatest key + 1 (to avoid collisions)
-        int exitOption = options.keySet().stream().max(Integer::compare).get() + 1;
+        if (options.isEmpty()) {
+            this.EXIT_VALUE = 1;
+        } else {
+            this.EXIT_VALUE = options.keySet().stream().max(Integer::compare).get() + 1;
+        }
 
         // Add exit option to the greatest key + 1 (to avoid collisions)
-        options.put(exitOption, "Exit");
+        options.put(this.EXIT_VALUE, "Exit");
         
     }
 
@@ -82,43 +91,7 @@ public abstract class UserMenu extends AbstractMenu {
         return options.containsKey(option); // Check against the options HashMap
     }
 
-    /**
-     * Reads the next string from the provided scanner.
-     *
-     * @param scanner Scanner, the scanner to read from.
-     * @return String, the next string from the scanner.
-     */
-    public String nextString(Scanner scanner) {
-        try {
-            return scanner.next();
-        } catch (InputMismatchException e) {
-            handleInputMismatch("string", scanner);
-            return nextString(scanner);
-        } finally {
-            if (scanner.hasNextLine()) {
-                scanner.nextLine(); // Consume any remaining input
-            }
-        }
-    }
-
-    /**
-     * Reads the next integer from the provided scanner.
-     *
-     * @param scanner Scanner, the scanner to read from.
-     * @return int, the next integer from the scanner.
-     */
-    public int nextInt(Scanner scanner) {
-        try {
-            return scanner.nextInt();
-        } catch (InputMismatchException e) {
-            handleInputMismatch("integer", scanner);
-            return nextInt(scanner);
-        } finally {
-            if (scanner.hasNextLine()) {
-                scanner.nextLine(); // Consume any remaining input
-            }
-        }
-    }
+    
 
     public void printOptionTable(HashMap<Integer, String> options) {
         System.out.println("+--------------------------------+");
@@ -133,6 +106,58 @@ public abstract class UserMenu extends AbstractMenu {
         System.out.println("+--------------------------------+");
     }
 
+
+    /**
+     * Reads the next integer from the provided scanner, handling invalid input types.
+     *
+     * @param scanner Scanner, the scanner to read from.
+     * @return int, the next integer read from the scanner.
+     */
+    public int nextInt(Scanner scanner) {
+        int input = -1;
+        // Loop valid flag
+        boolean validInput = false;
+        // Loop until the user enters a valid input
+        while (!validInput) {
+            try {
+                input = scanner.nextInt(); // Read the user's input
+                validInput = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input type. Please try again.");
+                consumeRemainingInput(scanner); // Consume any remaining input if there is any
+            }
+        }
+
+        return input;
+
+    }
+
+
+    /**
+     * Reads the next string from the provided scanner, handling invalid input types.
+     *
+     * @param scanner Scanner, the scanner to read from.
+     * @return String, the next string read from the scanner.
+     */
+    public String nextString(Scanner scanner) {
+        String input = "";
+        // Loop valid flag
+        boolean validInput = false;
+        // Loop until the user enters a valid input
+        while (!validInput) {
+            try {
+                input = scanner.nextLine(); // Read the user's input
+                validInput = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input type. Please try again.");
+                consumeRemainingInput(scanner); // Consume any remaining input if there is any
+            }
+        }
+
+        return input;
+    }
+
+
     /**
      * Gets the user's choice by displaying a prompt and reading from the provided scanner.
      *
@@ -143,46 +168,39 @@ public abstract class UserMenu extends AbstractMenu {
     public int getUserChoice(String prompt, Scanner scanner) {
         int input = -1;
 
-        try {
+        // Loop valid flag
+        boolean validInput = false;
+
+        // Loop until the user enters a valid input
+        while (!validInput) {
             System.out.print(prompt);
-            input = scanner.nextInt();
 
-            if (!isValidOption(input)) {
-                handleInvalidInput(scanner);
-                input = getUserChoice(prompt, scanner);
-            }
+            // Get the user's input
+            input = nextInt(scanner);
 
-        } catch (InputMismatchException e) {
-            handleInputMismatch("integer", scanner);
-            input = getUserChoice(prompt, scanner);
-        } finally {
-            if (scanner.hasNextLine()) {
-                scanner.nextLine(); // Consume any remaining input if there is any
+            // Check if the input is valid
+            if (isValidOption(input)) {
+                validInput = true;
+            } else {
+                System.out.println("Invalid option. Please try one of the below option.");
+                displayMenu();
+                consumeRemainingInput(scanner);
             }
         }
+
         return input;
     }
-
-    /**
-     * Handles an input mismatch by displaying an error message and consuming the invalid input.
-     *
-     * @param expectedType String, the expected type of input.
-     * @param scanner      Scanner, the scanner where the mismatch occurred.
+    
+    /*
+     * Consumen any remaining input if there is any.
      */
-    private void handleInputMismatch(String expectedType, Scanner scanner) {
-        System.out.println("Invalid input. Please enter a valid " + expectedType + ".");
-        scanner.nextLine(); // Consume the invalid input
+    public void consumeRemainingInput(Scanner scanner) {
+        if (scanner.hasNextLine()) {
+            scanner.nextLine(); // Consume any remaining input if there is any
+        }
     }
 
-    /**
-     * Handles an invalid input by displaying an error message.
-     *
-     * @param scanner Scanner, the scanner where the invalid input occurred.
-     */
-    private void handleInvalidInput(Scanner scanner) {
-        System.out.println("Invalid input. Please enter a valid option.");
-    }
-
+    
     /**
      * Runs the user menu, displaying options, getting user input, and executing the chosen option.
      */
@@ -198,7 +216,7 @@ public abstract class UserMenu extends AbstractMenu {
                 int option = getUserChoice("Enter option: ", localScanner);
 
                 // Check if the user wants to exit the menu.
-                if (option == options.size()) {
+                if (option == EXIT_VALUE) {
                     exit();
                     continue;
                 }

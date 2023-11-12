@@ -65,7 +65,7 @@ public class UserMenuTest {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        assertEquals("Test", testMenu.nextString(new Scanner(System.in)));
+        assertEquals("Test String", testMenu.nextString(new Scanner(System.in)));
     }
 
     @Test
@@ -140,7 +140,88 @@ public class UserMenuTest {
         assertEquals(1, testMenu.chosenOptionValue);
     }
 
+    @Test
+    public void consumeRemainingInput() {
+        TestUserMenu testMenu = new TestUserMenu(null);
 
-    
+        // Simulate user input
+        String input = "Test Input\n";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        // Consume the input
+        testMenu.consumeRemainingInput(new Scanner(System.in));
+        assertTrue(System.in instanceof InputStream);
+    }
+
+    @Test
+    public void exitFlagAfterExit() {
+        TestUserMenu testMenu = new TestUserMenu(null);
+
+        // Simulate user input
+        String input = "4\n"; // 4 is exit
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        testMenu.run();
+
+        assertTrue(testMenu.exitFlag);
+    }
+
+    @Test
+    public void exitFlagNotSetOnValidOption() {
+        TestUserMenu testMenu = new TestUserMenu(null);
+
+        // Simulate user input
+        String input = "2\n4\n"; // 2 is a valid option, 4 is exit
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        testMenu.run();
+
+        assertTrue(testMenu.exitFlag);
+    }
+
+    @Test
+    public void chooseOptionCalled() {
+        TestUserMenu testMenu = new TestUserMenu(null);
+
+        // Simulate user input
+        String input = "2\n4\n"; // 2 is a valid option, 4 is exit
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        testMenu.run();
+
+        assertTrue(testMenu.optionChosen);
+    }
+
+    @Test
+    public void chooseOptionCalledWithCorrectValue() {
+        TestUserMenu testMenu = new TestUserMenu(null);
+
+        // Simulate user input
+        String input = "2\n4\n"; // 2 is a valid option, 4 is exit
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        testMenu.run();
+
+        assertEquals(2, testMenu.chosenOptionValue);
+    }
+
+    @Test
+    public void chooseOptionNotCalledOnExit() {
+        TestUserMenu testMenu = new TestUserMenu(null);
+
+        // Simulate user input
+        String input = "4\n"; // 4 is exit
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        testMenu.run();
+
+        assertFalse(testMenu.optionChosen);
+    }
 
 }

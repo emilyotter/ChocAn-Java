@@ -32,7 +32,7 @@ public class ManagerMenu extends UserMenu {
     @Override
     public void chooseOption(int option) {
         // Override this method to execute the option chosen by the user. Use the controller to execute the option.
-        // Get Input using UserMenu.NextInt() || UserMenu.NextString() helper functions
+        
     }
 
 

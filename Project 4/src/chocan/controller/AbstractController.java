@@ -1,7 +1,6 @@
 package chocan.controller;
 
 
-import chocan.database.AbstractDatabase;
 import chocan.database.CredentialsDatabase;
 
 /**

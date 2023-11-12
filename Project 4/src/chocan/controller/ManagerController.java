@@ -1,6 +1,6 @@
 package chocan.controller;
 
-import chocan.database.AbstractDatabase;
+
 import chocan.database.CredentialsDatabase;
 
 public class ManagerController extends AbstractController {

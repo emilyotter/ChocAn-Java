@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import chocan.database.CredentialsDatabase;
 import chocan.menu.LoginMenu;
-import chocan.timer.DailyTimer;
+import chocan.timer.DailyTimer; // For testing
 
 public class Terminal {
     public static void main(String[] args) {
