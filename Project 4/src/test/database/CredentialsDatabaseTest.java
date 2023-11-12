@@ -31,6 +31,12 @@ public class CredentialsDatabaseTest {
     }
 
     @Test
+    public void testGenerateID() {
+        CredentialsDatabase db = new CredentialsDatabase();
+        db.generateUniqueID();
+    }
+
+    @Test
     public void testAddValidMember() {
         CredentialsDatabase db = new CredentialsDatabase();
         HashMap<String, String> data = new HashMap<>();
