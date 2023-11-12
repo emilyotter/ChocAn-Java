@@ -12,7 +12,7 @@ public class OperatorController extends AbstractController {
         super(userDatabase);
     }
 
-    private void addMember() {
+    public void addMember() {
         HashMap<String, String> data = new HashMap<>();
         data.put("role", "member");
         Scanner inputScanner = new Scanner(System.in);
@@ -22,7 +22,6 @@ public class OperatorController extends AbstractController {
         System.out.println("Enter the members full name");
         input = inputScanner.nextLine();
         data.put("name", input);
-        key = input + "_member";
 
         System.out.println("Enter the members password");
         input = inputScanner.nextLine();
@@ -40,27 +39,58 @@ public class OperatorController extends AbstractController {
         input = inputScanner.nextLine();
         data.put("state", input);
 
+        System.out.println("Enter the members ID number");
+        key = inputScanner.nextLine();
+
         userDatabase.addEntry(key, data);
 
     }
 
-    private void deleteMember() {
+    public void updateMember() {
         Scanner inputScanner = new Scanner(System.in);
-        System.out.println("Enter the name of the member you wish to remove");
+        System.out.println("Enter the ID of the member you wish to edit");
         String input = inputScanner.nextLine();
-        input += "_member";
+        try {
+            HashMap<String, String> data = userDatabase.getEntry(input);
+
+            System.out.println("Enter the members full name");
+            input = inputScanner.nextLine();
+            data.replace("name", input);
+
+            System.out.println("Enter the members password");
+            input = inputScanner.nextLine();
+            data.replace("password", input);
+
+            System.out.println("Enter the members street address");
+            input = inputScanner.nextLine();
+            data.replace("address", input);
+
+            System.out.println("Enter the members zipcode");
+            input = inputScanner.nextLine();
+            data.replace("zipcode", input);
+
+            System.out.println("Enter the members state abbreviation");
+            input = inputScanner.nextLine();
+            data.replace("state", input);
+
+        } catch (IllegalArgumentException  e) {
+            System.out.println("User not found are you sure the ID is correct.");
+        }
+
+    }
+
+    public void deleteMember() {
+        Scanner inputScanner = new Scanner(System.in);
+        System.out.println("Enter the ID of the member you wish to remove");
+        String input = inputScanner.nextLine();
         try {
             userDatabase.removeEntry(input);
         } catch (IllegalArgumentException e) {
-            System.out.println("User not found are you sure the name is correct.");
+            System.out.println("User not found are you sure the ID is correct.");
         }
     }
 
-    private void updateMember(String memberName) {
-
-    }
-
-    private void addProvider() {
+    public void addProvider() {
         HashMap<String, String> data = new HashMap<>();
         data.put("role", "provider");
         Scanner inputScanner = new Scanner(System.in);
@@ -92,19 +122,51 @@ public class OperatorController extends AbstractController {
 
     }
 
-    private void deleteProvider(String providerName) {
+    public void updateProvider() {
         Scanner inputScanner = new Scanner(System.in);
-        System.out.println("Enter the name of the provider you wish to remove");
+        System.out.println("Enter the ID of the provider you wish to edit");
+        String input = inputScanner.nextLine();
+        try {
+            HashMap<String, String> data = userDatabase.getEntry(input);
+
+            System.out.println("Enter the providers full name");
+            input = inputScanner.nextLine();
+            data.replace("name", input);
+
+            System.out.println("Enter the providers password");
+            input = inputScanner.nextLine();
+            data.replace("password", input);
+
+            System.out.println("Enter the providers street address");
+            input = inputScanner.nextLine();
+            data.replace("address", input);
+
+            System.out.println("Enter the providers zipcode");
+            input = inputScanner.nextLine();
+            data.replace("zipcode", input);
+
+            System.out.println("Enter the providers state abbreviation");
+            input = inputScanner.nextLine();
+            data.replace("state", input);
+
+        } catch (IllegalArgumentException  e) {
+            System.out.println("User not found are you sure the ID is correct.");
+        }
+    }
+
+    public void deleteProvider() {
+        Scanner inputScanner = new Scanner(System.in);
+        System.out.println("Enter the ID of the provider you wish to remove");
         String input = inputScanner.nextLine();
         input += "_provider";
         try {
             userDatabase.removeEntry(input);
         } catch (IllegalArgumentException e) {
-            System.out.println("User not found are you sure the name is correct.");
+            System.out.println("User not found are you sure the ID is correct.");
         }
     }
 
-    private void updateProvider(String providerName) {
+    public void generateProviderDirectory() {
 
     }
 }
