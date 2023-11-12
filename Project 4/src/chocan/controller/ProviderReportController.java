@@ -48,10 +48,7 @@ public class ProviderReportController extends AbstractReportController{
     	
     	try (FileWriter writer = new FileWriter("provider_report.txt")){
     		//write provider details
-    		writeProviderDetails(writer,providerInfo);
-    		
-    		//writer service details
-    		writeServiceDetails(writer, servicesProvided);
+    		writeDetails(writer, providerInfo, servicesProvided);
     	}
     }
     
@@ -62,20 +59,18 @@ public class ProviderReportController extends AbstractReportController{
      * 
      */
     
-    private void writeProviderDetails(FileWriter writer, HashMap<String, String> providerData) throws IOException {
+    private void writeDetails(FileWriter writer, HashMap<String, String> providerInfo, HashMap<String, String> serviceInfo) throws IOException {
         //formatting provider details
-        writer.write(String.format("%-25s\n", providerData.getOrDefault("name", "")));
-        writer.write(String.format("%-9s\n", providerData.getOrDefault("number", "")));
-        writer.write(String.format("%-25s\n", providerData.getOrDefault("address", "")));
-        writer.write(String.format("%-14s\n", providerData.getOrDefault("city", "")));
-        writer.write(String.format("%-2s\n", providerData.getOrDefault("state", "")));
-        writer.write(String.format("%-5s\n", providerData.getOrDefault("zipcode", "")));
-    }
-
-    private void writeServiceDetails(FileWriter writer, HashMap<String, String> serviceData) throws IOException {
-        // formatting service details
-        writer.write(String.format("%-12s\n", serviceData.getOrDefault("dateOfService", "")));
-        writer.write(String.format("%-6s\n", serviceData.getOrDefault("serviceCode", "")));
-        writer.write(String.format("%-7s\n", serviceData.getOrDefault("fee", "")));
+        writer.write(String.format("%-25s\n", providerInfo.getOrDefault("name", "")));
+        writer.write(String.format("%-9s\n", serviceInfo.getOrDefault("providerId", "")));
+        writer.write(String.format("%-25s\n", providerInfo.getOrDefault("address", "")));
+        writer.write(String.format("%-14s\n", providerInfo.getOrDefault("city", "")));
+        writer.write(String.format("%-2s\n", providerInfo.getOrDefault("state", "")));
+        writer.write(String.format("%-5s\n", providerInfo.getOrDefault("zipcode", "")));
+        
+        writer.write(String.format("%-12s\n", serviceInfo.getOrDefault("dateOfService", "")));
+        writer.write(String.format("%-25s\n", serviceInfo.getOrDefault("memberId", "")));
+        writer.write(String.format("%-6s\n", serviceInfo.getOrDefault("serviceCode", "")));
+        writer.write(String.format("%-7s\n", serviceInfo.getOrDefault("fee", "")));
     }
 }
