@@ -39,8 +39,8 @@ public class OperatorController extends AbstractController {
         input = inputScanner.nextLine();
         data.put("state", input);
 
-        System.out.println("Enter the members ID number");
-        key = inputScanner.nextLine();
+        key = userDatabase.generateUniqueID();
+        System.out.println("The User's Unique ID is: " + key);
 
         userDatabase.addEntry(key, data);
 
@@ -124,7 +124,9 @@ public class OperatorController extends AbstractController {
 
         System.out.println("Enter the providers ID number");
         input = inputScanner.nextLine();
-        key = inputScanner.nextLine();
+
+        key = userDatabase.generateUniqueID();
+        System.out.println("The User's Unique ID is: " + key);
 
         userDatabase.addEntry(key, data);
 

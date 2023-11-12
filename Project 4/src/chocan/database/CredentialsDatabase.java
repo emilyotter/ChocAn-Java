@@ -1,6 +1,7 @@
 package chocan.database;
 
 import java.util.HashMap;
+import java.util.Random;
 
 public class CredentialsDatabase extends KeyValDatabase{
 
@@ -86,5 +87,22 @@ public class CredentialsDatabase extends KeyValDatabase{
         }
     }
 
+    public String generateUniqueID() {
+        Random idGenerator = new Random();
+        String randomId = String.valueOf((idGenerator.nextInt(1000, 100000)));
+
+
+        boolean isUnique = false;
+
+        while(!isUnique) {
+            if(!checkKeyClash(randomId)) {
+                isUnique = true;
+            } else {
+                randomId = String.valueOf((idGenerator.nextInt(1000, 100000)));
+            }
+        }
+
+        return randomId;
+    }
 
 }
