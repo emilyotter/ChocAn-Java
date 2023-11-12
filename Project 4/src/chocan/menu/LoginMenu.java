@@ -73,6 +73,6 @@ public class LoginMenu {
         
         }
 
-        scanner.close();;
+        scanner.close();
     }
 }
