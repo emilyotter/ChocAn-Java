@@ -31,14 +31,21 @@ public class ServiceDatabaseTest {
         System.clearProperty("CHOCAN_TEMP_DIR");
     }
 
-
-    @Test
-    public void testAddValidService() {
+    // Helper function to create entries
+    private HashMap<String, String> createEntry() {
         HashMap<String, String> data = new HashMap<>();
-        data.put("serviceCode", "S123");
+        data.put("serviceCode" , "S123");
         data.put("dateOfService", "2023-11-08");
         data.put("memberId", "M456");
         data.put("providerId", "P789");
+        data.put("fee", "10.0");
+        return data;
+    }
+
+
+    @Test
+    public void testAddValidService() {
+        HashMap<String, String> data = createEntry();
 
         try {
             db.addEntry("service1", data);
@@ -49,33 +56,27 @@ public class ServiceDatabaseTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testAddServiceMissingMandatoryField() {
-        HashMap<String, String> data = new HashMap<>();
-        data.put("serviceCode", "S123");
-        data.put("dateOfService", "2023-11-08");
-        data.put("memberId", "M456");
+        HashMap<String, String> data = createEntry();
         // Missing "providerId" field
+        data.remove("providerId");
 
         db.addEntry("service2", data);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testAddServiceEmptyMandatoryField() {
-        HashMap<String, String> data = new HashMap<>();
-        data.put("serviceCode", "S123");
-        data.put("dateOfService", "");
-        data.put("memberId", "M456");
-        data.put("providerId", "P789");
+        HashMap<String, String> data = createEntry();
+        // Empty "providerId" field
+        data.put("providerId", "");
 
         db.addEntry("service3", data);
     }
 
     @Test
     public void testAddValidServiceWithDifferentDateFormat() {
-        HashMap<String, String> data = new HashMap<>();
-        data.put("serviceCode", "S123");
-        data.put("dateOfService", "11/08/2023"); // Different date format
-        data.put("memberId", "M456");
-        data.put("providerId", "P789");
+        HashMap<String, String> data = createEntry();
+        // Different date format
+        data.put("dateOfService", "11/08/2023");
 
         try {
             db.addEntry("service4", data);
@@ -91,7 +92,7 @@ public class ServiceDatabaseTest {
 
     @Test
     public void testUpdateService() {
-        HashMap<String, String> data = new HashMap<>();
+        HashMap<String, String> data = createEntry();
         data.put("serviceCode", "S123");
         data.put("dateOfService", "2023-11-08");
         data.put("memberId", "M456");
@@ -111,11 +112,7 @@ public class ServiceDatabaseTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testUpdateServiceWithInvalidField() {
-        HashMap<String, String> data = new HashMap<>();
-        data.put("serviceCode", "S123");
-        data.put("dateOfService", "2023-11-08");
-        data.put("memberId", "M456");
-        data.put("providerId", "P789");
+        HashMap<String, String> data = createEntry();
 
         db.addEntry("service6", data);
 
@@ -128,11 +125,7 @@ public class ServiceDatabaseTest {
 
     @Test
     public void testGetEntry() {
-        HashMap<String, String> data = new HashMap<>();
-        data.put("serviceCode", "S123");
-        data.put("dateOfService", "2023-11-08");
-        data.put("memberId", "M456");
-        data.put("providerId", "P789");
+        HashMap<String, String> data = createEntry();
 
         db.addEntry("service7", data);
 
@@ -144,11 +137,7 @@ public class ServiceDatabaseTest {
 
     @Test
     public void testEntryExists() {
-        HashMap<String, String> data = new HashMap<>();
-        data.put("serviceCode", "S123");
-        data.put("dateOfService", "2023-11-08");
-        data.put("memberId", "M456");
-        data.put("providerId", "P789");
+        HashMap<String, String> data = createEntry();
 
         db.addEntry("service8", data);
 
@@ -157,17 +146,16 @@ public class ServiceDatabaseTest {
 
     @Test
     public void testGetEntryCount() {
+        db.delete();
         assertEquals(0, db.getEntryCount());
 
-        HashMap<String, String> data = new HashMap<>();
-        data.put("serviceCode", "S123");
-        data.put("dateOfService", "2023-11-08");
-        data.put("memberId", "M456");
-        data.put("providerId", "P789");
+        HashMap<String, String> data = createEntry();
 
-        db.addEntry("service9", data);
-
-        assertEquals(1, db.getEntryCount());
+        for (int i = 0; i < 10; i++){
+            db.addEntry("service" + i, data);
+        }
+        
+        assertEquals(10, db.getEntryCount());
     }
 
     
