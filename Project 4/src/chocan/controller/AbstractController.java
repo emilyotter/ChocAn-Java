@@ -1,6 +1,8 @@
 package chocan.controller;
 
 
+import chocan.database.AbstractDatabase;
+import chocan.database.CredentialsDatabase;
 
 /**
  * AbstractController.java
@@ -11,5 +13,9 @@ package chocan.controller;
  */
 
 public abstract class AbstractController {
+    protected final CredentialsDatabase userDatabase;
+    AbstractController(CredentialsDatabase userDatabase) {
+        this.userDatabase = userDatabase;
+    }
 
 }

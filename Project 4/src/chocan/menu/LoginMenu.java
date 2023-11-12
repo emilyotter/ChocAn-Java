@@ -35,23 +35,27 @@ public class LoginMenu {
                 String role = credentialsDatabase.getRole(id);
                 System.out.println("Login successful. You are logged in as a " + role + ".");
                 switch (role) {
-                    case "member":
-                        // member
-                        break;
                     case "provider":
-                        ProviderController providerController = new ProviderController();
+                        ProviderController providerController = new ProviderController(credentialsDatabase);
                         ProviderMenu providerMenu = new ProviderMenu(providerController);
+                        providerMenu.displayMenu();
                         break;
+
                     case "operator":
-                        OperatorController operatorController = new OperatorController();
+                        OperatorController operatorController = new OperatorController(credentialsDatabase);
                         OperatorMenu operatorMenu = new OperatorMenu(operatorController);
+                        operatorMenu.displayMenu();
                         break;
+
                     case "manager":
-                        ManagerController managerController = new ManagerController();
+                        ManagerController managerController = new ManagerController(credentialsDatabase);
                         ManagerMenu managerMenu = new ManagerMenu(managerController);
+                        managerMenu.displayMenu();
                         break;
+
                     default:
                         break;
+
                 }
 
             } else {
