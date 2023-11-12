@@ -65,7 +65,7 @@ public class UserMenuTest {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        assertEquals("Test", testMenu.nextString(new Scanner(System.in)));
+        assertEquals("Test String", testMenu.nextString(new Scanner(System.in)));
     }
 
     @Test

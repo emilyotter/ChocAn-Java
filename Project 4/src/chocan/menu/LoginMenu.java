@@ -70,7 +70,6 @@ public class LoginMenu {
 
         // Run the user menu here 
         userMenu.run();
-        
         }
 
         scanner.close();
