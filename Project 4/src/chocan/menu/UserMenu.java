@@ -18,7 +18,7 @@ public abstract class UserMenu extends AbstractMenu {
     /**
      * Flag to exit the menu.
      */
-    protected boolean exitFlag;
+    public boolean exitFlag;
 
     /*
      * Option HashMaps for the menus.
@@ -157,7 +157,7 @@ public abstract class UserMenu extends AbstractMenu {
         return input;
     }
 
-    
+
     /**
      * Gets the user's choice by displaying a prompt and reading from the provided scanner.
      *
@@ -175,23 +175,17 @@ public abstract class UserMenu extends AbstractMenu {
         while (!validInput) {
             System.out.print(prompt);
 
-            try {
-                input = scanner.nextInt(); // Read the user's input
-                // Check if the input is valid
-                if (isValidOption(input)) {
-                    validInput = true;
-                } else {
-                    System.out.println("Invalid Options. Choose one of the options below:");
-                    displayMenu();
-                    consumeRemainingInput(scanner); // Consume any remaining input if there is any
-                }
+            // Get the user's input
+            input = nextInt(scanner);
 
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input type. Please try again.");
+            // Check if the input is valid
+            if (isValidOption(input)) {
+                validInput = true;
+            } else {
+                System.out.println("Invalid option. Please try one of the below option.");
                 displayMenu();
-                consumeRemainingInput(scanner); // Consume any remaining input if there is any
+                consumeRemainingInput(scanner);
             }
-
         }
 
         return input;
