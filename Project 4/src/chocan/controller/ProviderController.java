@@ -13,7 +13,7 @@ public class ProviderController extends AbstractController{
     	
     }
     
-    public void billChochAn() {
+    public void billChocAn() {
     	
     }
     
