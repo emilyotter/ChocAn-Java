@@ -5,11 +5,15 @@ import chocan.controller.OperatorController;
 import chocan.controller.ProviderController;
 import chocan.database.CredentialsDatabase;
 
+
 //import java.util.HashMap;
 import java.util.Scanner;
 
 public class LoginMenu {
     private final CredentialsDatabase credentialsDatabase;
+
+    // User controller for the menu which is set based on the user's role
+    private UserMenu userMenu;
 
     // Constructor
     public LoginMenu(CredentialsDatabase credentialsDatabase) {
@@ -23,9 +27,9 @@ public class LoginMenu {
         
         boolean loggedIn = false;
         while (!loggedIn) {
-            System.out.print("Enter ID: ");
+            System.out.println("Enter ID: ");
             String id = scanner.nextLine();
-            System.out.print("Enter Password: ");
+            System.out.println("Enter Password: ");
             String password = scanner.nextLine();
 
             loggedIn = credentialsDatabase.authenticateCredentials(id, password);
@@ -40,15 +44,15 @@ public class LoginMenu {
                         break;
                     case "provider":
                         ProviderController providerController = new ProviderController();
-                        ProviderMenu providerMenu = new ProviderMenu(providerController);
+                        userMenu = new ProviderMenu(providerController);
                         break;
                     case "operator":
                         OperatorController operatorController = new OperatorController();
-                        OperatorMenu operatorMenu = new OperatorMenu(operatorController);
+                        userMenu = new OperatorMenu(operatorController);
                         break;
                     case "manager":
                         ManagerController managerController = new ManagerController();
-                        ManagerMenu managerMenu = new ManagerMenu(managerController);
+                        userMenu = new ManagerMenu(managerController);
                         break;
                     default:
                         break;
@@ -59,7 +63,12 @@ public class LoginMenu {
                 System.out.println("Invalid ID or Password. Please try again.");
                 showLoginMenu();
             }
+
+        // Run the user menu here 
+        userMenu.run();
+        
         }
+
         scanner.close();;
     }
 }

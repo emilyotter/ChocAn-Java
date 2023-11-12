@@ -2,6 +2,8 @@
 // Entry point for the Chocoholics Anonymous system terminal.
 // This is the main class for the terminal, it will be used to run the terminal.
 
+import java.util.HashMap;
+
 import chocan.database.CredentialsDatabase;
 import chocan.menu.LoginMenu;
 import chocan.timer.DailyTimer;
@@ -18,10 +20,29 @@ public class Terminal {
 
         CredentialsDatabase termCredentialsDatabase = new CredentialsDatabase();
         LoginMenu termLoginMenu = new LoginMenu(termCredentialsDatabase);
+        
+        // Print all entries in the database for testing
+        termCredentialsDatabase.printAllEntries();
 
+        // // Add Admin Credentials for testing
+        // HashMap<String, String> adminCredentials = new HashMap<String, String>();
+        // adminCredentials.put("name", "admin");
+        // adminCredentials.put("password", "admin");
+        // adminCredentials.put("role", "operator");
+        // adminCredentials.put("address", "1234");
+        // adminCredentials.put("zipcode", "100");
+        // adminCredentials.put("state", "AL");
+        
+        // try {
+        //     termCredentialsDatabase.addEntry("1", adminCredentials);
+        // } catch (Exception IllegalArgumentException) {
+        //     System.out.println("Entry already exists.");            
+        // }
+
+        
         termLoginMenu.showLoginMenu();
 
-        termCredentialsDatabase.printAllEntries();
+        
 
         turnOff();
     }

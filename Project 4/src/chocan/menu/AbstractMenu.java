@@ -31,12 +31,12 @@ public abstract class AbstractMenu {
     /**
        * Abstract method to display the menu.
     */
-    public abstract void displayMenu();
+    protected abstract void displayMenu();
 
     /**
        * Abstract to choose an option from the menu. Executes the option.
     */
-    public abstract void chooseOption(int option);
+    protected abstract void chooseOption(int option);
 
 
 }
