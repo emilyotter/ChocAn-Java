@@ -1,6 +1,8 @@
 package chocan.menu;
 
 import chocan.controller.AbstractController;
+import chocan.controller.ProviderController;
+
 import java.util.HashMap;
 
 public class ProviderMenu extends UserMenu {
@@ -33,6 +35,22 @@ public class ProviderMenu extends UserMenu {
 
     @Override
     public void chooseOption(int option) {
+        switch(option) {
+            case 1:
+                ((ProviderController) controller).validateMember();
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                ((ProviderController) controller).emailProviderReport();
+                break;
+        }
         // Override this method to execute the option chosen by the user. Use the controller to execute the option.
     }
 

@@ -10,7 +10,7 @@ public class ProviderController extends AbstractController{
     }
     
     public void validateMember() {
-    	
+
     }
     
     public void billChocAn() {
@@ -29,7 +29,7 @@ public class ProviderController extends AbstractController{
     	
     }
     
-    public void emailProvider() {
+    public void emailProviderReport() {
     	
     }
 }

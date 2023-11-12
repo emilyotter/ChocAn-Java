@@ -19,8 +19,4 @@ public class ManagerController extends AbstractController {
     public void requestSummaryReport() {
     	//call generate summary report
     }
-    
-    public void logOut() {
-    	// return to main menu
-    }
 }

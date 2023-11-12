@@ -44,11 +44,8 @@ public class ManagerMenu extends UserMenu {
         	case 3:
         		((ManagerController) controller).requestSummaryReport();
         		break;
-        		
+            default:
+                break;
         }
-        
     }
-
-
-    
 }
