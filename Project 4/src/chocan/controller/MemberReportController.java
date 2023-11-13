@@ -1,17 +1,25 @@
 package chocan.controller;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class MemberReportController extends AbstractReportController {
+import chocan.database.CredentialsDatabase;
+import chocan.database.KeyValDatabase;
+import chocan.database.ServiceDatabase;
 
-    public static void generateMemberReport(ServiceDatabase serviceDatabase, String memberNumber, String filePath) {
+public class MemberReportController extends AbstractReportController { //optional inheritance
+
+    public static void generateMemberReport(ServiceDatabase serviceDatabase, CredentialsDatabase credentialsDatabase,
+            String memberNumber, String filePath) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
 
-            writer.write("Member Number: " + memberNumber);
-            writer.newLine();
+            // Get member information from credentials database
+            HashMap<String, String> memberInfo = getMemberInfo(credentialsDatabase, memberNumber);
+
+            writeMemberInfo(writer, memberInfo);
 
             writer.newLine();
             writer.write("Date\tProvider\tService");
@@ -20,7 +28,7 @@ public class MemberReportController extends AbstractReportController {
             for (String entryName : serviceDatabase.getAllEntries()) {
                 HashMap<String, String> data = serviceDatabase.getEntry(entryName);
 
-                // Check if the service is for the specified member
+                // check if the service is for the specific member
                 if (data.get("memberId").equals(memberNumber)) {
                     String dateOfService = data.get("dateOfService");
                     String providerName = getProviderName(data.get("providerId"));
@@ -37,21 +45,47 @@ public class MemberReportController extends AbstractReportController {
         }
     }
 
-    private static String getProviderName(String providerId) {
-        return "ProviderName"; // Replace
+    private static HashMap<String, String> getMemberInfo(CredentialsDatabase credentialsDatabase, String memberNumber) {
+        // get information from the credentials database using the member number
+        return credentialsDatabase.getEntry(memberNumber);
     }
 
-    private static String getServiceName(String serviceCode) {
-        // Implement logic to get service name from serviceCode
-        return "ServiceName"; // Replace
+    private static void writeMemberInfo(BufferedWriter writer, HashMap<String, String> memberInfo) throws IOException {
+        writer.write("Member Name: " + memberInfo.get("name"));
+        writer.newLine();
+        writer.write("Member Number: " + memberInfo.get("memberNumber"));
+        writer.newLine();
+        writer.write("Member Street Address: " + memberInfo.get("address"));
+        writer.newLine();
+        writer.write("Member City: " + memberInfo.get("city"));
+        writer.newLine();
+        writer.write("Member State: " + memberInfo.get("state"));
+        writer.newLine();
+        writer.write("Member ZIP Code: " + memberInfo.get("zipcode"));
+        writer.newLine();
+    }
+
+    private static String getProviderName(CredentialsDatabase credentialsDatabase, String providerId) {
+        // get provider information from the credentials database using the providerId
+        HashMap<String, String> providerInfo = credentialsDatabase.getEntry(providerId);
+        
+        return providerInfo.get("name"); //need to add "name" to provider database
+    }
+    
+    private static String getServiceName(ServiceDatabase serviceDatabase, String serviceCode) {
+        // Retrieve service information from the service database using the serviceCode
+        HashMap<String, String> serviceInfo = serviceDatabase.getEntry(serviceCode);
+    
+        return serviceInfo.get("serviceName"); //need to add "name" to provider database
     }
 
     public static void main(String[] args) {
         ServiceDatabase serviceDb = new ServiceDatabase();
+        CredentialsDatabase credentialsDb = new CredentialsDatabase();
 
-        String memberNumber = "123456789"; //fake number (REPLACE)
+        String memberNumber = "123456789"; // fake number (REPLACE)
         String filePath = "member_report.txt";
 
-        generateMemberReport(serviceDb, memberNumber, filePath);
+        generateMemberReport(serviceDb, credentialsDb, memberNumber, filePath);
     }
 }
