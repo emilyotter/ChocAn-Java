@@ -8,13 +8,25 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class ProviderController extends AbstractController{
+	
+	ServiceDatabase serviceDatabase;
 
-    public ProviderController(CredentialsDatabase userDatabase) {
+    public ProviderController(CredentialsDatabase userDatabase, ServiceDatabase serviceDatabase) {
         super(userDatabase);
+        this.serviceDatabase = serviceDatabase;
     }
     
     public void validateMember() {
-
+    	Scanner inputScanner = new Scanner(System.in);
+        String input;
+    	System.out.println("Provide card (Member number)"); //member number
+    	input = inputScanner.nextLine();
+    	try {
+    		if(userDatabase.entryExists(input)) System.out.println("Validated");
+    		
+    	} catch (IllegalArgumentException  e) {
+            System.out.println("Invalid Number");
+        }
     }
     
     public void billChocAn() {
@@ -51,7 +63,7 @@ public class ProviderController extends AbstractController{
         System.out.println("Service added successfully");
 
         //add using service id
-        //serviceDatabaseDatabase.addEntry(key, data);
+        //userDatabase.addEntry(key, data);
 
     }
     
@@ -85,7 +97,7 @@ public class ProviderController extends AbstractController{
 
             //generate some service id
             System.out.println("Service added successfully");
-          //add using service id
+            //add using service id
             //serviceDatabaseDatabase.addEntry(key, data);
 
         } catch (IllegalArgumentException  e) {
