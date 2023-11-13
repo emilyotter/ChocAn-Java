@@ -8,7 +8,7 @@ package chocan.timer;
 
 import chocan.controller.AbstractController;
 
-import java.util.AbstractCollection;
+
 import java.util.Timer;
 import java.util.TimerTask;
 import java.time.LocalDateTime;

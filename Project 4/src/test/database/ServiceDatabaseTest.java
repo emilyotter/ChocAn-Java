@@ -5,6 +5,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+
+import java.nio.file.Path;
 import java.util.HashMap;
 
 public class ServiceDatabaseTest {
@@ -13,8 +15,12 @@ public class ServiceDatabaseTest {
 
     @Before
     public void setUp() {
+
+        // Redirect database to temp directory
+        String tempDir =  Path.of(System.getProperty("java.io.tmpdir")).resolve("chocan").resolve("test").toString();
+        
         // Set env variable for testing
-        System.setProperty("CHOCAN_TEMP_DIR", "/tmp/chocan/test");
+        System.setProperty("CHOCAN_TEMP_DIR", tempDir);
 
         // Create database
         db  = new ServiceDatabase();
