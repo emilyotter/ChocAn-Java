@@ -1,18 +1,30 @@
 package chocan.controller;
 
 import chocan.database.CredentialsDatabase;
+import chocan.database.ServiceDatabase;
 import chocan.menu.ManagerMenu;
 import chocan.menu.OperatorMenu;
 import chocan.menu.ProviderMenu;
 import chocan.menu.UserMenu;
 
+
 import java.util.Scanner;
 
 public class LoginController extends AbstractController {
 
+    // User menu for the user's role
     private UserMenu userMenu;
 
-    public LoginController(CredentialsDatabase userDatabase) {super(userDatabase);}
+    // Serivce database
+    private ServiceDatabase serviceDatabase;
+
+
+
+    public LoginController(CredentialsDatabase userDatabase, ServiceDatabase serviceDatabase) {
+        super(userDatabase);
+        this.serviceDatabase = serviceDatabase;
+        
+    }
 
     /**
      * Authenticates a user based on the provided credentials.
@@ -28,7 +40,7 @@ public class LoginController extends AbstractController {
     private void initializeUserMenu(String role) {
         switch (role) {
             case "provider":
-                ProviderController providerController = new ProviderController(userDatabase);
+                ProviderController providerController = new ProviderController(userDatabase, serviceDatabase);
                 userMenu = new ProviderMenu(providerController);
                 break;
             case "operator":

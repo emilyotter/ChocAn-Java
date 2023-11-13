@@ -29,8 +29,8 @@ public class ManagerController extends AbstractController {
     		
     		idList.add(idNumber);
     	}
-    	ProviderReportController providerReportController = new ProviderReportController(userDatabase); 
-    	providerReportController.generateProviderReports(idList);
+    	// ProviderReportController providerReportController = new ProviderReportController(userDatabase); 
+    	// providerReportController.generateProviderReports(idList);
     }
     
     public void requestMemberReport() {
@@ -49,15 +49,15 @@ public class ManagerController extends AbstractController {
     		
     		idList.add(idNumber);
     	}
-    	MemberReportController memberReportController = new MemberReportController(userDatabase);
-    	memberReportController.generateProviderReports(idList);
+    	// MemberReportController memberReportController = new MemberReportController(userDatabase);
+    	// memberReportController.generateProviderReports(idList);
     	
     }
     
     public void requestSummaryReport() {
     	//call generate summary report
-    	SummaryReportController summaryReportController = new SummaryReportController(userDatabase);
-    	summaryReportController.generateSummaryReport();
+    	// SummaryReportController summaryReportController = new SummaryReportController(userDatabase);
+    	// summaryReportController.generateSummaryReport();
     	
     }
 }

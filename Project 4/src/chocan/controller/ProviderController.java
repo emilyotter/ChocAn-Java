@@ -123,6 +123,8 @@ public class ProviderController extends AbstractController{
     public void emailProviderReport() {
     	//getting report to send as attachment goes here once that is finished
     	System.out.println("Enter the Report Recipient's ID");
+        // Send email to the user
+        Scanner inputScanner = new Scanner(System.in);
         String input = inputScanner.nextLine();
         try {
         	HashMap<String, String> data = userDatabase.getEntry(input);
