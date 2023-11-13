@@ -132,6 +132,41 @@ public abstract class KeyValDatabase extends AbstractDatabase {
     }
 
     /**
+     * Returns the keys of all entries in the database.
+     * @return the keys of all entries in the database
+     */
+    public HashMap<String, HashMap<String, String>> getAllEntryKeys() {
+        return getAllRecords();
+    }  
+
+    
+    /*
+     * Returns all the entries in the database that match the given field's and value.
+     */
+    /**
+     * Searches for records in the database that match a given field and value.
+     * 
+     * @param field The field to search for a match (e.g. "name", "id", etc.).
+     * @param matchVal The value to match against the given field.
+     * @return A HashMap containing all records that match the given field and value.
+     */
+    public HashMap<String, HashMap<String, String>> matchSearch(String field, String matchVal) {
+
+        // Loop through all records and add the ones that match to the result
+        HashMap<String, HashMap<String, String>> result = new HashMap<String, HashMap<String, String>>();
+
+        for (String key : getAllRecords().keySet()) {
+            
+            HashMap<String, String> record = getAllRecords().get(key);
+            if (record.get(field).equals(matchVal)) {
+                result.put(key, record);
+            }
+        }
+        
+        return result;
+    }
+
+    /**
      * Prints all entries in the database with their mandatory fields.
      */
     public void printAllEntries() {
