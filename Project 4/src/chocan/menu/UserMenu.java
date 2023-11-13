@@ -176,8 +176,7 @@ public abstract class UserMenu extends AbstractMenu {
             System.out.print(prompt);
 
             // Get the user's input
-            input = nextInt(scanner);
-
+            input = scanner.nextInt();
             // Check if the input is valid
             if (isValidOption(input)) {
                 validInput = true;
@@ -190,9 +189,9 @@ public abstract class UserMenu extends AbstractMenu {
 
         return input;
     }
-    
+
     /*
-     * Consumen any remaining input if there is any.
+     * Consume any remaining input if there is any.
      */
     public void consumeRemainingInput(Scanner scanner) {
         if (scanner.hasNextLine()) {
@@ -207,7 +206,7 @@ public abstract class UserMenu extends AbstractMenu {
     public void run() {
         exitFlag = false;
 
-        try (Scanner localScanner = new Scanner(System.in)) {
+        Scanner localScanner = new Scanner(System.in);
             while (!exitFlag) {
                 // Display menu and get user choice
                 displayMenu();
@@ -218,11 +217,10 @@ public abstract class UserMenu extends AbstractMenu {
                 // Check if the user wants to exit the menu.
                 if (option == EXIT_VALUE) {
                     exit();
-                    continue;
+                    return;
                 }
                 //  Execute the user's choice if it is not the exit option
                 chooseOption(option);
             }
-        } // Scanner is automatically closed when the try block is exited
-    }
+        }
 }

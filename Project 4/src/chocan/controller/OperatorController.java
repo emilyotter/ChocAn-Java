@@ -44,6 +44,7 @@ public class OperatorController extends AbstractController {
 
         userDatabase.addEntry(key, data);
 
+        inputScanner.close();
     }
 
     public void updateMember() {
@@ -82,6 +83,8 @@ public class OperatorController extends AbstractController {
         } catch (IllegalArgumentException  e) {
             System.out.println("User not found are you sure the ID is correct.");
         }
+
+        inputScanner.close();
     }
 
     public void deleteMember() {
@@ -93,6 +96,8 @@ public class OperatorController extends AbstractController {
         } catch (IllegalArgumentException e) {
             System.out.println("User not found are you sure the ID is correct.");
         }
+
+        inputScanner.close();
     }
 
     public void addProvider() {
@@ -130,6 +135,7 @@ public class OperatorController extends AbstractController {
 
         userDatabase.addEntry(key, data);
 
+        inputScanner.close();
     }
 
     public void updateProvider() {
@@ -168,6 +174,8 @@ public class OperatorController extends AbstractController {
         } catch (IllegalArgumentException  e) {
             System.out.println("User not found are you sure the ID is correct.");
         }
+
+        inputScanner.close();
     }
 
     public void deleteProvider() {
@@ -179,6 +187,7 @@ public class OperatorController extends AbstractController {
         } catch (IllegalArgumentException e) {
             System.out.println("User not found are you sure the ID is correct.");
         }
+        inputScanner.close();
     }
 
     public void generateProviderDirectory() {

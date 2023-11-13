@@ -89,8 +89,7 @@ public class CredentialsDatabase extends KeyValDatabase{
 
     public String generateUniqueID() {
         Random idGenerator = new Random();
-        String randomId = String.valueOf((idGenerator.nextInt(1000, 100000)));
-
+        String randomId = String.valueOf((idGenerator.nextInt(90000) + 10000));
 
         boolean isUnique = false;
 
@@ -98,11 +97,10 @@ public class CredentialsDatabase extends KeyValDatabase{
             if(!checkKeyClash(randomId)) {
                 isUnique = true;
             } else {
-                randomId = String.valueOf((idGenerator.nextInt(1000, 100000)));
+                randomId = String.valueOf((idGenerator.nextInt(90000) + 10000));
             }
         }
 
         return randomId;
     }
-
 }
