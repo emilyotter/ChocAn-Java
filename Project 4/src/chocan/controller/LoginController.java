@@ -71,7 +71,7 @@ public class LoginController extends AbstractController {
 
         } while (!loggedIn);
 
-        scanner.close();
+        //scanner.close();
     }
 
 }
