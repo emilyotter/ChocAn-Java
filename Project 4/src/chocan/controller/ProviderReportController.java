@@ -52,27 +52,30 @@ public class ProviderReportController { //extends AbstractReportController
         //System.out.println(absoluteFilePath);
         //File file = new File(absoluteFilePath);
     	
-        Path TEMP_DIR = Path.of(System.getProperty("java.io.tmpdir")).resolve("chocan").resolve("Report Directory");
+        Path filePath = Path.of(System.getProperty("java.io.tmpdir")).resolve("chocan").resolve("reports");
         
-        TEMP_DIR.toFile().getParentFile().mkdirs();
+
+        // Create the directory if it doesn't exist
+        if (!filePath.toFile().exists()) {
+            filePath.toFile().mkdirs();
+        }
+
+        // Create the file named 
+        filePath = filePath.resolve(filename);
+
+        // Get a file object from the path
+        File file = filePath.toFile();
         
-        File file = new File(TEMP_DIR + filename);
         
         // Use try-with-resources to ensure the writer is closed properly
         try (FileWriter fstream = new FileWriter(file, true); BufferedWriter writer = new BufferedWriter(fstream)) {
             writeDetails(writer, providerInfo, servicesProvided);
-            System.out.println("Report written to " + TEMP_DIR);
+            System.out.println("Report written to " + filePath.toString());
         } catch (IOException e) {
             System.err.println("Error writing to file: " + e.getMessage());
         }
     }
     
-    /*private void writeFilePath(String pathName, String filename) {
-    	String fileSeparator = System.getProperty("file.separator");
-    	
-    	String absoluteFilePath = fileSeparator+"Users"+fileSeparator+"emily"+fileSeparator+"OneDrive"+fileSeparator+"Desktop"+fileSeparator+ filename;
-        File file = new File(absoluteFilePath);
-    }*/
     
     private void writeDetails(BufferedWriter writer, HashMap<String, String> providerInfo, HashMap<String, String> serviceInfo) throws IOException {
         //formatting provider details
