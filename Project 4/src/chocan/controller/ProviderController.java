@@ -2,6 +2,7 @@ package chocan.controller;
 
 
 import chocan.database.CredentialsDatabase;
+import chocan.database.ServiceDatabase;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -20,15 +21,90 @@ public class ProviderController extends AbstractController{
     	
     }
     
-    public void requestProviderDirectory() {
-    	
+    public void addService() {
+    	HashMap<String, String> data = new HashMap<>();
+        Scanner inputScanner = new Scanner(System.in);
+        String input;
+        String key;
+
+        System.out.println("Enter the service code");
+        input = inputScanner.nextLine();
+        data.put("serviceCode", input);
+
+        System.out.println("Enter the date of service");
+        input = inputScanner.nextLine();
+        data.put("dateOfService", input);
+
+        System.out.println("Enter the member's id");
+        input = inputScanner.nextLine();
+        data.put("memberId", input);
+
+        System.out.println("Enter the provider's id");
+        input = inputScanner.nextLine();
+        data.put("providerId", input);
+
+        System.out.println("Enter the fee amount");
+        input = inputScanner.nextLine();
+        data.put("fee", input);
+
+        //generate some service id
+        System.out.println("Service added successfully");
+
+        //add using service id
+        //serviceDatabaseDatabase.addEntry(key, data);
+
     }
     
-    public void searchCode() {
-    	
+    public void updateService() {
+    	Scanner inputScanner = new Scanner(System.in);
+        HashMap<String, String> data = new HashMap<>();
+        System.out.println("Enter the ID of the service you wish to edit");
+        String input = inputScanner.nextLine();
+        try {
+            serviceDatabase.removeEntry(input);
+
+            System.out.println("Enter the service code");
+            input = inputScanner.nextLine();
+            data.put("serviceCode", input);
+
+            System.out.println("Enter the date of service");
+            input = inputScanner.nextLine();
+            data.put("dateOfService", input);
+
+            System.out.println("Enter the member's id");
+            input = inputScanner.nextLine();
+            data.put("memberId", input);
+
+            System.out.println("Enter the provider's id");
+            input = inputScanner.nextLine();
+            data.put("providerId", input);
+
+            System.out.println("Enter the fee amount");
+            input = inputScanner.nextLine();
+            data.put("fee", input);
+
+            //generate some service id
+            System.out.println("Service added successfully");
+          //add using service id
+            //serviceDatabaseDatabase.addEntry(key, data);
+
+        } catch (IllegalArgumentException  e) {
+            System.out.println("Service not found are you sure the ID is correct?");
+        }
     }
     
-    public void searchServiceFee() {
+    public void deleteService() {
+    	Scanner inputScanner = new Scanner(System.in);
+        System.out.println("Enter the ID of the service you wish to remove");
+        String input = inputScanner.nextLine();
+        try {
+            serviceDatabase.removeEntry(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Service not found are you sure the ID is correct?");
+        }
+    }
+    
+    public void generateProviderReport() {
     	
     }
     
