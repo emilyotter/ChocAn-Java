@@ -1,3 +1,11 @@
+/*
+ * Authors:
+ * Name:        Nichal Bhattarai
+ * CWID:        12088410
+ * Email:       nbhattarai@crimson.ua.edu
+ *
+ */
+
 package chocan.database;
 
 import java.util.HashMap;
