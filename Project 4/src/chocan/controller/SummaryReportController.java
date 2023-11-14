@@ -16,19 +16,22 @@ public class SummaryReportController extends AbstractReportController { //may no
             HashMap<String, String> data;
             for (String entryName : serviceDatabase.getAllEntries()) {
                 data = serviceDatabase.getEntry(entryName);
-
-                String providerId = data.get("providerId");
-                int consultations = 1;  // Assuming each entry represents one service
-                double totalFee = Double.parseDouble(data.get("fee")); //need to add "fee" field to service database
-
-                // Write information to the report
-                writer.write(providerId + "\t" + consultations + "\t" + totalFee);
-                writer.newLine();
+            
+                if (data.containsKey("providerId") && data.containsKey("fee")) {
+                    String providerId = data.get("providerId");
+                    int consultations = 1;  // Assuming each entry represents one service
+                    double totalFee = Double.parseDouble(data.get("fee"));
+            
+                    // Write information to the report
+                    writer.write(providerId + "\t" + consultations + "\t" + totalFee);
+                    writer.newLine();
+                } else {
+                    //log a warning
+                    System.out.println("Entry " + entryName + " is missing required fields.");
+                }
             }
-
             writer.write("Total Providers: " + serviceDatabase.getEntryCount());
             writer.newLine();
-
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
