@@ -146,7 +146,7 @@ public abstract class KeyValDatabase extends AbstractDatabase {
      * Returns the keys of all entries in the database.
      * @return the keys of all entries in the database
      */
-    public HashMap<String, HashMap<String, String>> getAllEntryKeys() {
+    public HashMap<String, HashMap<String, String>> getAllEntry() {
         return getAllRecords();
     }  
 

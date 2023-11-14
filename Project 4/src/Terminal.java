@@ -10,6 +10,8 @@ import chocan.menu.LoginMenu;
 import chocan.DailyTimer;
 import chocan.controller.MemberReportController;
 import chocan.controller.SummaryReportController;
+import chocan.controller.ProviderReportController;
+
 
 public class Terminal {
     public static void main(String[] args) {
@@ -22,9 +24,9 @@ public class Terminal {
         CredentialsDatabase termCredentialsDatabase = new CredentialsDatabase();
         ServiceDatabase termServiceDatabase = new ServiceDatabase();
 
-        MemberReportController mrc = new MemberReportController();
+        MemberReportController mrc = new MemberReportController(termCredentialsDatabase , termServiceDatabase);
         ProviderReportController prc = new ProviderReportController(termCredentialsDatabase, termServiceDatabase);
-        SummaryReportController src = new SummaryReportController();
+        SummaryReportController src = new SummaryReportController(termServiceDatabase);
 
         DailyTimer mrcTimer = new DailyTimer(7, 24, 0, 0, mrc);
         DailyTimer prcTimer = new DailyTimer(7, 24, 0, 0, prc);

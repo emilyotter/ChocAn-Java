@@ -9,7 +9,7 @@ import java.util.HashMap;
 import chocan.database.CredentialsDatabase;
 import chocan.database.ServiceDatabase;
 
-public class SummaryReportController  { //may not need inheritance
+public class SummaryReportController  extends AbstractReportController { //may not need inheritance
 
 	private ServiceDatabase serviceDatabase;
 
@@ -42,7 +42,7 @@ public class SummaryReportController  { //may not need inheritance
             writer.newLine();
 
             HashMap<String, String> data;
-            for (String entryName : serviceDatabase.getAllEntries()) {
+            for (String entryName : serviceDatabase.getAllEntry().keySet()) {
                 data = serviceDatabase.getEntry(entryName);
             
                 if (data.containsKey("providerId") && data.containsKey("fee")) {
@@ -64,6 +64,11 @@ public class SummaryReportController  { //may not need inheritance
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void timedMethod() {
+        generateSummaryReport();
     }
 }
 
