@@ -19,6 +19,7 @@ public class Terminal {
 
         //DailyTimer midnightTimer = new DailyTimer(24, 0, 0, REPORT_CONTROLLER_FROM_ABSTRACT_CONTROLLER);
         //midnightTimer.start();
+
         // Database for testing
         CredentialsDatabase termCredentialsDatabase = new CredentialsDatabase();
         ServiceDatabase termServiceDatabase = new ServiceDatabase();
