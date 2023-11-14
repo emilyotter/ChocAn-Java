@@ -6,10 +6,10 @@ import chocan.handler.InputHandler;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class ManagerController extends AbstractController {
 
+	// Input Handler for this ManagerController
 	private final InputHandler inputHandler;
 
     public ManagerController(CredentialsDatabase userDatabase) {
@@ -20,7 +20,6 @@ public class ManagerController extends AbstractController {
     public void requestProviderReport() { 
     	//call generate report for specified provider
     	List<String> idList = new ArrayList<>();
-    	Scanner input = new Scanner(System.in);
     	String idNumber;
     	System.out.println("Enter All the Provider IDs that you wish to print a report for. Enter done once finished.");
     	
