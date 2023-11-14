@@ -66,7 +66,7 @@ public class ProviderController extends AbstractController{
     public void billChocAn() {
     	String input;
         System.out.println();
-        input = inputHandler.unconstrainedPromptStr("Provide service id: " );
+        input = inputHandler.unconstrainedPromptStr("Provide Transaction ID: " );
         
         // Get the service data from the database
         try {
@@ -77,7 +77,7 @@ public class ProviderController extends AbstractController{
                 System.out.println("No fee listed under this service!");
             }
         } catch(IllegalArgumentException  e) {
-            System.out.println("Invalid service number.");
+            System.out.println("Invalid Transaction ID.");
         }
     }
 
