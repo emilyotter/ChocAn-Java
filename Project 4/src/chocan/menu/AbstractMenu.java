@@ -1,7 +1,13 @@
 package chocan.menu;
 import chocan.controller.AbstractController;
 
-
+/*
+ * Authors:
+ * Name:        Nichal Bhattarai
+ * CWID:        12088410
+ * Email:       nbhattarai@crimson.ua.edu
+ *
+ */
 
 
 /**

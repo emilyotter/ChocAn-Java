@@ -1,3 +1,13 @@
+/*
+ * Authors:
+ * Name:        Nichal Bhattarai
+ * CWID:        12088410
+ * Email:       nbhattarai@crimson.ua.edu
+ *
+ * Contributors:
+ *              Maddox Guthrie
+ */
+
 package chocan.menu;
 
 import java.util.HashMap;
