@@ -68,7 +68,7 @@ public class ProviderController extends AbstractController{
         System.out.println();
         input = inputHandler.unconstrainedPromptStr("Provide service id: " );
         
-        // Get the member data from the database
+        // Get the service data from the database
         try {
             HashMap<String, String> data = serviceDatabase.getEntry(input);
             if (data.get("fee")) {
