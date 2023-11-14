@@ -59,4 +59,5 @@ public class OperatorMenu extends UserMenu {
                 break;
         }
     }
+
 }

@@ -4,9 +4,14 @@ package chocan.controller;
 import chocan.database.CredentialsDatabase;
 
 import java.util.HashMap;
-import java.util.Scanner;
+
+import chocan.handler.InputHandler;
 
 public class OperatorController extends AbstractController {
+
+    // Input Handler for the Operator Controller
+    private InputHandler inputHandler = new InputHandler();
+
 
     public OperatorController(CredentialsDatabase userDatabase) {
         super(userDatabase);
@@ -15,67 +20,54 @@ public class OperatorController extends AbstractController {
     public void addMember() {
         HashMap<String, String> data = new HashMap<>();
         data.put("role", "member");
-        Scanner inputScanner = new Scanner(System.in);
-        String input;
-        String key;
+        
 
-        System.out.println("Enter the members full name");
-        input = inputScanner.nextLine();
+        String input = this.inputHandler.unconstrainedPromptStr("Enter the member's full name: ");
         data.put("name", input);
 
-        System.out.println("Enter the members password");
-        input = inputScanner.nextLine();
+        input = inputHandler.unconstrainedPromptStr("Enter the member's password: ");
         data.put("password", input);
 
-        System.out.println("Enter the members street address");
-        input = inputScanner.nextLine();
+        input = inputHandler.unconstrainedPromptStr("Enter the member's street address: ");
         data.put("address", input);
 
-        System.out.println("Enter the members zipcode");
-        input = inputScanner.nextLine();
+        input = inputHandler.unconstrainedPromptStr("Enter the member's zipcode: ");
         data.put("zipcode", input);
 
-        System.out.println("Enter the members state abbreviation");
-        input = inputScanner.nextLine();
+        
+        input = inputHandler.unconstrainedPromptStr("Enter the member's state abbreviation: ");
         data.put("state", input);
 
-        key = userDatabase.generateUniqueID();
+        String key = userDatabase.generateUniqueID();
         System.out.println("The User's Unique ID is: " + key);
 
+        
         userDatabase.addEntry(key, data);
 
-        inputScanner.close();
     }
 
     public void updateMember() {
-        Scanner inputScanner = new Scanner(System.in);
         HashMap<String, String> data = new HashMap<>();
-        System.out.println("Enter the ID of the member you wish to edit");
-        String input = inputScanner.nextLine();
+        String input = this.inputHandler.unconstrainedPromptStr("Enter the ID of the member you wish to edit: ");
         try {
             userDatabase.removeEntry(input);
 
             String key = input;
             data.put("role", "member");
 
-            System.out.println("Enter the members full name");
-            input = inputScanner.nextLine();
+            input = inputHandler.unconstrainedPromptStr("Enter the member's full name: ");
             data.put("name", input);
 
-            System.out.println("Enter the members password");
-            input = inputScanner.nextLine();
+            input = inputHandler.unconstrainedPromptStr("Enter the member's password: ");
             data.put("password", input);
 
-            System.out.println("Enter the members street address");
-            input = inputScanner.nextLine();
+            input = inputHandler.unconstrainedPromptStr("Enter the member's street address: ");
             data.put("address", input);
 
-            System.out.println("Enter the members zipcode");
-            input = inputScanner.nextLine();
+            input = inputHandler.unconstrainedPromptStr("Enter the member's zipcode: ");
             data.put("zipcode", input);
 
-            System.out.println("Enter the members state abbreviation");
-            input = inputScanner.nextLine();
+            input = inputHandler.unconstrainedPromptStr("Enter the member's state abbreviation: ");
             data.put("state", input);
 
             userDatabase.addEntry(key, data);
@@ -84,89 +76,69 @@ public class OperatorController extends AbstractController {
             System.out.println("User not found are you sure the ID is correct.");
         }
 
-        inputScanner.close();
     }
 
     public void deleteMember() {
-        Scanner inputScanner = new Scanner(System.in);
-        System.out.println("Enter the ID of the member you wish to remove");
-        String input = inputScanner.nextLine();
+        String input = inputHandler.unconstrainedPromptStr("Enter the ID of the member you wish to remove: ");
         try {
             userDatabase.removeEntry(input);
         } catch (IllegalArgumentException e) {
             System.out.println("User not found are you sure the ID is correct.");
         }
-
-        inputScanner.close();
     }
 
     public void addProvider() {
         HashMap<String, String> data = new HashMap<>();
         data.put("role", "provider");
-        Scanner inputScanner = new Scanner(System.in);
         String input;
         String key;
 
-        System.out.println("Enter the providers full name");
-        input = inputScanner.nextLine();
+        input = inputHandler.unconstrainedPromptStr("Enter the provider's full name: ");
         data.put("name", input);
 
-        System.out.println("Enter the providers password");
-        input = inputScanner.nextLine();
+        input = inputHandler.unconstrainedPromptStr("Enter the provider's password: ");
         data.put("password", input);
 
-        System.out.println("Enter the providers street address");
-        input = inputScanner.nextLine();
+        input = inputHandler.unconstrainedPromptStr("Enter the provider's street address: ");
         data.put("address", input);
 
-        System.out.println("Enter the providers zipcode");
-        input = inputScanner.nextLine();
+        input = inputHandler.unconstrainedPromptStr("Enter the provider's zipcode: ");
         data.put("zipcode", input);
 
-        System.out.println("Enter the providers state abbreviation");
-        input = inputScanner.nextLine();
+        input = inputHandler.unconstrainedPromptStr("Enter the provider's state abbreviation: ");
         data.put("state", input);
 
-        System.out.println("Enter the providers ID number");
-        input = inputScanner.nextLine();
-
+        input = inputHandler.unconstrainedPromptStr("Enter the provider's ID number: ");
         key = userDatabase.generateUniqueID();
         System.out.println("The User's Unique ID is: " + key);
 
         userDatabase.addEntry(key, data);
 
-        inputScanner.close();
+
     }
 
     public void updateProvider() {
-        Scanner inputScanner = new Scanner(System.in);
         HashMap<String, String> data = new HashMap<>();
-        System.out.println("Enter the ID of the provider you wish to edit");
-        String input = inputScanner.nextLine();
+        String input = inputHandler.unconstrainedPromptStr("Enter the ID of the provider you wish to edit: ");
         try {
             userDatabase.removeEntry(input);
 
             String key = input;
             data.put("role", "provider");
 
-            System.out.println("Enter the providers full name");
-            input = inputScanner.nextLine();
+            input = inputHandler.unconstrainedPromptStr("Enter the provider's full name: ");
             data.put("name", input);
 
-            System.out.println("Enter the providers password");
-            input = inputScanner.nextLine();
+            input = inputHandler.unconstrainedPromptStr("Enter the provider's password: ");
             data.put("password", input);
 
-            System.out.println("Enter the providers street address");
-            input = inputScanner.nextLine();
+            input = inputHandler.unconstrainedPromptStr("Enter the provider's street address: ");
             data.put("address", input);
 
-            System.out.println("Enter the providers zipcode");
-            input = inputScanner.nextLine();
+            input = inputHandler.unconstrainedPromptStr("Enter the provider's zipcode: ");
             data.put("zipcode", input);
 
-            System.out.println("Enter the providers state abbreviation");
-            input = inputScanner.nextLine();
+            input = inputHandler.unconstrainedPromptStr("Enter the provider's state abbreviation: ");
             data.put("state", input);
 
             userDatabase.addEntry(key, data);
@@ -175,19 +147,15 @@ public class OperatorController extends AbstractController {
             System.out.println("User not found are you sure the ID is correct.");
         }
 
-        inputScanner.close();
     }
 
     public void deleteProvider() {
-        Scanner inputScanner = new Scanner(System.in);
-        System.out.println("Enter the ID of the provider you wish to remove");
-        String input = inputScanner.nextLine();
+        String input = inputHandler.unconstrainedPromptStr("Enter the ID of the provider you wish to remove: ");
         try {
             userDatabase.removeEntry(input);
         } catch (IllegalArgumentException e) {
             System.out.println("User not found are you sure the ID is correct.");
         }
-        inputScanner.close();
     }
 
     public void generateProviderDirectory() {

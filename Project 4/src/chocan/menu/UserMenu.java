@@ -1,9 +1,8 @@
 package chocan.menu;
 
-import java.util.Scanner;
-import java.util.InputMismatchException;
 import java.util.HashMap;
 import chocan.controller.AbstractController;
+import chocan.handler.InputHandler;
 
 /**
  * Abstract class representing a user menu in the ChocAn system.
@@ -25,6 +24,11 @@ public abstract class UserMenu extends AbstractMenu {
      */
     protected HashMap<Integer, String> options;
 
+    /*
+     * InputHandler for the menu.
+     */
+    protected InputHandler inputHandler;
+
     /**
      * Constructs a UserMenu with the specified controller.
      *
@@ -36,6 +40,13 @@ public abstract class UserMenu extends AbstractMenu {
         // Initialize options HashMap
         this.options = getOptions();
 
+        // Check if the keys are strictly in accending order from 1 to n
+        for (int i = 1; i <= options.size(); i++) {
+            if (!options.containsKey(i)) {
+                throw new IllegalArgumentException("Menu options must be strictly in ascending order from 1 to n.");
+            }
+        }
+
         // Union Exit option to the greatest key + 1 (to avoid collisions)
         if (options.isEmpty()) {
             this.EXIT_VALUE = 1;
@@ -45,6 +56,9 @@ public abstract class UserMenu extends AbstractMenu {
 
         // Add exit option to the greatest key + 1 (to avoid collisions)
         options.put(this.EXIT_VALUE, "Exit");
+
+        // Initialize InputHandler
+        this.inputHandler = new InputHandler();
         
     }
 
@@ -81,15 +95,7 @@ public abstract class UserMenu extends AbstractMenu {
         this.exitFlag = true;
     }
 
-    /**
-     * Checks if the given option is valid.
-     *
-     * @param option int, the option chosen by the user.
-     * @return boolean, true if the option is valid, false otherwise.
-     */
-    public boolean isValidOption(int option){
-        return options.containsKey(option); // Check against the options HashMap
-    }
+    
 
     
 
@@ -106,99 +112,6 @@ public abstract class UserMenu extends AbstractMenu {
         System.out.println("+--------------------------------+");
     }
 
-
-    /**
-     * Reads the next integer from the provided scanner, handling invalid input types.
-     *
-     * @param scanner Scanner, the scanner to read from.
-     * @return int, the next integer read from the scanner.
-     */
-    public int nextInt(Scanner scanner) {
-        int input = -1;
-        // Loop valid flag
-        boolean validInput = false;
-        // Loop until the user enters a valid input
-        while (!validInput) {
-            try {
-                input = scanner.nextInt(); // Read the user's input
-                validInput = true;
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input type. Please try again.");
-                consumeRemainingInput(scanner); // Consume any remaining input if there is any
-            }
-        }
-
-        return input;
-
-    }
-
-
-    /**
-     * Reads the next string from the provided scanner, handling invalid input types.
-     *
-     * @param scanner Scanner, the scanner to read from.
-     * @return String, the next string read from the scanner.
-     */
-    public String nextString(Scanner scanner) {
-        String input = "";
-        // Loop valid flag
-        boolean validInput = false;
-        // Loop until the user enters a valid input
-        while (!validInput) {
-            try {
-                input = scanner.nextLine(); // Read the user's input
-                validInput = true;
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input type. Please try again.");
-                consumeRemainingInput(scanner); // Consume any remaining input if there is any
-            }
-        }
-
-        return input;
-    }
-
-
-    /**
-     * Gets the user's choice by displaying a prompt and reading from the provided scanner.
-     *
-     * @param prompt  String, the prompt to display to the user.
-     * @param scanner Scanner, the scanner to read from.
-     * @return int, the user's input choice.
-     */
-    public int getUserChoice(String prompt, Scanner scanner) {
-        int input = -1;
-
-        // Loop valid flag
-        boolean validInput = false;
-
-        // Loop until the user enters a valid input
-        while (!validInput) {
-            System.out.print(prompt);
-
-            // Get the user's input
-            input = scanner.nextInt();
-            // Check if the input is valid
-            if (isValidOption(input)) {
-                validInput = true;
-            } else {
-                System.out.println("Invalid option. Please try one of the below option.");
-                displayMenu();
-                consumeRemainingInput(scanner);
-            }
-        }
-
-        return input;
-    }
-
-    /*
-     * Consume any remaining input if there is any.
-     */
-    public void consumeRemainingInput(Scanner scanner) {
-        if (scanner.hasNextLine()) {
-            scanner.nextLine(); // Consume any remaining input if there is any
-        }
-    }
-
     
     /**
      * Runs the user menu, displaying options, getting user input, and executing the chosen option.
@@ -206,13 +119,12 @@ public abstract class UserMenu extends AbstractMenu {
     public void run() {
         exitFlag = false;
 
-        Scanner localScanner = new Scanner(System.in);
             while (!exitFlag) {
                 // Display menu and get user choice
                 displayMenu();
 
                 // Get user choice
-                int option = getUserChoice("Enter option: ", localScanner);
+                int option = this.inputHandler.constrainedPromptInt("Enter an option: ", 1, EXIT_VALUE);
 
                 // Check if the user wants to exit the menu.
                 if (option == EXIT_VALUE) {

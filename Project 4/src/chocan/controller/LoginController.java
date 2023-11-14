@@ -7,8 +7,7 @@ import chocan.menu.OperatorMenu;
 import chocan.menu.ProviderMenu;
 import chocan.menu.UserMenu;
 
-
-import java.util.Scanner;
+import chocan.handler.InputHandler;
 
 public class LoginController extends AbstractController {
 
@@ -18,11 +17,15 @@ public class LoginController extends AbstractController {
     // Serivce database
     private ServiceDatabase serviceDatabase;
 
+    // Input Handler
+    private InputHandler inputHandler;
+
 
 
     public LoginController(CredentialsDatabase userDatabase, ServiceDatabase serviceDatabase) {
         super(userDatabase);
         this.serviceDatabase = serviceDatabase;
+        inputHandler = new InputHandler();
         
     }
 
@@ -57,15 +60,10 @@ public class LoginController extends AbstractController {
     }
 
     public void login() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter your ChocAn provided ID and Password.");
-
         boolean loggedIn = false;
         do {
-            System.out.println("Enter ID: ");
-            String id = scanner.nextLine();
-            System.out.println("Enter Password: ");
-            String password = scanner.nextLine();
+            String id = this.inputHandler.unconstrainedPromptStr("Enter ID: ");
+            String password = this.inputHandler.unconstrainedPromptStr("Enter Password: ");
 
             loggedIn = authenticateUser(id, password);
 
@@ -83,7 +81,6 @@ public class LoginController extends AbstractController {
 
         } while (!loggedIn);
 
-        //scanner.close();
     }
 
 }
