@@ -65,16 +65,5 @@ public class SummaryReportController  { //may not need inheritance
             e.printStackTrace();
         }
     }
-
-    public void main(String[] args) {
-
-        ServiceDatabase db = new ServiceDatabase();
-
-        //String filePath = "summary_report.txt";
-        
-        SummaryReportController summaryReportController = new SummaryReportController(db);
-
-        summaryReportController.generateSummaryReport();
-    }
 }
 

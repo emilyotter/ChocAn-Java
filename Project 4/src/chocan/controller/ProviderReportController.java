@@ -13,7 +13,7 @@ import java.nio.file.Path;
 import chocan.database.CredentialsDatabase;
 import chocan.database.ServiceDatabase;
 
-public class MemberReportController extends AbstractReportController { //extends AbstractReportController
+public class ProviderReportController extends AbstractReportController { //extends AbstractReportController
     
 	private CredentialsDatabase credentials;
     private ServiceDatabase services;
@@ -23,29 +23,28 @@ public class MemberReportController extends AbstractReportController { //extends
 
     }
    
-	public MemberReportController(CredentialsDatabase credentials, ServiceDatabase services) {
+	public ProviderReportController(CredentialsDatabase credentials, ServiceDatabase services) {
     	this.credentials = credentials;
     	this.services = services;
     }
 	
-	//generates a report for each member as a separate text file
-	public void generateMemberReports(List<String> memberIds) throws IOException {
-        // Iterate over each member ID and generate a report
-        for (String memberId : memberIds) {
+	//generates a report for each provider as a separate text file
+	public void generateProviderReports(List<String> providerIds) throws IOException {
+        // Iterate over each provider ID and generate a report
+        for (String providerId : providerIds) {
             //generate a separate file for each provider
-            String fileName = "member_report_" + memberId + ".txt";
-            generateMemberReport(memberId, fileName);
+            String fileName = "provider_report_" + providerId + ".txt";
+            generateProviderReport(providerId, fileName);
         }
 	 }
 	 
-    public void generateMemberReport(String memberId, String filename) throws IOException{
+    public void generateProviderReport(String providerId, String filename) throws IOException{
     	//retrieve provider info
-    	HashMap<String, String> memberInfo = credentials.getEntry(memberId);
-    	
+    	HashMap<String, String> providerInfo = credentials.getEntry(providerId);
     	
         Path filePath = Path.of(System.getProperty("java.io.tmpdir")).resolve("chocan").resolve("reports");
         
-        
+
         // Create the directory if it doesn't exist
         if (!filePath.toFile().exists()) {
             filePath.toFile().mkdirs();
@@ -60,8 +59,8 @@ public class MemberReportController extends AbstractReportController { //extends
         
         // Use try-with-resources to ensure the writer is closed properly
         try (FileWriter fstream = new FileWriter(file); BufferedWriter writer = new BufferedWriter(fstream)) {
-            writeDetails(memberId, writer, memberInfo);
-            writeServices("memberId",memberId,writer);
+            writeDetails(providerId, writer, providerInfo);
+            writeServices("providerId",providerId,writer);
             System.out.println("Report written to " + filePath.toString());
         } catch (IOException e) {
             System.err.println("Error writing to file: " + e.getMessage());
@@ -69,16 +68,15 @@ public class MemberReportController extends AbstractReportController { //extends
     }
     
     
-    private void writeDetails(String memberId, BufferedWriter writer, HashMap<String, String> memberInfo) throws IOException {
+    private void writeDetails(String providerId, BufferedWriter writer, HashMap<String, String> providerInfo) throws IOException {
         //formatting provider details
-        writer.write("Member Name:" + String.format("%-25s\n", memberInfo.getOrDefault("name", "")));
-        //writer.write("Member Number:" + String.format("%-9s\n", serviceInfo.getOrDefault("providerId", "")));
-        writer.write("Member Number:" + String.format("%-9s\n", memberId));
-        writer.write("Street Address:" + String.format("%-25s\n", memberInfo.getOrDefault("address", "")));
-        writer.write("City:" + String.format("%-14s\n", memberInfo.getOrDefault("city", "")));
-        writer.write("State:" + String.format("%-2s\n", memberInfo.getOrDefault("state", "")));
-        writer.write("ZIP Code:" + String.format("%-5s\n", memberInfo.getOrDefault("zipcode", "")));
-        writer.write("\n");
+        writer.write("Provider Name:" + String.format("%-25s\n", providerInfo.getOrDefault("name", "")));
+        //writer.write("Provider Number:" + String.format("%-9s\n", serviceInfo.getOrDefault("providerId", "")));
+        writer.write("Provider Number:" + String.format("%-9s\n", providerId));
+        writer.write("Street Address:" + String.format("%-25s\n", providerInfo.getOrDefault("address", "")));
+        writer.write("City:" + String.format("%-14s\n", providerInfo.getOrDefault("city", "")));
+        writer.write("State:" + String.format("%-2s\n", providerInfo.getOrDefault("state", "")));
+        writer.write("ZIP Code:" + String.format("%-5s\n", providerInfo.getOrDefault("zipcode", "")));
     }
     
     private void writeServices(String field, String matchVal, BufferedWriter writer) throws IOException {
