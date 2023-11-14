@@ -4,9 +4,9 @@
  * The execution time is calculated based on the current time and the specified hours, minutes, and seconds.
  * The service execution logic should be added in the executeService() method.
  */
-package chocan.timer;
+package chocan;
 
-import chocan.controller.AbstractController;
+import chocan.controller.AbstractReportController;
 
 import java.util.AbstractCollection;
 import java.util.Timer;
@@ -16,21 +16,23 @@ import java.util.Calendar;
 
 public class DailyTimer extends Thread{
 
+    private final int day;
     private final int hours;
     private final int minutes;
     private final int seconds;
 
-    AbstractController timedController;
+    AbstractReportController timedController;
 
 
-    /*
+    /**
      * Constructor for DailyTimer.
-     * 
+     * @param day The day of the week to execute the service Mon:1, Sun:7
      * @param hours The hour of the day to execute the service.
      * @param minutes The minute of the hour to execute the service.
      * @param seconds The second of the minute to execute the service.
      */
-    public DailyTimer(int hours, int minutes, int seconds, AbstractController controller) {
+    public DailyTimer(int day, int hours, int minutes, int seconds, AbstractReportController controller) {
+        this.day = day;
         this.hours = hours;
         this.minutes = minutes;
         this.seconds = seconds;
@@ -38,7 +40,7 @@ public class DailyTimer extends Thread{
     }
 
 
-    /*
+    /**
      * Utility method to get the current date and time.
      * 
      * @return LocalDateTime The current date and time.
@@ -59,7 +61,7 @@ public class DailyTimer extends Thread{
         Calendar now = Calendar.getInstance();
 
         // Calculate the time until the next execution.
-        long delay = calculateDelay(now, hours, minutes, seconds);
+        long delay = calculateDelay(now, day, hours, minutes, seconds);
 
         // Schedule a TimerTask to execute the service at the specified time.
         timer.schedule(new TimerTask() {
@@ -67,7 +69,7 @@ public class DailyTimer extends Thread{
             public void run() {
                 executeService();
             }
-        }, delay, 24 * 60 * 60 * 1000); // Repeat daily.
+        }, delay, 7 * 24 * 60 * 60 * 1000); // Repeat daily.
 
         // You can cancel the timer explicitly if needed.
         // timer.cancel();
@@ -77,9 +79,10 @@ public class DailyTimer extends Thread{
      * Calculate the delay until the next execution.
      * The delay is calculated based on the current time and the specified hours, minutes, and seconds.
      */
-    private long calculateDelay(Calendar now, int hours, int minutes, int seconds) {
+    private long calculateDelay(Calendar now, int days, int hours, int minutes, int seconds) {
         // Create a calendar for the next execution time.
         Calendar nextExecution = Calendar.getInstance();
+        nextExecution.set(Calendar.DAY_OF_WEEK, days);
         nextExecution.set(Calendar.HOUR_OF_DAY, hours);
         nextExecution.set(Calendar.MINUTE, minutes);
         nextExecution.set(Calendar.SECOND, seconds);
@@ -100,7 +103,8 @@ public class DailyTimer extends Thread{
      * Add your service execution logic here.
      */
     private void executeService() {
-        System.out.println("Executing service at " + hours + " hours, " + minutes + " minutes, and " + seconds + " seconds.");
+        System.out.println("Executing service at " + day + " days, " + hours + " hours, " + minutes + " minutes, and " + seconds + " seconds.");
+        timedController.timedMethod();
     }
 
     public void run() {

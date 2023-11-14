@@ -19,13 +19,8 @@ public abstract class AbstractController {
         this.userDatabase = userDatabase;
         this.serviceDatabase = serviceDatabase;
     }
-    AbstractController(CredentialsDatabase userDatabase){
-    	this.userDatabase = userDatabase;
-    	this.serviceDatabase = null;
+    AbstractController(CredentialsDatabase userDatabase) {
+        this.userDatabase = userDatabase;
+        this.serviceDatabase = null;
     }
-    AbstractController(ServiceDatabase serviceDatabase){
-    	this.userDatabase = null;
-    	this.serviceDatabase = serviceDatabase;
-    }
-
 }

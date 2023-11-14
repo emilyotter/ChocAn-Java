@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"chocan.controller"},{"l":"chocan.database"},{"l":"chocan.handler"},{"l":"chocan.menu"},{"l":"chocan.timer"},{"l":"test.database"}];updateSearchResults();
