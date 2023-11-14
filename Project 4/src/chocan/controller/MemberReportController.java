@@ -1,91 +1,150 @@
 package chocan.controller;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+
+import java.nio.file.Path;
 
 import chocan.database.CredentialsDatabase;
-import chocan.database.KeyValDatabase;
 import chocan.database.ServiceDatabase;
 
-public class MemberReportController extends AbstractReportController { //optional inheritance
+public class MemberReportController { //extends AbstractReportController
+    
+	private CredentialsDatabase credentials;
+    private ServiceDatabase services;
+	
+    /*@Override
+    public void timedMethod() {
 
-    public static void generateMemberReport(ServiceDatabase serviceDatabase, CredentialsDatabase credentialsDatabase,
-            String memberNumber, String filePath) {
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+    }*/
+   
+	public MemberReportController(CredentialsDatabase credentials, ServiceDatabase services) {
+    	this.credentials = credentials;
+    	this.services = services;
+    }
+	
+	//generates a report for each member as a separate text file
+	public void generateMemberReports(List<String> memberIds) throws IOException {
+        // Iterate over each member ID and generate a report
+        for (String memberId : memberIds) {
+            //generate a separate file for each provider
+            String fileName = "member_report_" + memberId + ".txt";
+            generateMemberReport(memberId, fileName);
+        }
+	 }
+	 
+    public void generateMemberReport(String memberId, String filename) throws IOException{
+    	//retrieve provider info
+    	HashMap<String, String> memberInfo = credentials.getEntry(memberId);
+    	
+    	
+        Path filePath = Path.of(System.getProperty("java.io.tmpdir")).resolve("chocan").resolve("reports");
+        
+        
+        // Create the directory if it doesn't exist
+        if (!filePath.toFile().exists()) {
+            filePath.toFile().mkdirs();
+        }
 
-            // Get member information from credentials database
-            HashMap<String, String> memberInfo = getMemberInfo(credentialsDatabase, memberNumber);
+        // Create the file named 
+        filePath = filePath.resolve(filename);
 
-            writeMemberInfo(writer, memberInfo);
-
-            writer.newLine();
-            writer.write("Date\tProvider\tService");
-            writer.newLine();
-
-            for (String entryName : serviceDatabase.getAllEntries()) {
-                HashMap<String, String> data = serviceDatabase.getEntry(entryName);
-
-                // check if the service is for the specific member
-                if (data.get("memberId").equals(memberNumber)) {
-                    String dateOfService = data.get("dateOfService");
-                    String providerName = getProviderName(data.get("providerId"));
-                    String serviceName = getServiceName(data.get("serviceCode"));
-
-                    writer.write(dateOfService + "\t" + providerName + "\t" + serviceName);
-                    writer.newLine();
-                }
-            }
-
-            writer.close();
+        // Get a file object from the path
+        File file = filePath.toFile();
+        
+        
+        // Use try-with-resources to ensure the writer is closed properly
+        try (FileWriter fstream = new FileWriter(file); BufferedWriter writer = new BufferedWriter(fstream)) {
+            writeDetails(memberId, writer, memberInfo);
+            writeServices("memberId",memberId,writer);
+            System.out.println("Report written to " + filePath.toString());
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error writing to file: " + e.getMessage());
+        }
+    }
+    
+    
+    private void writeDetails(String memberId, BufferedWriter writer, HashMap<String, String> memberInfo) throws IOException {
+        //formatting provider details
+        writer.write("Member Name:" + String.format("%-25s\n", memberInfo.getOrDefault("name", "")));
+        //writer.write("Member Number:" + String.format("%-9s\n", serviceInfo.getOrDefault("providerId", "")));
+        writer.write("Member Number:" + String.format("%-9s\n", memberId));
+        writer.write("Street Address:" + String.format("%-25s\n", memberInfo.getOrDefault("address", "")));
+        writer.write("City:" + String.format("%-14s\n", memberInfo.getOrDefault("city", "")));
+        writer.write("State:" + String.format("%-2s\n", memberInfo.getOrDefault("state", "")));
+        writer.write("ZIP Code:" + String.format("%-5s\n", memberInfo.getOrDefault("zipcode", "")));
+        writer.write("\n");
+    }
+    
+    private void writeServices(String field, String matchVal, BufferedWriter writer) throws IOException {
+        //use match search to get services
+        HashMap<String, HashMap<String, String>> matchedRecords = services.matchSearch(field, matchVal);
+
+        // Iterate through the results and print them
+        for (String key : matchedRecords.keySet()) {
+        	writer.write("-----------------------\n");
+            HashMap<String, String> record = matchedRecords.get(key);
+            //System.out.println("Record Key: " + key);
+            for (String recordField : record.keySet()) {
+					writer.write(recordField + ": " + String.format("%-20s\n", record.get(recordField)));
+            }
         }
     }
 
-    private static HashMap<String, String> getMemberInfo(CredentialsDatabase credentialsDatabase, String memberNumber) {
-        // get information from the credentials database using the member number
-        return credentialsDatabase.getEntry(memberNumber);
-    }
 
-    private static void writeMemberInfo(BufferedWriter writer, HashMap<String, String> memberInfo) throws IOException {
-        writer.write("Member Name: " + memberInfo.get("name"));
-        writer.newLine();
-        writer.write("Member Number: " + memberInfo.get("memberNumber"));
-        writer.newLine();
-        writer.write("Member Street Address: " + memberInfo.get("address"));
-        writer.newLine();
-        writer.write("Member City: " + memberInfo.get("city"));
-        writer.newLine();
-        writer.write("Member State: " + memberInfo.get("state"));
-        writer.newLine();
-        writer.write("Member ZIP Code: " + memberInfo.get("zipcode"));
-        writer.newLine();
-    }
+public static void main(String[] args) {
+	
+    // Initialize your database classes (adjust this with actual constructors or methods)
+    CredentialsDatabase credentialsDatabase = new CredentialsDatabase();
+    ServiceDatabase serviceDatabase = new ServiceDatabase();
+    
+    credentialsDatabase.addEntry("1010", createMockMemberInfo());
+    serviceDatabase.addEntry("1010", createMockServiceInfo());
+    
+    // Initialize the controller with the databases
+    MemberReportController controller = new MemberReportController(credentialsDatabase, serviceDatabase);
 
-    private static String getProviderName(CredentialsDatabase credentialsDatabase, String providerId) {
-        // get provider information from the credentials database using the providerId
-        HashMap<String, String> providerInfo = credentialsDatabase.getEntry(providerId);
+    // Generate reports for the providers
+    try {
+        List<String> memberIds = Arrays.asList("1010"); // Add more IDs as needed
+        controller.generateMemberReports(memberIds);
         
-        return providerInfo.get("name"); //need to add "name" to provider database
+        // If no exception is thrown, and files are created, the method works
+        System.out.println("Reports generated successfully.");
+    } catch (IOException e) {
+        // If there's an IOException, it will be printed to the console
+        e.printStackTrace();
     }
-    
-    private static String getServiceName(ServiceDatabase serviceDatabase, String serviceCode) {
-        // Retrieve service information from the service database using the serviceCode
-        HashMap<String, String> serviceInfo = serviceDatabase.getEntry(serviceCode);
-    
-        return serviceInfo.get("serviceName"); //need to add "name" to provider database
-    }
-
-    public static void main(String[] args) {
-        ServiceDatabase serviceDb = new ServiceDatabase();
-        CredentialsDatabase credentialsDb = new CredentialsDatabase();
-
-        String memberNumber = "123456789"; // fake number (REPLACE)
-        String filePath = "member_report.txt";
-
-        generateMemberReport(serviceDb, credentialsDb, memberNumber, filePath);
-    }
+    credentialsDatabase.removeEntry("1010");
+    serviceDatabase.removeEntry("1010");
 }
+
+// Mock method to create provider information
+private static HashMap<String, String> createMockMemberInfo() {
+    HashMap<String, String> providerInfo = new HashMap<>();
+    providerInfo.put("name", "Test Member");
+    providerInfo.put("password", "doglover");
+    providerInfo.put("role", "member");
+    providerInfo.put("address", "123 Test Street");
+    providerInfo.put("zipcode", "12345");
+    providerInfo.put("state", "TS");
+    return providerInfo;
+}
+
+// Mock method to create service information
+private static HashMap<String, String> createMockServiceInfo() {
+    HashMap<String, String> serviceInfo = new HashMap<>();
+    serviceInfo.put("dateOfService", "2023-01-01");
+    serviceInfo.put("memberId", "1010");
+    serviceInfo.put("serviceCode", "service1");
+    serviceInfo.put("fee", "100.00");
+    serviceInfo.put("providerId", "2020");
+    return serviceInfo;
+}
+}
+
