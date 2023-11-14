@@ -190,6 +190,18 @@ public class OperatorController extends AbstractController {
             writer.write("Service Name: Complete Therapy\n");
             writer.write("Fee: $200\n");
 
+            System.out.println("Service ID: 121110");
+            System.out.println("Service Name: Basic Therapy");
+            System.out.println("Fee: $50\n");
+
+            System.out.println("Service ID: 131211");
+            System.out.println("Service Name: Extensive Therapy");
+            System.out.println("Fee: $100\n");
+
+            System.out.println("Service ID: 141312");
+            System.out.println("Service Name: Complete Therapy");
+            System.out.println("Fee: $200\n");
+
         } catch (IOException e) {
             System.err.println("Error writing to file: " + e.getMessage());
         }
