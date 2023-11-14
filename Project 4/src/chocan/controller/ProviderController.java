@@ -71,7 +71,7 @@ public class ProviderController extends AbstractController{
         // Get the service data from the database
         try {
             HashMap<String, String> data = serviceDatabase.getEntry(input);
-            if (data.get("fee")) {
+            if (!data.get("fee").isEmpty()) {
                 System.out.println("Billed ChocAn: " + data.get("fee"));
             } else {
                 System.out.println("No fee listed under this service!");

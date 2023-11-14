@@ -29,15 +29,18 @@ public class ProviderReportController extends AbstractReportController { //exten
     	Set<String> keySet = keys.keySet();
     	ArrayList<String> listOfKeys= new ArrayList<String>(keySet);
     	try {
-			generateProviderReports(listOfKeys);
-		} catch (IOException e) {
-			// Auto-generated catch block
-			e.printStackTrace();
-		}
+            generateProviderReports(listOfKeys);
+        } finally {
+            ;
+        }
+//		} catch (IOException e) {
+//			// Auto-generated catch block
+//			e.printStackTrace();
+//		}
     }
 	
 	//generates a report for each provider as a separate text file
-	public void generateProviderReports(List<String> providerIds) throws IOException {
+	public void generateProviderReports(List<String> providerIds) {
         // Iterate over each provider ID and generate a report
         for (String providerId : providerIds) {
             //generate a separate file for each provider
@@ -46,7 +49,7 @@ public class ProviderReportController extends AbstractReportController { //exten
         }
 	 }
 	 
-    public void generateProviderReport(String providerId, String filename) throws IOException{
+    public void generateProviderReport(String providerId, String filename) {
     	//retrieve provider info
     	HashMap<String, String> providerInfo = credentials.getEntry(providerId);
     	

@@ -51,7 +51,7 @@ public class LoginController extends AbstractController {
                 userMenu = new OperatorMenu(operatorController);
                 break;
             case "manager":
-                ManagerController managerController = new ManagerController(userDatabase);
+                ManagerController managerController = new ManagerController(userDatabase, serviceDatabase);
                 userMenu = new ManagerMenu(managerController);
                 break;
             default:

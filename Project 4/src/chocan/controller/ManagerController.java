@@ -21,7 +21,7 @@ public class ManagerController extends AbstractController {
 		inputHandler = new InputHandler();
     }
     
-    public void requestProviderReport() throws IOException { 
+    public void requestProviderReport() {
     	//call generate report for specified provider
     	List<String> idList = new ArrayList<>();
     	String idNumber;
@@ -40,7 +40,7 @@ public class ManagerController extends AbstractController {
     	providerReportController.generateProviderReports(idList);
     }
     
-    public void requestMemberReport() throws IOException {
+    public void requestMemberReport() {
     	//call generate report for specified member
     	List<String> idList = new ArrayList<>();
     	String idNumber;
@@ -56,8 +56,12 @@ public class ManagerController extends AbstractController {
     		idList.add(idNumber);
     	}
     	MemberReportController memberReportController = new MemberReportController(userDatabase, serviceDatabase);
-    	memberReportController.generateMemberReports(idList);
-    	
+		try {
+			memberReportController.generateMemberReports(idList);
+		} catch (IOException e) {
+			System.out.println("Error, Stop throwing exceptions!");
+		}
+
     }
     
     public void requestSummaryReport() {
