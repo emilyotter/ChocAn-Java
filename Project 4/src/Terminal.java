@@ -19,8 +19,12 @@ public class Terminal {
             turnOff(-1);
         }
 
+        // Database for testing
+        CredentialsDatabase termCredentialsDatabase = new CredentialsDatabase();
+        ServiceDatabase termServiceDatabase = new ServiceDatabase();
+
         MemberReportController mrc = new MemberReportController();
-        ProviderReportController prc = new ProviderReportController();
+        ProviderReportController prc = new ProviderReportController(termCredentialsDatabase, termServiceDatabase);
         SummaryReportController src = new SummaryReportController();
 
         DailyTimer mrcTimer = new DailyTimer(7, 24, 0, 0, mrc);
@@ -31,9 +35,7 @@ public class Terminal {
         prcTimer.start();
         srcTimer.start();
 
-        // Database for testing
-        CredentialsDatabase termCredentialsDatabase = new CredentialsDatabase();
-        ServiceDatabase termServiceDatabase = new ServiceDatabase();
+
         
         // Print all entries in the database for testing
         termCredentialsDatabase.printAllEntries();

@@ -13,7 +13,7 @@ import java.nio.file.Path;
 import chocan.database.CredentialsDatabase;
 import chocan.database.ServiceDatabase;
 
-public class ProviderReportController { //extends AbstractReportController
+public class ProviderReportController extends AbstractReportController{ //extends AbstractReportController
     
 	private CredentialsDatabase credentials;
     private ServiceDatabase services;
@@ -148,4 +148,9 @@ private static HashMap<String, String> createMockServiceInfo() {
     serviceInfo.put("providerId", "unclesam");
     return serviceInfo;
 }
+
+    @Override
+    public void timedMethod() {
+
+    }
 }
