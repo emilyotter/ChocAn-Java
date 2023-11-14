@@ -64,7 +64,21 @@ public class ProviderController extends AbstractController{
      * Bills ChocAn for a service provided by the provider.
      */
     public void billChocAn() {
-        // TODO: Implement billing functionality
+    	String input;
+        System.out.println();
+        input = inputHandler.unconstrainedPromptStr("Provide service id: " );
+        
+        // Get the member data from the database
+        try {
+            HashMap<String, String> data = serviceDatabase.getEntry(input);
+            if (data.get("fee")) {
+                System.out.println("Billed ChocAn: " + data.get("fee"));
+            } else {
+                System.out.println("No fee listed under this service!");
+            }
+        } catch(IllegalArgumentException  e) {
+            System.out.println("Invalid service number.");
+        }
     }
 
     /**
