@@ -59,7 +59,7 @@ public class MemberReportController { //extends AbstractReportController
         
         
         // Use try-with-resources to ensure the writer is closed properly
-        try (FileWriter fstream = new FileWriter(file, true); BufferedWriter writer = new BufferedWriter(fstream)) {
+        try (FileWriter fstream = new FileWriter(file); BufferedWriter writer = new BufferedWriter(fstream)) {
             writeDetails(memberId, writer, memberInfo);
             writeServices("memberId",memberId,writer);
             System.out.println("Report written to " + filePath.toString());
@@ -97,7 +97,7 @@ public class MemberReportController { //extends AbstractReportController
     }
 
 
-/*public static void main(String[] args) {
+public static void main(String[] args) {
 	
     // Initialize your database classes (adjust this with actual constructors or methods)
     CredentialsDatabase credentialsDatabase = new CredentialsDatabase();
@@ -145,6 +145,6 @@ private static HashMap<String, String> createMockServiceInfo() {
     serviceInfo.put("fee", "100.00");
     serviceInfo.put("providerId", "2020");
     return serviceInfo;
-}*/
+}
 }
 
