@@ -1,91 +1,56 @@
-package chocan.menu;
-import chocan.controller.ManagerController;
-import chocan.controller.OperatorController;
-import chocan.controller.ProviderController;
-import chocan.database.CredentialsDatabase;
-import java.util.Scanner;
-
-/**
- * Class representing the login menu for the ChocAn system.
+/*
+ * Authors:
+ * Name:        Nichal Bhattarai
+ * CWID:        12088410
+ * Email:       nbhattarai@crimson.ua.edu
+ *
+ * Contributors:
+ *              Maddox Guthrie
  */
-public class LoginMenu {
-    private final CredentialsDatabase credentialsDatabase;
-    private UserMenu userMenu;
 
+
+package chocan.menu;
+
+import chocan.controller.AbstractController;
+import chocan.controller.LoginController;
+
+import java.util.HashMap;
+
+public class LoginMenu extends UserMenu {
     /**
-     * Constructor for the LoginMenu class.
+     * Constructs a UserMenu with the specified controller.
      *
-     * @param credentialsDatabase The database containing user credentials.
+     * @param controller AbstractController, the controller for this menu.
      */
-    public LoginMenu(CredentialsDatabase credentialsDatabase) {
-        this.credentialsDatabase = credentialsDatabase;
+    public LoginMenu(AbstractController controller) {super(controller);}
+
+    @Override
+    protected HashMap<Integer, String> getOptions() {
+        // Login menu options HashMap
+        HashMap<Integer, String> options = new HashMap<Integer, String>();
+
+        options.put(1, "Login");
+        options.put(2, "Check on timer");
+        options.put(3, "Main accounting procedure");
+        // Exit option is automatically added. No need to add it here.
+
+        return options;
     }
 
-    /**
-     * Displays the login menu and handles user authentication.
-     */
-    public void showLoginMenu() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter your ChocAn provided ID and Password.");
-
-        boolean loggedIn = false;
-        do {
-            System.out.println("Enter ID: ");
-            String id = scanner.nextLine();
-            System.out.println("Enter Password: ");
-            String password = scanner.nextLine();
-
-            loggedIn = authenticateUser(id, password);
-
-            if (loggedIn) {
-                // If the user is authenticated, get the role and proceed accordingly
-                String role = credentialsDatabase.getRole(id);
-                System.out.println("Login successful. You are logged in as a " + role + ".");
-                initializeUserMenu(role);
-                // Run the user menu for the user's role
-                userMenu.run();
-            } else {
-                // Authentication failed
-                System.out.println("Invalid ID or Password. Please try again.");
-            }
-
-        } while (!loggedIn);
-
-        scanner.close();
-    }
-
-    /**
-     * Authenticates a user based on the provided credentials.
-     *
-     * @param id       The user ID.
-     * @param password The user password.
-     * @return True if authentication is successful, false otherwise.
-     */
-    private boolean authenticateUser(String id, String password) {
-        return credentialsDatabase.authenticateCredentials(id, password);
-    }
-
-    /**
-     * Initializes the user menu based on the user's role.
-     *
-     * @param role The user's role.
-     */
-    private void initializeUserMenu(String role) {
-        switch (role) {
-            case "provider":
-                ProviderController providerController = new ProviderController(credentialsDatabase);
-                userMenu = new ProviderMenu(providerController);
+    @Override
+    protected void chooseOption(int option) {
+        switch(option) {
+            case 1:
+                ((LoginController) controller).login();
                 break;
-            case "operator":
-                OperatorController operatorController = new OperatorController(credentialsDatabase);
-                userMenu = new OperatorMenu(operatorController);
+            case 2:
                 break;
-            case "manager":
-                ManagerController managerController = new ManagerController(credentialsDatabase);
-                userMenu = new ManagerMenu(managerController);
+            case 3:
                 break;
             default:
                 break;
         }
     }
+
+    
 }

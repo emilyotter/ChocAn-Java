@@ -2,6 +2,7 @@ package chocan.menu;
 import java.util.HashMap;
 
 import chocan.controller.AbstractController;
+import chocan.controller.ManagerController;
 
 public class ManagerMenu extends UserMenu {
     /**
@@ -13,15 +14,16 @@ public class ManagerMenu extends UserMenu {
         super(controller);
     }
 
+
     @Override
     protected HashMap<Integer, String> getOptions() {
         // Manager menu options HashMap
         HashMap<Integer, String> options = new HashMap<Integer, String>();
 
-        // Add options to HashMap. Use Acending order for keys.
-        // Get Report and Email Report options.
-        options.put(1, "Generate Report");
-        options.put(2, "Email Report");        
+        options.put(1, "Request Provider Report");
+        options.put(2, "Request Member Report");
+        options.put(3, "Request Summary Report");
+        //options.put(4, "Email Report");        
         
         // Exit option is automatically added. No need to add it here. 
         return options;
@@ -32,9 +34,18 @@ public class ManagerMenu extends UserMenu {
     @Override
     public void chooseOption(int option) {
         // Override this method to execute the option chosen by the user. Use the controller to execute the option.
-        
+        switch(option) {
+        	case 1: 
+        		((ManagerController) controller).requestProviderReport();
+        		break;
+        	case 2:
+        		((ManagerController) controller).requestMemberReport();
+        		break;
+        	case 3:
+        		((ManagerController) controller).requestSummaryReport();
+        		break;
+            default:
+                break;
+        }
     }
-
-
-    
 }

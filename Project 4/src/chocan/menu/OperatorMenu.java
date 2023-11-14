@@ -1,13 +1,15 @@
 package chocan.menu;
 
 import chocan.controller.AbstractController;
+import chocan.controller.OperatorController;
+
 import java.util.HashMap;
 
 public class OperatorMenu extends UserMenu {
     /**
      * Parameterized constructor to set controller.
      *
-     * @param controller AbstractController, the controller for this menu. Has an subclass of AbstractController.
+     * @param controller AbstractController, the controller for this menu. Has a subclass of AbstractController.
      */
     public OperatorMenu(AbstractController controller) {
         super(controller);
@@ -26,7 +28,6 @@ public class OperatorMenu extends UserMenu {
         options.put(5, "Update Provider");
         options.put(6, "Delete Provider");
         options.put(7, "Generate Provider Directory");
-        
         // Exit option is automatically added. 
 
         return options;
@@ -34,9 +35,29 @@ public class OperatorMenu extends UserMenu {
 
     @Override
     public void chooseOption(int option) {
-        // Override this method to execute the option chosen by the user. Use the controller to execute the option.
-        // Get Input using UserMenu.NextInt() || UserMenu.NextString() helper functions
+        switch(option) {
+            case 1:
+                ((OperatorController) controller).addMember();
+                break;
+            case 2:
+                ((OperatorController) controller).updateMember();
+                break;
+            case 3:
+                ((OperatorController) controller).deleteMember();
+                break;
+            case 4:
+                ((OperatorController) controller).addProvider();
+                break;
+            case 5:
+                ((OperatorController) controller).updateProvider();
+                break;
+            case 6:
+                ((OperatorController) controller).deleteProvider();
+                break;
+            case 7:
+                ((OperatorController) controller).generateProviderDirectory();
+                break;
+        }
     }
 
-    
 }

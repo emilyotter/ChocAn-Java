@@ -1,8 +1,19 @@
+/*
+ * Authors:
+ * Name:        Nichal Bhattarai
+ * CWID:        12088410
+ * Email:       nbhattarai@crimson.ua.edu
+ *
+ * Contributors:
+ *              Maddox Guthrie
+ */
+
 package chocan.database;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 
 public abstract class KeyValDatabase extends AbstractDatabase {
@@ -168,5 +179,25 @@ public abstract class KeyValDatabase extends AbstractDatabase {
         super.delete();
     }
     
+    /**
+     * Generates a unique ID for a record.
+     * @return a unique ID
+     */
+    public String generateUniqueID() {
+        Random idGenerator = new Random();
+        String randomId = String.valueOf((idGenerator.nextInt(90000) + 10000));
+
+        boolean isUnique = false;
+
+        while(!isUnique) {
+            if(!checkKeyClash(randomId)) {
+                isUnique = true;
+            } else {
+                randomId = String.valueOf((idGenerator.nextInt(90000) + 10000));
+            }
+        }
+
+        return randomId;
+    }
 
 }

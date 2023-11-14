@@ -1,3 +1,12 @@
+/*
+ * Authors:
+ * Name:        Nichal Bhattarai
+ * CWID:        12088410
+ * Email:       nbhattarai@crimson.ua.edu
+ *
+ * Contributor:
+ *            Maddox Guthrie
+ */
 /**
  * This class represents a daily timer that executes a service at a specified time every day.
  * It uses a TimerTask to schedule the execution of the service at the specified time and repeats daily.

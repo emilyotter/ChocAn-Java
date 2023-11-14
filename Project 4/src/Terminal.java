@@ -4,7 +4,9 @@
 
 import java.util.HashMap;
 
+import chocan.controller.LoginController;
 import chocan.database.CredentialsDatabase;
+import chocan.database.ServiceDatabase;
 import chocan.menu.LoginMenu;
 import chocan.timer.DailyTimer;
 
@@ -19,9 +21,9 @@ public class Terminal {
 
         //DailyTimer midnightTimer = new DailyTimer(24, 0, 0, REPORT_CONTROLLER_FROM_ABSTRACT_CONTROLLER);
         //midnightTimer.start();
-
+        // Database for testing
         CredentialsDatabase termCredentialsDatabase = new CredentialsDatabase();
-        LoginMenu termLoginMenu = new LoginMenu(termCredentialsDatabase);
+        ServiceDatabase termServiceDatabase = new ServiceDatabase();
         
         // Print all entries in the database for testing
         termCredentialsDatabase.printAllEntries();
@@ -41,10 +43,9 @@ public class Terminal {
              System.out.println("Entry already exists.");
          }
 
-        
-        termLoginMenu.showLoginMenu();
-
-        
+        LoginController userLoginController = new LoginController(termCredentialsDatabase, termServiceDatabase);
+        LoginMenu userLoginMenu = new LoginMenu(userLoginController);
+        userLoginMenu.run();
 
         turnOff();
     }
