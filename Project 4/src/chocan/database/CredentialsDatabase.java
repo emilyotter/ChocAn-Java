@@ -95,20 +95,5 @@ public class CredentialsDatabase extends KeyValDatabase{
         }
     }
 
-    public String generateUniqueID() {
-        Random idGenerator = new Random();
-        String randomId = String.valueOf((idGenerator.nextInt(90000) + 10000));
-
-        boolean isUnique = false;
-
-        while(!isUnique) {
-            if(!checkKeyClash(randomId)) {
-                isUnique = true;
-            } else {
-                randomId = String.valueOf((idGenerator.nextInt(90000) + 10000));
-            }
-        }
-
-        return randomId;
-    }
+    
 }

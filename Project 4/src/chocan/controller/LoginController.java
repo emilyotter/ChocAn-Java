@@ -70,10 +70,20 @@ public class LoginController extends AbstractController {
             if (loggedIn) {
                 // If the user is authenticated, get the role and proceed accordingly
                 String role = userDatabase.getRole(id);
+
+                // If the role is null or member, the user cannot log in
+                if (role == null || role.equals("member")) {
+                    System.out.println("Invalid Role: User cannot log in. Please contact the system administrator!");
+                    return;
+                }
+
+                // Authentication successful
                 System.out.println("Login successful. You are logged in as a " + role + ".");
                 initializeUserMenu(role);
+    
                 // Run the user menu for the user's role
                 userMenu.run();
+                
             } else {
                 // Authentication failed
                 System.out.println("Invalid ID or Password. Please try again.");

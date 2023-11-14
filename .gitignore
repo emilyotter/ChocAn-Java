@@ -361,6 +361,10 @@ tmp/
 # Visual Studio Code
 .vscode/
 
+# Ignore the doc directory
+*/doc/*
+*/doc/
+
 # Exclude Temp Folder
 */temp/*
 

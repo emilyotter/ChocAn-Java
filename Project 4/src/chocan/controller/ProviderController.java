@@ -45,12 +45,19 @@ public class ProviderController extends AbstractController{
         String input;
         System.out.println(); //member number
         input = inputHandler.unconstrainedPromptStr("Provide card (Member number): " );
+        
+        // Get the member data from the database
         try {
-            if(userDatabase.entryExists(input)) System.out.println("Validated");
-
-        } catch (IllegalArgumentException  e) {
-            System.out.println("Invalid Number");
+            HashMap<String, String> data = userDatabase.getEntry(input);
+            if (data.get("role").equals("member")) {
+                System.out.println("Member found: " + data.get("name"));
+            } else {
+                System.out.println("Not a member!");
+            }
+        } catch(IllegalArgumentException  e) {
+            System.out.println("Invalid member number.");
         }
+
     }
 
     /**
@@ -73,11 +80,14 @@ public class ProviderController extends AbstractController{
         data.put("providerId", inputHandler.unconstrainedPromptStr("Enter the provider's id"));
         data.put("fee", inputHandler.unconstrainedPromptStr("Enter the fee amount"));
 
-        // TODO: Generate some service id
-        System.out.println("Service added successfully");
+        // Get Unique Service ID
+        String key = serviceDatabase.generateUniqueID();
 
-        // TODO: Add using service id
-        // serviceDatabase.addEntry(key, data);
+        // Transaction Successful
+        System.out.println("Service added successfully. The Transaction ID is: " + key);
+
+        // Add using service id
+        serviceDatabase.addEntry(key, data);
     }
 
     /**
@@ -96,12 +106,12 @@ public class ProviderController extends AbstractController{
             data.put("providerId", inputHandler.unconstrainedPromptStr("Enter the provider's id"));
             data.put("fee", inputHandler.unconstrainedPromptStr("Enter the fee amount"));
 
-            // TODO: Generate some service id
-            System.out.println("Service added successfully");
+            // Update the entry
+            serviceDatabase.updateEntry(input, data);
 
-            // TODO: Add using service id
-            // serviceDatabaseDatabase.addEntry(key, data);
-
+            // Transaction Successful
+            System.out.println("Transaction ID :" + input + " updated successfully.");
+            
         } catch (IllegalArgumentException  e) {
             System.out.println("Service not found are you sure the ID is correct?");
         }
