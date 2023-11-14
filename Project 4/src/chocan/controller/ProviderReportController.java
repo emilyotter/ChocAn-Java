@@ -149,4 +149,3 @@ private static HashMap<String, String> createMockServiceInfo() {
     return serviceInfo;
 }
 }
-
