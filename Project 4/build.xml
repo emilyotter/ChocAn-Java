@@ -1,3 +1,4 @@
+<!--Author : Nischal Bhattarai, Maddox Guthire, Egan Trant-->
 <project xmlns:ivy="antlib:org.apache.ivy.ant" 
        name="Project4" default="main" basedir=".">
 	<description>
@@ -11,6 +12,7 @@
 	<property name="dist.lib.dir" location="release/lib" />
 	<property name="lib.dir" value="lib" />
 	<property name="main-class" value="Terminal" />
+	<property name="javadoc.dir" value="doc" />
 
 	<!-- ivy start -->
 	<!-- ivy to get dependencies and copy to project lib folder automatically -->
@@ -62,7 +64,7 @@
 	</target>
 
 	<!-- jar it, and declares the ext libraries in manifest.mf file -->
-	<target name="jar" depends="compile, copy-dependencies" description="package, output to JAR">
+	<target name="jar" depends="compile, copy-dependencies, test" description="package, output to JAR">
 
 		<echo message="classpath.name : ${classpath.name} " />
 
@@ -77,6 +79,34 @@
 		</jar>
 	</target>
 
+	<!--Test Target-->
+    <target name="test" depends="compile">
+        <mkdir dir="${build.dir}/test" />
+        <javac srcdir="${src.dir}" destdir="${build.dir}/test">
+            <classpath>
+                <path refid="classpath" />
+            </classpath>
+        </javac>
+        <junit printsummary="yes" haltonfailure="yes">
+            <classpath>
+                <path refid="classpath" />
+                <pathelement location="${build.dir}/test" />
+            </classpath>
+            <formatter type="plain" usefile="false" />
+            <batchtest fork="yes" todir="${build.dir}/test">
+                <fileset dir="${src.dir}">
+                    <include name="**/*Test.java" />
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+	<!--Javadoc Target-->
+	<target name="javadoc" depends="compile">
+			<mkdir dir="${javadoc.dir}"/>
+	        <javadoc sourcepath="${src.dir}" destdir="${javadoc.dir}" classpathref="classpath"/>
+	</target>
+
 
     <!--Add a run target-->
     <target name="run" depends="jar">
@@ -88,11 +118,12 @@
 		<delete dir="${build.dir}" />
 		<delete dir="${dist.dir}/lib" />
 		<delete file="${dist.dir}/ChocAn.jar" />
+		<delete dir="${javadoc.dir}"/>
 	</target>
 
 
     
 	<!-- Default, run this -->
-	<target name="main" depends="resolve, clean, compile, jar, run" />
+	<target name="main" depends="resolve, clean, compile, jar, javadoc, run" />
 
 </project>
