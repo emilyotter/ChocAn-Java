@@ -1,4 +1,5 @@
 package chocan.controller;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -63,6 +64,8 @@ public class SummaryReportController  extends AbstractReportController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+		
+		printToConsole(filePath);
     }
 
     @Override
