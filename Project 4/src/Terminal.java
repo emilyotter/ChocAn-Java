@@ -9,7 +9,6 @@ import chocan.database.ServiceDatabase;
 import chocan.menu.LoginMenu;
 import chocan.DailyTimer;
 import chocan.controller.MemberReportController;
-import chocan.controller.ProviderReportController;
 import chocan.controller.SummaryReportController;
 
 public class Terminal {

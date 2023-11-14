@@ -21,7 +21,11 @@ public class ServiceDatabase extends KeyValDatabase{
     // Override setMandatoryFields() method
     @Override
     public String[] setMandatoryFields() {
+<<<<<<< HEAD
         return new String[] {"serviceCode", "dateOfService", "memberId", "providerId" , "fee"};
+=======
+        return new String[] {"serviceCode", "dateOfService", "memberId", "providerId", "fee"};
+>>>>>>> reports
     }
 
     /**
