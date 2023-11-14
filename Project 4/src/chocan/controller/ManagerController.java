@@ -5,19 +5,23 @@ import chocan.database.ServiceDatabase;
 import chocan.handler.InputHandler;
 
 import java.util.List;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ManagerController extends AbstractController {
 
 	// Input Handler for this ManagerController
 	private final InputHandler inputHandler;
+	
+	ServiceDatabase serviceDatabase;
 
-    public ManagerController(CredentialsDatabase userDatabase) {
+    public ManagerController(CredentialsDatabase userDatabase, ServiceDatabase serviceDatabase) {
         super(userDatabase);
+        this.serviceDatabase = serviceDatabase;
 		inputHandler = new InputHandler();
     }
     
-    public void requestProviderReport() { 
+    public void requestProviderReport() throws IOException { 
     	//call generate report for specified provider
     	List<String> idList = new ArrayList<>();
     	String idNumber;
@@ -32,11 +36,11 @@ public class ManagerController extends AbstractController {
     		
     		idList.add(idNumber);
     	}
-    	// ProviderReportController providerReportController = new ProviderReportController(userDatabase); 
-    	// providerReportController.generateProviderReports(idList);
+    	ProviderReportController providerReportController = new ProviderReportController(userDatabase, serviceDatabase); 
+    	providerReportController.generateProviderReports(idList);
     }
     
-    public void requestMemberReport() {
+    public void requestMemberReport() throws IOException {
     	//call generate report for specified member
     	List<String> idList = new ArrayList<>();
     	String idNumber;
@@ -51,15 +55,15 @@ public class ManagerController extends AbstractController {
     		
     		idList.add(idNumber);
     	}
-    	// MemberReportController memberReportController = new MemberReportController(userDatabase);
-    	// memberReportController.generateProviderReports(idList);
+    	MemberReportController memberReportController = new MemberReportController(userDatabase, serviceDatabase);
+    	memberReportController.generateMemberReports(idList);
     	
     }
     
     public void requestSummaryReport() {
     	//call generate summary report
-    	// SummaryReportController summaryReportController = new SummaryReportController(userDatabase);
-    	// summaryReportController.generateSummaryReport();
+    	SummaryReportController summaryReportController = new SummaryReportController(serviceDatabase);
+    	summaryReportController.generateSummaryReport();
     	
     }
 }
