@@ -7,16 +7,20 @@ The ChocAn System is a console-based application designed to manage user credent
 ## System Requirements
 To run the ChocAn System, ensure that the following requirements are met:
 
-- Java Runtime Environment (JRE) installed.
-- Git for cloning the repository.
-
+- `git` for cloning the repository.
+- `apache` ant for building the project
+- `java` for running the project.
 
 ## Installation
 Follow these steps to install the ChocAn System:
 
 1)	Open a terminal or command prompt.
 
-2)	Clone the repository: ```git clone // insert link here```
+2)	Clone the repository:
+
+```shell
+git clone https://bitbucket.org/azaman2/team12/src/master/
+```
 
 3)  Change into the project directory.
 
@@ -40,7 +44,7 @@ java -jar release/ChocAn.jar
 Follow these steps to test specific features of the ChocAn System:
 
 First, login to the system.
-Steps to Login:
+Steps to Log in:
 
 -	The system displays a login prompt.
 -	Enter the ChocAn provided ID.
@@ -146,14 +150,13 @@ The application is split into 3 different menus:
 
 Thank you for choosing Chocoholics Anonymous. If you encounter any issues or have questions, refer to this manual for assistance.
 
-## Task Distribution Table //insert
+## Task Distribution Table
 
-| Name              | Percentage | Tasks Contributed |
-|-------------------|------------|-------------------|
-| Dylan Mather      |            |                   |
-| Maddox Guthrie    |            |                   |
-| Nischal Bhattarai |            |                   |
-| Emily Otter       |            |                   |
-| Egan Trahant      |            |                   |
-| Kaela Camara      |            |                   |
-#
+| Name              | Percentage | Tasks Contributed                                                      |
+|-------------------|------------|------------------------------------------------------------------------|
+| Dylan Mather      |            |                                                                        |
+| Maddox Guthrie    |            | Operator Menu + Controller<br/>Login Menu + Controller<br/>Daily Timer |
+| Nischal Bhattarai |            |                                                                        |
+| Emily Otter       |            |                                                                        |
+| Egan Trahant      |            |                                                                        |
+| Kaela Camara      |            |                                                                        |
