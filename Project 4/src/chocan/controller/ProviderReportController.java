@@ -4,10 +4,10 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+import java.util.Set;
 import java.nio.file.Path;
 
 import chocan.database.CredentialsDatabase;
@@ -17,15 +17,23 @@ public class ProviderReportController extends AbstractReportController { //exten
     
 	private CredentialsDatabase credentials;
     private ServiceDatabase services;
-	
-    @Override
-    public void timedMethod() {
-
-    }
    
 	public ProviderReportController(CredentialsDatabase credentials, ServiceDatabase services) {
     	this.credentials = credentials;
     	this.services = services;
+    }
+	
+ @Override
+    public void timedMethod(){
+    	HashMap<String, HashMap<String,String>> keys = credentials.getAllEntry();
+    	Set<String> keySet = keys.keySet();
+    	ArrayList<String> listOfKeys= new ArrayList<String>(keySet);
+    	try {
+			generateProviderReports(listOfKeys);
+		} catch (IOException e) {
+			// Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 	
 	//generates a report for each provider as a separate text file
@@ -71,7 +79,6 @@ public class ProviderReportController extends AbstractReportController { //exten
     private void writeDetails(String providerId, BufferedWriter writer, HashMap<String, String> providerInfo) throws IOException {
         //formatting provider details
         writer.write("Provider Name:" + String.format("%-25s\n", providerInfo.getOrDefault("name", "")));
-        //writer.write("Provider Number:" + String.format("%-9s\n", serviceInfo.getOrDefault("providerId", "")));
         writer.write("Provider Number:" + String.format("%-9s\n", providerId));
         writer.write("Street Address:" + String.format("%-25s\n", providerInfo.getOrDefault("address", "")));
         writer.write("City:" + String.format("%-14s\n", providerInfo.getOrDefault("city", "")));

@@ -6,10 +6,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
 
-import chocan.database.CredentialsDatabase;
 import chocan.database.ServiceDatabase;
 
-public class SummaryReportController  extends AbstractReportController { //may not need inheritance
+public class SummaryReportController  extends AbstractReportController { 
 
 	private ServiceDatabase serviceDatabase;
 

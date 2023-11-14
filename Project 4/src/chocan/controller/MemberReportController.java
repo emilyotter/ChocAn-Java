@@ -4,10 +4,10 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+import java.util.Set;
 import java.nio.file.Path;
 
 import chocan.database.CredentialsDatabase;
@@ -17,15 +17,23 @@ public class MemberReportController extends AbstractReportController { //extends
     
 	private CredentialsDatabase credentials;
     private ServiceDatabase services;
-	
-    @Override
-    public void timedMethod() {
-
-    }
    
 	public MemberReportController(CredentialsDatabase credentials, ServiceDatabase services) {
     	this.credentials = credentials;
     	this.services = services;
+    }
+	
+  @Override
+    public void timedMethod() {
+    	HashMap<String, HashMap<String,String>> keys = credentials.getAllEntry();
+    	Set<String> keySet = keys.keySet();
+    	ArrayList<String> listOfKeys= new ArrayList<String>(keySet);
+    	try {
+			generateMemberReports(listOfKeys);
+		} catch (IOException e) {
+			// Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 	
 	//generates a report for each member as a separate text file
