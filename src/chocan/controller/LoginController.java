@@ -93,4 +93,12 @@ public class LoginController extends AbstractController {
 
     }
 
+    public void mainAccountingProcedure() {
+        System.out.println("Running Main Account Procedure");
+        ManagerController managerController = new ManagerController(userDatabase, serviceDatabase);
+        managerController.requestMemberReport();
+        managerController.requestProviderReport();
+        managerController.requestSummaryReport();
+    }
+
 }

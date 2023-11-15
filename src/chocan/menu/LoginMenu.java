@@ -30,8 +30,7 @@ public class LoginMenu extends UserMenu {
         HashMap<Integer, String> options = new HashMap<Integer, String>();
 
         options.put(1, "Login");
-        options.put(2, "Check on timer");
-        options.put(3, "Main accounting procedure");
+        options.put(2, "Main accounting procedure");
         // Exit option is automatically added. No need to add it here.
 
         return options;
@@ -44,8 +43,7 @@ public class LoginMenu extends UserMenu {
                 ((LoginController) controller).login();
                 break;
             case 2:
-                break;
-            case 3:
+                ((LoginController) controller).mainAccountingProcedure();
                 break;
             default:
                 break;
