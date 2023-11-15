@@ -36,7 +36,7 @@ public class CredentialsDatabaseTest {
         System.clearProperty("CHOCAN_TEMP_DIR");
     }
 
-    @Test
+    @Test // Maddox Guthrie
     public void testGenerateID() {
         CredentialsDatabase db = new CredentialsDatabase();
         db.generateUniqueID();
