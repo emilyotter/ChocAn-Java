@@ -3,6 +3,8 @@
 ## Introduction
 The ChocAn System is a console-based application designed to manage user credentials, generate reports, and interact with a ChocAn database. This manual provides step-by-step instructions on how to run the program, test its features, and provides team performance.
 
+## Admin
+The system has an operator user, with the id and password `admin`. This can be used to control the system before other users have been added.
 
 ## System Requirements
 To run the ChocAn System, ensure that the following requirements are met:
