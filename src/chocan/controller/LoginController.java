@@ -6,6 +6,9 @@ import chocan.menu.ManagerMenu;
 import chocan.menu.OperatorMenu;
 import chocan.menu.ProviderMenu;
 import chocan.menu.UserMenu;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import chocan.handler.InputHandler;
 
@@ -93,12 +96,27 @@ public class LoginController extends AbstractController {
 
     }
 
+    /**
+     * Runs the main accounting procedure.
+     */
     public void mainAccountingProcedure() {
-        System.out.println("Running Main Account Procedure");
-        ManagerController managerController = new ManagerController(userDatabase, serviceDatabase);
-        managerController.requestMemberReport();
-        managerController.requestProviderReport();
-        managerController.requestSummaryReport();
+    	HashMap<String, HashMap<String, String>> providers = userDatabase.matchSearch("role", "provider");
+    	HashMap<String, HashMap<String, String>> members = userDatabase.matchSearch("role", "member");
+    	
+    	List<String> pIdList = new ArrayList<>();
+    	List<String> mIdList = new ArrayList<>();
+    	
+    	pIdList.addAll(providers.keySet());
+    	mIdList.addAll(members.keySet());
+    	
+    	ProviderReportController providerReportController = new ProviderReportController(userDatabase, serviceDatabase);
+    	MemberReportController memberReportController = new MemberReportController(userDatabase, serviceDatabase);
+    	SummaryReportController summaryReportController = new SummaryReportController(userDatabase, serviceDatabase);
+    	
+    	providerReportController.generateProviderReports(pIdList);
+    	memberReportController.generateMemberReports(mIdList);
+    	summaryReportController.generateSummaryReport();
+
     }
 
 }
