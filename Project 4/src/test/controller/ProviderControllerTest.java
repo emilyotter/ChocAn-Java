@@ -35,15 +35,21 @@ public class ProviderControllerTest {
     public void testValidateMemberValid() {
         // Arrange
         String memberId = "123456";
-        String memberName = "John Doe";
-        mockCredentialsDatabase.addEntry(memberId, createMemberData(memberName));
+        String name = "John Doe";
+        String password = "banana";
+        String role = "member";
+        String address = "101 Main St.";
+        String zipcode = "11111";
+        String state = "AL";
+        
+        mockCredentialsDatabase.addEntry(memberId, createMemberData(name));
 
         // Act
         // Redirect system output to capture console output for validation
         String consoleOutput = redirectSystemOut(() -> providerController.validateMember());
 
         // Assert
-        assertTrue(consoleOutput.contains("Member found: " + memberName));
+        assertTrue(consoleOutput.contains("Member found: " + name));
     }
 
     @Test
