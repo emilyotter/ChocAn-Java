@@ -2,6 +2,8 @@ package test.controller;
 
 import java.util.HashMap;
 import java.io.ByteArrayOutputStream;
+import java.io.ByteArrayInputStream;
+
 import java.io.PrintStream;
 
 import chocan.controller.ProviderController;
@@ -57,14 +59,21 @@ public class ProviderControllerTest {
 
     @Test
     public void testValidateMemberInvalid() {
+        // Arrange
+        String invalidMemberId = "999999"; // Assuming this member ID is invalid
 
         // Act
         // Redirect system output to capture console output for validation
-        String consoleOutput = redirectSystemOut(() -> providerController.validateMember());
+        String consoleOutput = redirectSystemOut(() -> {
+            System.out.print("Provide card (Member number): ");
+            System.in = new ByteArrayInputStream(invalidMemberId.getBytes());
+            providerController.validateMember();
+        });
 
         // Assert
         assertTrue(consoleOutput.contains("Invalid member number."));
     }
+
 
     private HashMap<String, String> createMemberData(String name, String password, String role,
             String address, String zipcode, String state) {
