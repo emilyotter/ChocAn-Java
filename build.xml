@@ -127,7 +127,7 @@
 
     
 	<!-- Default, run this -->
-	<target name="main" depends="resolve, clean, compile, test, jar, javadoc" >
+	<target name="main" depends="clean, resolve, compile, test, jar, javadoc" >
 		<!--Print how to run the application -->
 		<echo message="-------------------App Running Instruction------------------" />
 		<pathconvert property="jar.path" pathsep="${path.separator}">
