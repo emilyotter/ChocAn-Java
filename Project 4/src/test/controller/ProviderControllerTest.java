@@ -65,13 +65,13 @@ public class ProviderControllerTest {
         // Act
         String consoleOutput = redirectSystemOut(() -> {
             System.setIn(inputStream);
-            System.out.print("Provide card (Member number): ");
             providerController.validateMember();
         }, inputStream);
 
         // Assert
         assertTrue(consoleOutput.contains("Invalid member number."));
     }
+
 
     @Test
     public void testBillChocAnWithValidTransaction() {
