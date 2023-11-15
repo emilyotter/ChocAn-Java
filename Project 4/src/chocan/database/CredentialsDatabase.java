@@ -9,7 +9,7 @@
 package chocan.database;
 
 import java.util.HashMap;
-import java.util.Random;
+
 
 public class CredentialsDatabase extends KeyValDatabase{
 

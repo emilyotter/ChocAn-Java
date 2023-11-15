@@ -208,4 +208,11 @@ public class OperatorController extends AbstractController {
         }
 
     }
+
+    /**
+     * Prints the credentials of all users in the user database.
+     */
+    public void printCredentials() {
+        userDatabase.printAllEntries();
+    }
 }
