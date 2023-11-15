@@ -1,3 +1,12 @@
+/*
+* Authors:
+* Name:        Emily Otter
+* CWID:        12100724
+* Email:       eaotter@crimson.ua.edu
+*
+*	Contributors: Dylan Mather, Maddox Guthrie
+*/
+
 package chocan.controller;
 
 import chocan.database.CredentialsDatabase;
