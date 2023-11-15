@@ -107,12 +107,6 @@
 	        <javadoc sourcepath="${src.dir}" destdir="${javadoc.dir}" classpathref="classpath"/>
 	</target>
 
-
-    <!--Add a run target-->
-    <target name="run" depends="jar">
-        <java jar="${dist.dir}/${projectName}.jar" fork="true"/>
-    </target>
-
     <!--Add a clean target-->
 	<target name="clean" description="clean up">
 		<delete dir="${build.dir}" />
@@ -124,6 +118,22 @@
 
     
 	<!-- Default, run this -->
-	<target name="main" depends="resolve, clean, compile, jar, javadoc, run" />
+	<target name="main" depends="resolve, clean, compile, jar, javadoc" >
+		<!--Print how to run the application -->
+		<echo message="-------------------App Running Instruction------------------" />
+		<pathconvert property="jar.path" pathsep="${path.separator}">
+			<path>
+				<pathelement location="${dist.dir}/ChocAn.jar" />
+			</path>
+		</pathconvert>
+		<echo message="To run the application, use the following command:" />
+		<echo message="java -jar ${jar.path}" />
+		<echo message="" />
+		<!--Print Admin account credentials -->
+		<echo message="--------------Admin Account Credentials--------------" />
+		<echo message="Username: admin" />
+		<echo message="Password: admin" />
+		<echo message="" />
+	</target>
 
 </project>
