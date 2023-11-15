@@ -77,6 +77,7 @@ public class InputHandler {
                 return userInput;
             } else {
                 System.out.println("Error: Please enter a valid value from the given options.");
+                System.out.println("Valid options: " + String.join(", ", validValues));
             }
         }
     }

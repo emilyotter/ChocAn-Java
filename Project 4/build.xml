@@ -64,7 +64,7 @@
 	</target>
 
 	<!-- jar it, and declares the ext libraries in manifest.mf file -->
-	<target name="jar" depends="compile, copy-dependencies, test" description="package, output to JAR">
+	<target name="jar" depends="compile, copy-dependencies" description="package, output to JAR">
 
 		<echo message="classpath.name : ${classpath.name} " />
 
@@ -125,7 +125,7 @@
 
     
 	<!-- Default, run this -->
-	<target name="main" depends="resolve, clean, compile, jar, javadoc" >
+	<target name="main" depends="resolve, clean, compile, test, jar, javadoc" >
 		<!--Print how to run the application -->
 		<echo message="-------------------App Running Instruction------------------" />
 		<pathconvert property="jar.path" pathsep="${path.separator}">

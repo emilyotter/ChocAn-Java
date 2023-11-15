@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class CredentialsDatabase extends KeyValDatabase{
 
     // Role options:
-    protected String[] roleOptions = {"member", "provider", "operator", "manager"};
+    public String[] roleOptions = {"member", "provider", "operator", "manager"};
 
     // Constructor
     public CredentialsDatabase() {
