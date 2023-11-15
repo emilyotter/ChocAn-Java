@@ -41,8 +41,18 @@ public class ManagerController extends AbstractController {
     		if("done".equalsIgnoreCase(idNumber)) {
     			break;
     		}
-    		
-    		idList.add(idNumber);
+
+			// Check if the ID is valid before adding it to the list.
+			if (!userDatabase.entryExists(idNumber)) {
+				System.out.println("Invalid ID. Please try again.");
+			}
+			else {
+				if (!userDatabase.getRole(idNumber).equals("provider")){
+					System.out.println("Invalid Role. Must be a provider. Please try again.");
+					continue;	
+				}
+				idList.add(idNumber);
+			}
     	}
     	ProviderReportController providerReportController = new ProviderReportController(userDatabase, serviceDatabase); 
     	providerReportController.generateProviderReports(idList);
@@ -55,14 +65,25 @@ public class ManagerController extends AbstractController {
     	System.out.println("Enter All the Member IDs that you wish to print a report for. Enter done once finished.");
     	
     	while(true) {
-			idNumber = this.inputHandler.unconstrainedPromptStr("Enter ID: ");
+    		idNumber = this.inputHandler.unconstrainedPromptStr("Enter ID: ");
     		
     		if("done".equalsIgnoreCase(idNumber)) {
     			break;
     		}
-    		
-    		idList.add(idNumber);
+
+			// Check if the ID is valid before adding it to the list.
+			if (!userDatabase.entryExists(idNumber)) {
+				System.out.println("Invalid ID. Please try again.");
+			}
+			else {
+				if (!userDatabase.getRole(idNumber).equals("member")){
+					System.out.println("Invalid Role. Must be a member. Please try again.");
+					continue;	
+				}
+				idList.add(idNumber);
+			}
     	}
+		
     	MemberReportController memberReportController = new MemberReportController(userDatabase, serviceDatabase);
 		memberReportController.generateMemberReports(idList);
     }

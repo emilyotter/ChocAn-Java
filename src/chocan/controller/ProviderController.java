@@ -88,11 +88,11 @@ public class ProviderController extends AbstractController{
         HashMap<String, String> data = new HashMap<>();
 
         // Use the input handler to get the data from the user
-        data.put("serviceCode", inputHandler.unconstrainedPromptStr("Enter the service code"));
-        data.put("dateOfService", inputHandler.unconstrainedPromptStr("Enter the date of service"));
-        data.put("memberId", inputHandler.unconstrainedPromptStr("Enter the member's id"));
-        data.put("providerId", inputHandler.unconstrainedPromptStr("Enter the provider's id"));
-        data.put("fee", inputHandler.unconstrainedPromptStr("Enter the fee amount"));
+        data.put("serviceCode", inputHandler.unconstrainedPromptStr("Enter the service code: "));
+        data.put("dateOfService", inputHandler.unconstrainedPromptStr("Enter the date of service: "));
+        data.put("memberId", inputHandler.unconstrainedPromptStr("Enter the member's id: "));
+        data.put("providerId", inputHandler.unconstrainedPromptStr("Enter the provider's id: "));
+        data.put("fee", inputHandler.unconstrainedPromptStr("Enter the fee amount: "));
 
         // Get Unique Service ID
         String key = serviceDatabase.generateUniqueID();
@@ -114,11 +114,11 @@ public class ProviderController extends AbstractController{
             serviceDatabase.removeEntry(input);
 
             // Use the input handler to get the data from the user
-            data.put("serviceCode", inputHandler.unconstrainedPromptStr("Enter the service code"));
-            data.put("dateOfService", inputHandler.unconstrainedPromptStr("Enter the date of service"));
-            data.put("memberId", inputHandler.unconstrainedPromptStr("Enter the member's id"));
-            data.put("providerId", inputHandler.unconstrainedPromptStr("Enter the provider's id"));
-            data.put("fee", inputHandler.unconstrainedPromptStr("Enter the fee amount"));
+            data.put("serviceCode", inputHandler.unconstrainedPromptStr("Enter the service code: "));
+            data.put("dateOfService", inputHandler.unconstrainedPromptStr("Enter the date of service: "));
+            data.put("memberId", inputHandler.unconstrainedPromptStr("Enter the member's id: "));
+            data.put("providerId", inputHandler.unconstrainedPromptStr("Enter the provider's id: "));
+            data.put("fee", inputHandler.unconstrainedPromptStr("Enter the fee amount: "));
 
             // Update the entry
             serviceDatabase.updateEntry(input, data);

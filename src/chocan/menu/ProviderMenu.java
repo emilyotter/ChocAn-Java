@@ -41,12 +41,16 @@ public class ProviderMenu extends UserMenu {
                 ((ProviderController) controller).validateMember();
                 break;
             case 2:
+                ((ProviderController) controller).addService();
                 break;
             case 3:
+                ((ProviderController) controller).updateService();
                 break;
             case 4:
+                ((ProviderController) controller).deleteService();
                 break;
             case 5:
+                ((ProviderController) controller).generateProviderReport();
                 break;
             case 6:
                 ((ProviderController) controller).emailProviderReport();
@@ -55,7 +59,6 @@ public class ProviderMenu extends UserMenu {
                 ((ProviderController) controller).printServiceDatabase();
                 break;
         }
-        // Override this method to execute the option chosen by the user. Use the controller to execute the option.
     }
 
 }
