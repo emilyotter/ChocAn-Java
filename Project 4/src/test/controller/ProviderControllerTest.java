@@ -3,8 +3,8 @@ package test.controller;
 import java.util.HashMap;
 import java.io.ByteArrayOutputStream;
 import java.io.ByteArrayInputStream;
-
 import java.io.PrintStream;
+import java.io.InputStream;
 
 import chocan.controller.ProviderController;
 import chocan.database.CredentialsDatabase;
@@ -43,70 +43,44 @@ public class ProviderControllerTest {
         String address = "101 Main St.";
         String zipcode = "11111";
         String state = "AL";
-        
+
         // Create member data with additional fields
         HashMap<String, String> memberData = createMemberData(name, password, role, address, zipcode, state);
         mockCredentialsDatabase.addEntry(memberId, memberData);
 
         // Act
         // Redirect system output to capture console output for validation
-        String consoleOutput = redirectSystemOut(() -> providerController.validateMember());
+        String consoleOutput = redirectSystemOut(() -> providerController.validateMember(), null);
 
         // Assert
         assertTrue(consoleOutput.contains("Member found: " + name));
     }
 
-
     @Test
     public void testValidateMemberInvalid() {
         // Arrange
         String invalidMemberId = "999999"; // Assuming this member ID is invalid
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(invalidMemberId.getBytes());
 
         // Act
-        // Redirect system output to capture console output for validation
         String consoleOutput = redirectSystemOut(() -> {
+            System.setIn(inputStream);
             System.out.print("Provide card (Member number): ");
-            System.in = new ByteArrayInputStream(invalidMemberId.getBytes());
             providerController.validateMember();
-        });
+        }, inputStream);
 
         // Assert
         assertTrue(consoleOutput.contains("Invalid member number."));
     }
 
-
-    private HashMap<String, String> createMemberData(String name, String password, String role,
-            String address, String zipcode, String state) {
-    	HashMap<String, String> memberData = new HashMap<>();
-    	memberData.put("name", name);
-    	memberData.put("password", password);
-    	memberData.put("role", role);
-    	memberData.put("address", address);
-    	memberData.put("zipcode", zipcode);
-    	memberData.put("state", state);
-
-    	return memberData;
-}
-
-    private String redirectSystemOut(Runnable action) {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream originalOut = System.out;
-        System.setOut(new PrintStream(outputStream));
-
-        try {
-            action.run();
-        } finally {
-            System.setOut(originalOut);
-        }
-
-        return outputStream.toString();
-    }
-    
-    //BILL CHOCAN
     @Test
     public void testBillChocAnWithValidTransaction() {
+        // Ensure the database is in a clean state before this test
+        mockCredentialsDatabase.delete();
+        mockServiceDatabase.delete();
+
         // Act
-        String consoleOutput = redirectSystemOut(() -> providerController.billChocAn());
+        String consoleOutput = redirectSystemOut(() -> providerController.billChocAn(), null);
 
         // Assert
         assertEquals("No fee listed under this service!\n", consoleOutput);
@@ -114,12 +88,46 @@ public class ProviderControllerTest {
 
     @Test
     public void testBillChocAnWithInvalidTransaction() {
+        // Ensure the database is in a clean state before this test
+        mockCredentialsDatabase.delete();
+        mockServiceDatabase.delete();
+
         // Act
-        String consoleOutput = redirectSystemOut(() -> providerController.billChocAn());
+        String consoleOutput = redirectSystemOut(() -> providerController.billChocAn(), null);
 
         // Assert
         assertEquals("Invalid Transaction ID.\n", consoleOutput);
     }
 
-}
+    private HashMap<String, String> createMemberData(String name, String password, String role,
+            String address, String zipcode, String state) {
+        HashMap<String, String> memberData = new HashMap<>();
+        memberData.put("name", name);
+        memberData.put("password", password);
+        memberData.put("role", role);
+        memberData.put("address", address);
+        memberData.put("zipcode", zipcode);
+        memberData.put("state", state);
 
+        return memberData;
+    }
+
+    private String redirectSystemOut(Runnable action, ByteArrayInputStream inputStream) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        InputStream originalIn = System.in;
+
+        try {
+            System.setOut(new PrintStream(outputStream));
+            if (inputStream != null) {
+                System.setIn(inputStream);
+            }
+            action.run();
+        } finally {
+            System.setOut(originalOut);
+            System.setIn(originalIn);
+        }
+
+        return outputStream.toString();
+    }
+}
