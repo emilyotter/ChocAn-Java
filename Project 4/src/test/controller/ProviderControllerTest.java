@@ -78,5 +78,25 @@ public class ProviderControllerTest {
 
         return outputStream.toString();
     }
+    
+    //BILL CHOCAN
+    @Test
+    public void testBillChocAnWithValidTransaction() {
+        // Act
+        String consoleOutput = redirectSystemOut(() -> providerController.billChocAn());
+
+        // Assert
+        assertEquals("No fee listed under this service!\n", consoleOutput);
+    }
+
+    @Test
+    public void testBillChocAnWithInvalidTransaction() {
+        // Act
+        String consoleOutput = redirectSystemOut(() -> providerController.billChocAn());
+
+        // Assert
+        assertEquals("Invalid Transaction ID.\n", consoleOutput);
+    }
+
 }
 
