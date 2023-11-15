@@ -28,16 +28,11 @@ public class MemberReportController extends AbstractReportController { //extends
     	HashMap<String, HashMap<String,String>> keys = credentials.getAllEntry();
     	Set<String> keySet = keys.keySet();
     	ArrayList<String> listOfKeys= new ArrayList<String>(keySet);
-    	try {
-			generateMemberReports(listOfKeys);
-		} catch (IOException e) {
-			// Auto-generated catch block
-			e.printStackTrace();
-		}
+  		generateMemberReports(listOfKeys);
     }
 	
 	//generates a report for each member as a separate text file
-	public void generateMemberReports(List<String> memberIds) throws IOException {
+	public void generateMemberReports(List<String> memberIds) {
         // Iterate over each member ID and generate a report
         for (String memberId : memberIds) {
             //generate a separate file for each provider
@@ -46,7 +41,7 @@ public class MemberReportController extends AbstractReportController { //extends
         }
 	 }
 	 
-    public void generateMemberReport(String memberId, String filename) throws IOException{
+    public void generateMemberReport(String memberId, String filename){
     	//retrieve provider info
     	HashMap<String, String> memberInfo = credentials.getEntry(memberId);
     	
@@ -79,9 +74,10 @@ public class MemberReportController extends AbstractReportController { //extends
     }
     
     
-    private void writeDetails(String memberId, BufferedWriter writer, HashMap<String, String> memberInfo) throws IOException {
+    private void writeDetails(String memberId, BufferedWriter writer, HashMap<String, String> memberInfo) {
         //formatting provider details
-        writer.write("Member Name:" + String.format("%-25s\n", memberInfo.getOrDefault("name", "No info available.")));
+        try {
+			writer.write("Member Name:" + String.format("%-25s\n", memberInfo.getOrDefault("name", "No info available.")));
         //writer.write("Member Number:" + String.format("%-9s\n", serviceInfo.getOrDefault("providerId", "")));
         writer.write("Member Number:" + String.format("%-9s\n", memberId));
         writer.write("Street Address:" + String.format("%-25s\n", memberInfo.getOrDefault("address", "No info available.")));
@@ -89,11 +85,17 @@ public class MemberReportController extends AbstractReportController { //extends
         writer.write("State:" + String.format("%-2s\n", memberInfo.getOrDefault("state", "No info available.")));
         writer.write("ZIP Code:" + String.format("%-5s\n", memberInfo.getOrDefault("zipcode", "No info available.")));
         writer.write("\n");
+        }
+        catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
-    private void writeServices(String field, String matchVal, BufferedWriter writer) throws IOException {
+    private void writeServices(String field, String matchVal, BufferedWriter writer){
         
-    	writer.write("\nServices:\n");
+    	try {
+			writer.write("\nServices:\n");
     	
     	//use match search to get services
         HashMap<String, HashMap<String, String>> matchedRecords = services.matchSearch(field, matchVal);
@@ -108,6 +110,11 @@ public class MemberReportController extends AbstractReportController { //extends
             }
         }
         writer.write("\n");
+    	}
+    	catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
 

@@ -81,20 +81,27 @@ public class ProviderReportController extends AbstractReportController { //exten
     }
     
     
-    private void writeDetails(String providerId, BufferedWriter writer, HashMap<String, String> providerInfo) throws IOException {
+    private void writeDetails(String providerId, BufferedWriter writer, HashMap<String, String> providerInfo){
         //formatting provider details
-        writer.write("Provider Name:" + String.format("%-25s\n", providerInfo.getOrDefault("name", "No info available.")));
+        try {
+			writer.write("Provider Name:" + String.format("%-25s\n", providerInfo.getOrDefault("name", "No info available.")));
         writer.write("Provider Number:" + String.format("%-9s\n", providerId));
         writer.write("Street Address:" + String.format("%-25s\n", providerInfo.getOrDefault("address", "No info available.")));
         writer.write("City:" + String.format("%-14s\n", providerInfo.getOrDefault("city", "No info available.")));
         writer.write("State:" + String.format("%-2s\n", providerInfo.getOrDefault("state", "No info available.")));
         writer.write("ZIP Code:" + String.format("%-5s\n", providerInfo.getOrDefault("zipcode", "No info available.")));
         writer.write("\n");
+        }
+        catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
-    private void writeServices(String field, String matchVal, BufferedWriter writer) throws IOException {
+    private void writeServices(String field, String matchVal, BufferedWriter writer) {
       
-    	writer.write("\nServices:\n");
+    	try {
+			writer.write("\nServices:\n");
     	//use match search to get services
         HashMap<String, HashMap<String, String>> matchedRecords = services.matchSearch(field, matchVal);
         // Iterate through the results and print them
@@ -107,6 +114,11 @@ public class ProviderReportController extends AbstractReportController { //exten
             }
         }
         writer.write("\n");
+    	}
+    	catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
 

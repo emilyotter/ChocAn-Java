@@ -26,7 +26,7 @@ public class Terminal {
 
         MemberReportController mrc = new MemberReportController(termCredentialsDatabase , termServiceDatabase);
         ProviderReportController prc = new ProviderReportController(termCredentialsDatabase, termServiceDatabase);
-        SummaryReportController src = new SummaryReportController(termServiceDatabase);
+        SummaryReportController src = new SummaryReportController(termCredentialsDatabase, termServiceDatabase);
 
         DailyTimer mrcTimer = new DailyTimer(7, 24, 0, 0, mrc);
         DailyTimer prcTimer = new DailyTimer(7, 24, 0, 0, prc);

@@ -5,7 +5,6 @@ import chocan.database.ServiceDatabase;
 import chocan.handler.InputHandler;
 
 import java.util.List;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class ManagerController extends AbstractController {
@@ -56,18 +55,12 @@ public class ManagerController extends AbstractController {
     		idList.add(idNumber);
     	}
     	MemberReportController memberReportController = new MemberReportController(userDatabase, serviceDatabase);
-		try {
-			memberReportController.generateMemberReports(idList);
-		} catch (IOException e) {
-			System.out.println("Error, Stop throwing exceptions!");
-		}
-
+		memberReportController.generateMemberReports(idList);
     }
     
     public void requestSummaryReport() {
     	//call generate summary report
-    	SummaryReportController summaryReportController = new SummaryReportController(serviceDatabase);
+    	SummaryReportController summaryReportController = new SummaryReportController(userDatabase, serviceDatabase);
     	summaryReportController.generateSummaryReport();
-    	
     }
 }
