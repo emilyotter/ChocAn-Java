@@ -215,4 +215,42 @@ public class OperatorController extends AbstractController {
     public void printCredentials() {
         userDatabase.printAllEntries();
     }
+
+
+
+    /**
+     * Adds a new user account to the user database.
+     * Prompts the user for the necessary information, generates a unique ID for the user,
+     * and adds the user to the database.
+     */
+    public void addUserAccount(){
+        HashMap<String, String> data = new HashMap<>();
+        String input;
+        String key;
+
+        input = inputHandler.constrainedPromptStr("Enter user's role: ", this.userDatabase.roleOptions);
+        data.put("role", input);
+
+        input = inputHandler.unconstrainedPromptStr("Enter the user's full name: ");
+        data.put("name", input);
+
+        input = inputHandler.unconstrainedPromptStr("Enter the user's password: ");
+        data.put("password", input);
+
+        input = inputHandler.unconstrainedPromptStr("Enter the user's street address: ");
+        data.put("address", input);
+
+        input = inputHandler.unconstrainedPromptStr("Enter the user's zipcode: ");
+        data.put("zipcode", input);
+
+        input = inputHandler.unconstrainedPromptStr("Enter the user's state abbreviation: ");
+        data.put("state", input);
+
+        key = userDatabase.generateUniqueID();
+        System.out.println("The User's Unique ID is: " + key);
+
+        userDatabase.addEntry(key, data);
+
+    }
+    
 }
