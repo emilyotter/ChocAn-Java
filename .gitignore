@@ -362,8 +362,8 @@ tmp/
 .vscode/
 
 # Ignore the doc directory
-*/doc/*
-*/doc/
+doc/*
+doc/
 
 # Exclude Temp Folder
 */temp/*
