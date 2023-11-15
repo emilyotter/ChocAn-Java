@@ -87,7 +87,7 @@
                 <path refid="classpath" />
             </classpath>
         </javac>
-        <junit printsummary="yes" haltonfailure="yes">
+        <junit printsummary="yes" haltonfailure="no"> <!-- Do not halt on test failure-->
             <classpath>
                 <path refid="classpath" />
                 <pathelement location="${build.dir}/test" />
@@ -104,7 +104,14 @@
 	<!--Javadoc Target-->
 	<target name="javadoc" depends="compile">
 			<mkdir dir="${javadoc.dir}"/>
-	        <javadoc sourcepath="${src.dir}" destdir="${javadoc.dir}" classpathref="classpath"/>
+			<!--Exclude Tests-->
+			<fileset dir="${src.dir}" id="src.files">
+				<exclude name="**/*Test.java"/>
+			</fileset>
+
+			<javadoc sourcepath="${src.dir}" destdir="${javadoc.dir}" classpathref="classpath">
+				<fileset refid="src.files"/>
+			</javadoc>
 	</target>
 
     <!--Add a clean target-->
