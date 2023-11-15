@@ -1,3 +1,12 @@
+/*
+* Authors:
+* Name:        Dylan Mather
+* CWID:        12267750
+* Email:       dmmather@crimson.ua.edu
+*
+*	Contributors: Emily Otter
+*/
+
 package chocan.controller;
 
 import java.io.BufferedWriter;

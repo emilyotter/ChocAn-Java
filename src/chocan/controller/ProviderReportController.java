@@ -1,3 +1,12 @@
+/*
+* Authors:
+* Name:        Emily Otter
+* CWID:        12100724
+* Email:       eaotter@crimson.ua.edu
+*
+*	
+*/
+
 package chocan.controller;
 
 import java.io.BufferedWriter;
