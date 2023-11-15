@@ -42,7 +42,9 @@ public class ProviderControllerTest {
         String zipcode = "11111";
         String state = "AL";
         
-        mockCredentialsDatabase.addEntry(memberId, createMemberData(name));
+        // Create member data with additional fields
+        HashMap<String, String> memberData = createMemberData(name, password, role, address, zipcode, state);
+        mockCredentialsDatabase.addEntry(memberId, memberData);
 
         // Act
         // Redirect system output to capture console output for validation
@@ -51,6 +53,7 @@ public class ProviderControllerTest {
         // Assert
         assertTrue(consoleOutput.contains("Member found: " + name));
     }
+
 
     @Test
     public void testValidateMemberInvalid() {
@@ -63,13 +66,18 @@ public class ProviderControllerTest {
         assertTrue(consoleOutput.contains("Invalid member number."));
     }
 
-    private HashMap<String, String> createMemberData(String name) {
-        HashMap<String, String> memberData = new HashMap<>();
-        memberData.put("name", name);
-        memberData.put("role", "member");
-        // Add other necessary member data
-        return memberData;
-    }
+    private HashMap<String, String> createMemberData(String name, String password, String role,
+            String address, String zipcode, String state) {
+    	HashMap<String, String> memberData = new HashMap<>();
+    	memberData.put("name", name);
+    	memberData.put("password", password);
+    	memberData.put("role", role);
+    	memberData.put("address", address);
+    	memberData.put("zipcode", zipcode);
+    	memberData.put("state", state);
+
+    	return memberData;
+}
 
     private String redirectSystemOut(Runnable action) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
