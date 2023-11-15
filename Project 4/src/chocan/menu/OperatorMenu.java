@@ -28,6 +28,7 @@ public class OperatorMenu extends UserMenu {
         options.put(5, "Update Provider");
         options.put(6, "Delete Provider");
         options.put(7, "Generate Provider Directory");
+        options.put(8, "Print Credentials");
         // Exit option is automatically added. 
 
         return options;
@@ -57,7 +58,11 @@ public class OperatorMenu extends UserMenu {
             case 7:
                 ((OperatorController) controller).generateProviderDirectory();
                 break;
+            case 8:
+                ((OperatorController) controller).printCredentials();
+                break;
         }
+        
     }
 
 }

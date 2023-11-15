@@ -28,6 +28,7 @@ public class ProviderMenu extends UserMenu {
         options.put(4, "Delete Service");
         options.put(5, "Generate Provider Report");
         options.put(6, "Email Provider Report");
+        options.put(7, "Print Serivces");
         
         // Exit option is automatically added. No need to add it here. 
         return options;
@@ -49,6 +50,9 @@ public class ProviderMenu extends UserMenu {
                 break;
             case 6:
                 ((ProviderController) controller).emailProviderReport();
+                break;
+            case 7:
+                ((ProviderController) controller).printServiceDatabase();
                 break;
         }
         // Override this method to execute the option chosen by the user. Use the controller to execute the option.

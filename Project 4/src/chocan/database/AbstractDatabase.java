@@ -59,7 +59,6 @@ public abstract class AbstractDatabase {
             // If not null, append the temp directory to the env variable
             TEMP_DIR = Path.of(System.getProperty(DB_DIR_ENV_VAR));
         }
-        System.out.println("TEMP_DIR: " + TEMP_DIR);
         // Set the database directory
         this.DB_DIR = TEMP_DIR.resolve("chocan");
 

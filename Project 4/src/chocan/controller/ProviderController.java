@@ -163,4 +163,12 @@ public class ProviderController extends AbstractController{
             System.out.println("User not found are you sure the ID is correct.");
         }
     }
+
+    /**
+     * Prints the service database.
+     */
+    public void printServiceDatabase() {
+        serviceDatabase.printAllEntries();
+    }
+
 }

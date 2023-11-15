@@ -20,10 +20,14 @@ public class Terminal {
             turnOff(-1);
         }
 
-        // Database for testing
+        // Create the databases
         CredentialsDatabase termCredentialsDatabase = new CredentialsDatabase();
         ServiceDatabase termServiceDatabase = new ServiceDatabase();
 
+        // Bootstrap the admin account
+        bootstrapAdmin(termCredentialsDatabase);
+
+        // Create the controllers
         MemberReportController mrc = new MemberReportController(termCredentialsDatabase , termServiceDatabase);
         ProviderReportController prc = new ProviderReportController(termCredentialsDatabase, termServiceDatabase);
         SummaryReportController src = new SummaryReportController(termCredentialsDatabase, termServiceDatabase);
@@ -32,35 +36,50 @@ public class Terminal {
         DailyTimer prcTimer = new DailyTimer(7, 24, 0, 0, prc);
         DailyTimer srcTimer = new DailyTimer(7, 24, 0, 0, src);
 
+        // Start the timers
         mrcTimer.start();
         prcTimer.start();
         srcTimer.start();
-
-
         
-        // Print all entries in the database for testing
-        termCredentialsDatabase.printAllEntries();
-
-         // Add Admin Credentials for testing
-         HashMap<String, String> adminCredentials = new HashMap<String, String>();
-         adminCredentials.put("name", "admin");
-         adminCredentials.put("password", "admin");
-         adminCredentials.put("role", "operator");
-         adminCredentials.put("address", "1234");
-         adminCredentials.put("zipcode", "100");
-         adminCredentials.put("state", "AL");
         
-         try {
-             termCredentialsDatabase.addEntry("1", adminCredentials);
-         } catch (Exception IllegalArgumentException) {
-             System.out.println("Entry already exists.");
-         }
-
+        // Create the login menu
         LoginController userLoginController = new LoginController(termCredentialsDatabase, termServiceDatabase);
         LoginMenu userLoginMenu = new LoginMenu(userLoginController);
         userLoginMenu.run();
 
+
+        // Turn off the system
         turnOff();
+    }
+
+    /**
+     * This method is used to bootstrap the system with an admin account.
+     * The admin account has the following credentials:
+     * UID = admin
+     * password = admin
+     * role = operator
+     * address = 123 Penny Lane
+     * zipcode = 12345
+     * state = AL
+     * 
+     * @param termCredentialsDatabase The credentials database to add the admin account to.
+     */
+    private static void bootstrapAdmin(CredentialsDatabase termCredentialsDatabase) {
+        // Add Admin Credentials for bootstrapping
+        HashMap<String, String> adminCredentials = new HashMap<String, String>();
+        adminCredentials.put("name", "admin");
+        adminCredentials.put("password", "admin");
+        adminCredentials.put("role", "operator");
+        adminCredentials.put("address", "123 Penny Lane");
+        adminCredentials.put("zipcode", "12345");
+        adminCredentials.put("state", "AL");
+        
+        try {
+            termCredentialsDatabase.addEntry("admin", adminCredentials);
+        } catch (Exception IllegalArgumentException) {
+            return;
+        }
+
     }
 
     private static boolean turnOn() {

@@ -28,13 +28,14 @@ git clone https://bitbucket.org/azaman2/team12/src/master/
 ## Running the Program
 To run the ChocAn System, perform the following steps:
 
-1)	Run the `main` target to resolve dependencies, clean the build directories, compile, package, and run the application.
+1)	Run the `main` target to resolve dependencies, clean the build directories, compile, package the application.
 
 ```shell
 ant main
 ```
 
-1)  You can also run the application directly through java.
+After running the `main` target, the application will be packaged into a jar file in the `release` directory.
+Use the following command to run the application:
 
 ```shell
 java -jar release/ChocAn.jar
