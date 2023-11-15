@@ -157,7 +157,7 @@ Thank you for choosing Chocoholics Anonymous. If you encounter any issues or hav
 |-------------------|------------|------------------------------------------------------------------------|
 | Dylan Mather      |            |                                                                        |
 | Maddox Guthrie    |            | Operator Menu + Controller<br/>Login Menu + Controller<br/>Daily Timer |
-| Nischal Bhattarai |            |                                                                        |
+| Nischal Bhattarai |            | Credential + Serivce Database<br/> Menu Base Class + Additional Menu <br/> Input Handeler  <br/> Databse Unit Test|
 | Emily Otter       |            |                                                                        |
 | Egan Trahant      |            |                                                                        |
 | Kaela Camara      |            |                                                                        |

@@ -1,3 +1,11 @@
+/*
+ * Authors:
+ * Name:        Nichal Bhattarai
+ * CWID:        12088410
+ * Email:       nbhattarai@crimson.ua.edu
+ *
+ */
+
 package test.database;
 
 import chocan.database.CredentialsDatabase;
