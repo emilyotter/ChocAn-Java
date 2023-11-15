@@ -83,27 +83,30 @@ public class ProviderReportController extends AbstractReportController { //exten
     
     private void writeDetails(String providerId, BufferedWriter writer, HashMap<String, String> providerInfo) throws IOException {
         //formatting provider details
-        writer.write("Provider Name:" + String.format("%-25s\n", providerInfo.getOrDefault("name", "")));
+        writer.write("Provider Name:" + String.format("%-25s\n", providerInfo.getOrDefault("name", "No info available.")));
         writer.write("Provider Number:" + String.format("%-9s\n", providerId));
-        writer.write("Street Address:" + String.format("%-25s\n", providerInfo.getOrDefault("address", "")));
-        writer.write("City:" + String.format("%-14s\n", providerInfo.getOrDefault("city", "")));
-        writer.write("State:" + String.format("%-2s\n", providerInfo.getOrDefault("state", "")));
-        writer.write("ZIP Code:" + String.format("%-5s\n", providerInfo.getOrDefault("zipcode", "")));
+        writer.write("Street Address:" + String.format("%-25s\n", providerInfo.getOrDefault("address", "No info available.")));
+        writer.write("City:" + String.format("%-14s\n", providerInfo.getOrDefault("city", "No info available.")));
+        writer.write("State:" + String.format("%-2s\n", providerInfo.getOrDefault("state", "No info available.")));
+        writer.write("ZIP Code:" + String.format("%-5s\n", providerInfo.getOrDefault("zipcode", "No info available.")));
+        writer.write("\n");
     }
     
     private void writeServices(String field, String matchVal, BufferedWriter writer) throws IOException {
-        //use match search to get services
+      
+    	writer.write("\nServices:\n");
+    	//use match search to get services
         HashMap<String, HashMap<String, String>> matchedRecords = services.matchSearch(field, matchVal);
-
         // Iterate through the results and print them
         for (String key : matchedRecords.keySet()) {
         	writer.write("-----------------------\n");
-            HashMap<String, String> record = matchedRecords.get(key);
+            HashMap<String, String> record = matchedRecords.getOrDefault(key, null);
             //System.out.println("Record Key: " + key);
             for (String recordField : record.keySet()) {
-					writer.write(recordField + ": " + String.format("%-20s\n", record.get(recordField)));
+					writer.write(recordField + ": " + String.format("%-20s\n", record.getOrDefault(recordField,"No info available.")));
             }
         }
+        writer.write("\n");
     }
 
 
